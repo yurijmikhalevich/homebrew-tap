@@ -1,4 +1,4 @@
-# Yurijmikhalevich Rclip
+# Homebrew tap for [rclip](https://github.com/yurijmikhalevich/rclip)
 
 ## How do I install these formulae?
 
