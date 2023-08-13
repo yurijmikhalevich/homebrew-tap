@@ -8,8 +8,9 @@ class Rclip < Formula
   license "MIT"
 
   depends_on "numpy"
+  depends_on "pillow"
   depends_on "python-certifi"
-  depends_on "python3"
+  depends_on "python@3.11"
   depends_on "pytorch"
   depends_on "torchvision"
 
@@ -71,11 +72,6 @@ class Rclip < Formula
   resource "packaging" do
     url "https://files.pythonhosted.org/packages/b9/6c/7c6658d258d7971c5eb0d9b69fa9265879ec9a9158031206d47800ae2213/packaging-23.1.tar.gz"
     sha256 "a392980d2b6cffa644431898be54b0045151319d1e7ec34f0cfed48767dd334f"
-  end
-
-  resource "pillow" do
-    url "https://files.pythonhosted.org/packages/0f/8b/2ebaf9adcf4260c00f842154865f8730cf745906aa5dd499141fb6063e26/Pillow-10.0.0.tar.gz"
-    sha256 "9c82b5b3e043c7af0d95792d0d20ccf68f61a1fec6b3530e718b688422727396"
   end
 
   resource "protobuf" do
