@@ -65,8 +65,9 @@ class Rclip < Formula
   end
 
   resource "open-clip-torch" do
-    url "https://files.pythonhosted.org/packages/d7/c4/59f4373b2c3558179fc3634b7edf49ea1c3040f262b4ea7ba4b8383b0a81/open_clip_torch-2.20.0.tar.gz"
-    sha256 "735d599d24dbecc29ae6277bca5587152bf58b3fb0c961b734f448fc24040e85"
+    # tar.gz published on pypi is incomplete
+    url "https://github.com/mlfoundations/open_clip/archive/refs/tags/v2.20.0.tar.gz"
+    sha256 "7ba57638668c12a2765ef07337d8fe3e0442633f4fc83f85dd06fc7bc7eadb18"
   end
 
   resource "packaging" do
