@@ -139,6 +139,13 @@ class Rclip < Formula
 
   def install
     virtualenv_install_with_resources
+
+    # link dependent virtualenvs to this one
+    paths = %w[pytorch torchvision].map do |package_name|
+      package = Formula[package_name].opt_libexec
+      package/site_packages
+    end
+    (libexec/site_packages/"homebrew-deps.pth").write paths.join("\n")
   end
 
   test do
