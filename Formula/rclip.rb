@@ -13,6 +13,7 @@ class Rclip < Formula
   depends_on "python-certifi"
   depends_on "python@3.11"
   depends_on "pytorch"
+  depends_on "sentencepiece"
   depends_on "torchvision"
 
   resource "charset-normalizer" do
