@@ -149,7 +149,7 @@ class Rclip < Formula
   end
 
   test do
-    output = shell_output("rclip cat")
+    output = shell_output("#{bin}/rclip cat")
     assert_match("score\tfilepath", output)
   end
 end
