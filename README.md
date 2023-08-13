@@ -1,10 +1,10 @@
-# Homebrew tap for [rclip](https://github.com/yurijmikhalevich/rclip)
+# An official homebrew tap for [rclip](https://github.com/yurijmikhalevich/rclip)
 
-## How do I install these formulae?
+## How do I install rclip from this tap?
 
-`brew install yurijmikhalevich/rclip/<formula>`
+`brew install yurijmikhalevich/rclip/rclip`
 
-Or `brew tap yurijmikhalevich/rclip` and then `brew install <formula>`.
+Or `brew tap yurijmikhalevich/rclip` and then `brew install rclip`.
 
 ## Documentation
 
