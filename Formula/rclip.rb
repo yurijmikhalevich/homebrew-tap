@@ -147,4 +147,9 @@ class Rclip < Formula
   def install
     virtualenv_install_with_resources
   end
+
+  test do
+    output = shell_output("rclip cat")
+    assert_match("score\tfilepath", output)
+  end
 end
