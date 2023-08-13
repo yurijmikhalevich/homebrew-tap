@@ -8,6 +8,9 @@ class Rclip < Formula
   license "MIT"
 
   depends_on "python3"
+  depends_on "numpy"
+  depends_on "torch"
+  depends_on "torchvision"
 
   resource "certifi" do
     url "https://files.pythonhosted.org/packages/98/98/c2ff18671db109c9f10ed27f5ef610ae05b73bd876664139cf95bd1429aa/certifi-2023.7.22.tar.gz"
@@ -64,10 +67,10 @@ class Rclip < Formula
     sha256 "de346335408f84de0eada6ff9fafafff9bcda11f0a0dfaa931133debb146ab61"
   end
 
-  resource "numpy" do
-    url "https://files.pythonhosted.org/packages/a4/9b/027bec52c633f6556dba6b722d9a0befb40498b9ceddd29cbe67a45a127c/numpy-1.24.4.tar.gz"
-    sha256 "80f5e3a4e498641401868df4208b74581206afbee7cf7b8329daae82676d9463"
-  end
+#   resource "numpy" do
+#     url "https://files.pythonhosted.org/packages/a4/9b/027bec52c633f6556dba6b722d9a0befb40498b9ceddd29cbe67a45a127c/numpy-1.24.4.tar.gz"
+#     sha256 "80f5e3a4e498641401868df4208b74581206afbee7cf7b8329daae82676d9463"
+#   end
 
   resource "open-clip-torch" do
     url "https://files.pythonhosted.org/packages/d7/c4/59f4373b2c3558179fc3634b7edf49ea1c3040f262b4ea7ba4b8383b0a81/open_clip_torch-2.20.0.tar.gz"
