@@ -2,9 +2,9 @@
 
 ## How do I install rclip from this tap?
 
-`brew install yurijmikhalevich/rclip/rclip`
+`brew install yurijmikhalevich/tap/rclip`
 
-Or `brew tap yurijmikhalevich/rclip` and then `brew install rclip`.
+Or `brew tap yurijmikhalevich/tap` and then `brew install rclip`.
 
 ## Documentation
 
