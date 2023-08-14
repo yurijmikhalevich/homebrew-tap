@@ -141,6 +141,7 @@ class Rclip < Formula
     virtualenv_install_with_resources
 
     # link dependent virtualenvs to this one
+    site_packages = Language::Python.site_packages("python3.11")
     paths = %w[pytorch torchvision].map do |package_name|
       package = Formula[package_name].opt_libexec
       package/site_packages
