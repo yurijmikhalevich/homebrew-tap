@@ -1,4 +1,4 @@
-# An official homebrew tap for [rclip](https://github.com/yurijmikhalevich/rclip)
+# The official homebrew tap for [rclip](https://github.com/yurijmikhalevich/rclip)
 
 ## How do I install rclip from this tap?
 
