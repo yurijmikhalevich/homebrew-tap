@@ -6,6 +6,7 @@ on:
 jobs:
   pr-pull:
     if: contains(github.event.pull_request.labels.*.name, 'pr-pull')
+    permissions: write-all
     runs-on: ubuntu-22.04
     steps:
       - name: Set up Homebrew
