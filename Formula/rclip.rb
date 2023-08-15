@@ -9,7 +9,7 @@ class Rclip < Formula
 
   bottle do
     root_url "https://ghcr.io/v2/yurijmikhalevich/tap"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "46fa5cb15de34b269c6d81a393324c71716aa3f820d59e23699e9670da5ef342"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "d6659106f535dc5a6f7a387eb330bab8948b3894670a0d109c8f343179ed09d5"
   end
 
   depends_on "rust" => :build # for safetensors
