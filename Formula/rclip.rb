@@ -3,8 +3,8 @@ class Rclip < Formula
 
   desc "AI-Powered Command-Line Photo Search Tool"
   homepage "https://github.com/yurijmikhalevich/rclip"
-  url "https://files.pythonhosted.org/packages/83/58/5173fbc719c44738d6dcce708481602bfa0c898bf696774139a43341bf40/rclip-1.4.9.tar.gz"
-  sha256 "bc38242711970f867955e59e27b7d750d6db9c083ae943b8f4b12d1cb6dca821"
+  url "https://files.pythonhosted.org/packages/b4/6d/ae012fe2d4e558c1d639edf5bd8abf8c10f98ca692db9c8ac4bed6b6520a/rclip-1.4.10.tar.gz"
+  sha256 "4d8ff70553c7dd2762da809859209c3a02871e8236eeaed09a4888d6e2521731"
   license "MIT"
 
   bottle do
