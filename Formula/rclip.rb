@@ -13,7 +13,7 @@ class Rclip < Formula
     sha256 cellar: :any_skip_relocation, x86_64_linux: "d6659106f535dc5a6f7a387eb330bab8948b3894670a0d109c8f343179ed09d5"
   end
 
-  conflicts_with "rclip@beta"
+  conflicts_with "rclip@beta",
     because: "both install `rclip` executables"
 
   depends_on "rust" => :build # for safetensors
