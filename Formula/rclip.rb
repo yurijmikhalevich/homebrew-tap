@@ -6,15 +6,11 @@ class Rclip < Formula
   url "https://files.pythonhosted.org/packages/b4/6d/ae012fe2d4e558c1d639edf5bd8abf8c10f98ca692db9c8ac4bed6b6520a/rclip-1.4.10.tar.gz"
   sha256 "4d8ff70553c7dd2762da809859209c3a02871e8236eeaed09a4888d6e2521731"
   license "MIT"
-  revision 1
 
   bottle do
     root_url "https://ghcr.io/v2/yurijmikhalevich/tap"
     sha256 cellar: :any_skip_relocation, x86_64_linux: "d6659106f535dc5a6f7a387eb330bab8948b3894670a0d109c8f343179ed09d5"
   end
-
-  conflicts_with "rclip@beta",
-    because: "both install `rclip` executables"
 
   depends_on "rust" => :build # for safetensors
   depends_on "numpy"
