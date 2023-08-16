@@ -1,4 +1,4 @@
-class RclipATBeta < Formula
+class RclipATbeta < Formula
   include Language::Python::Virtualenv
 
   desc "AI-Powered Command-Line Photo Search Tool"
@@ -11,6 +11,9 @@ class RclipATBeta < Formula
     root_url "https://ghcr.io/v2/yurijmikhalevich/tap"
     sha256 cellar: :any_skip_relocation, x86_64_linux: "d6659106f535dc5a6f7a387eb330bab8948b3894670a0d109c8f343179ed09d5"
   end
+
+  conflicts_with "rclip"
+    because: "both install `rclip` executables"
 
   depends_on "rust" => :build # for safetensors
   depends_on "numpy"
