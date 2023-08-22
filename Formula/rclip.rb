@@ -3,14 +3,9 @@ class Rclip < Formula
 
   desc "AI-Powered Command-Line Photo Search Tool"
   homepage "https://github.com/yurijmikhalevich/rclip"
-  url "https://files.pythonhosted.org/packages/d4/b3/b9c75e4fc73ed28ba54940d5de6430473991807f28f7b525c6d761692839/rclip-1.5.1.tar.gz"
-  sha256 "1473baf302f73c0d66df2bc7899079a89bcaa0a3d59f7c2de1b986ada43880d0"
+  url "https://files.pythonhosted.org/packages/d1/ea/5a5dce9f6f9f1363824fce48fb30de962677dbdd9c7644e53aeccb5a5ec7/rclip-1.5.4.tar.gz"
+  sha256 "8780a910da53ac9266015c516137485cb9755058378a693e7e15e0e25c24851f"
   license "MIT"
-
-  bottle do
-    root_url "https://ghcr.io/v2/yurijmikhalevich/tap"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "1c3577582fd1a170e524eea73774f80631c793a3d613c5c74cbba15969e0342d"
-  end
 
   depends_on "rust" => :build # for safetensors
   depends_on "numpy"
