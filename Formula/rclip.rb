@@ -3,14 +3,9 @@ class Rclip < Formula
 
   desc "AI-Powered Command-Line Photo Search Tool"
   homepage "https://github.com/yurijmikhalevich/rclip"
-  url "https://files.pythonhosted.org/packages/0d/6c/dacedf2375e9bc5da136978a3ee7a9e55b17a4d91204e5f5b85ff4dea457/rclip-1.7.6.tar.gz"
-  sha256 "862ecc0736bf181c1eb04db5ec43d598a813c3e1da8158c0e20b130319255aa5"
+  url "https://files.pythonhosted.org/packages/24/af/a29ae057243ee7e1a3f6b8483b06d69cc8fae41e148847d170fbd1bd2645/rclip-1.7.7.tar.gz"
+  sha256 "0f2e2a29e294cb23ba746f0e29aa1c2a7501c530d31c5cca408bb4f345b53c22"
   license "MIT"
-
-  bottle do
-    root_url "https://ghcr.io/v2/yurijmikhalevich/tap"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "a50c4a2033af8fb5d13aac9ab28dd683bcf892e14ec00b867846b6f314ac6810"
-  end
 
   depends_on "rust" => :build # for safetensors
   depends_on "numpy"
@@ -32,28 +27,28 @@ class Rclip < Formula
   end
 
   resource "fsspec" do
-    url "https://files.pythonhosted.org/packages/a4/f7/16ec1f92523165d10301cfa8cb83df0356dbe615d4ca5ed611a16f53e09a/fsspec-2023.10.0.tar.gz"
-    sha256 "330c66757591df346ad3091a53bd907e15348c2ba17d63fd54f5c39c4457d2a5"
+    url "https://files.pythonhosted.org/packages/fa/08/cac914ff6ff46c4500fc4323a939dbe7a0f528cca04e7fd3e859611dea41/fsspec-2023.12.2.tar.gz"
+    sha256 "8548d39e8810b59c38014934f6b31e57f40c1b20f911f4cc2b85389c7e9bf0cb"
   end
 
   resource "ftfy" do
-    url "https://files.pythonhosted.org/packages/97/16/79c6e17bd3465f6498282dd23813846c68cd0989fe60bfef68bb1918d041/ftfy-6.1.1.tar.gz"
-    sha256 "bfc2019f84fcd851419152320a6375604a0f1459c281b5b199b2cd0d2e727f8f"
+    url "https://files.pythonhosted.org/packages/dd/da/d177a95c12483cffd247f283846ac94f2cb7a9cd6fcf4b675a02a46ffd82/ftfy-6.1.3.tar.gz"
+    sha256 "693274aead811cff24c1e8784165aa755cd2f6e442a5ec535c7d697f6422a422"
   end
 
   resource "huggingface-hub" do
-    url "https://files.pythonhosted.org/packages/64/74/c85a5c59888da14c9904dad8109cf1c744055ffde38a8fb830a1e3cf1d66/huggingface_hub-0.19.4.tar.gz"
-    sha256 "176a4fc355a851c17550e7619488f383189727eab209534d7cef2114dae77b22"
+    url "https://files.pythonhosted.org/packages/07/a7/de46c577512599e9baf8012f53a67f0688ba20b25bedbc521617b083c981/huggingface_hub-0.20.2.tar.gz"
+    sha256 "215c5fceff631030c7a3d19ba7b588921c908b3f21eef31d160ebc245b200ff6"
   end
 
   resource "idna" do
-    url "https://files.pythonhosted.org/packages/8b/e1/43beb3d38dba6cb420cefa297822eac205a277ab43e5ba5d5c46faf96438/idna-3.4.tar.gz"
-    sha256 "814f528e8dead7d329833b91c5faa87d60bf71824cd12a7530b5526063d02cb4"
+    url "https://files.pythonhosted.org/packages/bf/3f/ea4b9117521a1e9c50344b909be7886dd00a519552724809bb1f486986c2/idna-3.6.tar.gz"
+    sha256 "9ecdbbd083b06798ae1e86adcbfe8ab1479cf864e4ee30fe4e46a003d12491ca"
   end
 
   resource "jinja2" do
-    url "https://files.pythonhosted.org/packages/7a/ff/75c28576a1d900e87eb6335b063fab47a8ef3c8b4d88524c4bf78f670cce/Jinja2-3.1.2.tar.gz"
-    sha256 "31351a702a408a9e7595a8fc6150fc3f43bb6bf7e319770cbc0db9df9437e852"
+    url "https://files.pythonhosted.org/packages/b2/5e/3a21abf3cd467d7876045335e681d276ac32492febe6d98ad89562d1a7e1/Jinja2-3.1.3.tar.gz"
+    sha256 "ac8bd6544d4bb2c9792bf3a159e80bba8fda7f07e81bc3aed565432d5925ba90"
   end
 
   resource "markupsafe" do
@@ -72,8 +67,8 @@ class Rclip < Formula
   end
 
   resource "open-clip-torch" do
-    url "https://github.com/mlfoundations/open_clip/archive/refs/tags/v2.23.0.tar.gz"
-    sha256 "d3dddbd2e7a90658487a77f4b1349be04e8cd62a28a6b100e4bfb960ab215dc8"
+    url "https://github.com/mlfoundations/open_clip/archive/refs/tags/v2.24.0.tar.gz"
+    sha256 "83d78a78f756685e80fdb8baa2f2fb308c791fabdbfe1c0ddcd6fed7d22de7b6"
   end
 
   resource "packaging" do
@@ -82,8 +77,8 @@ class Rclip < Formula
   end
 
   resource "protobuf" do
-    url "https://files.pythonhosted.org/packages/59/5f/b2d00e6a08d97656a27832d4d146e03ffc46ae74b4699740674bea13a905/protobuf-4.25.1.tar.gz"
-    sha256 "57d65074b4f5baa4ab5da1605c02be90ac20c8b40fb137d6a8df9f416b0d0ce2"
+    url "https://files.pythonhosted.org/packages/db/a5/05ea470f4e793c9408bc975ce1c6957447e3134ce7f7a58c13be8b2c216f/protobuf-4.25.2.tar.gz"
+    sha256 "fe599e175cb347efc8ee524bcd4b902d11f7262c0e569ececcb89995c15f0a5e"
   end
 
   resource "pyyaml" do
@@ -92,8 +87,8 @@ class Rclip < Formula
   end
 
   resource "regex" do
-    url "https://files.pythonhosted.org/packages/6b/38/49d968981b5ec35dbc0f742f8219acab179fc1567d9c22444152f950cf0d/regex-2023.10.3.tar.gz"
-    sha256 "3fef4f844d2290ee0ba57addcec17eec9e3df73f10a2748485dfd6a3a188cc0f"
+    url "https://files.pythonhosted.org/packages/b5/39/31626e7e75b187fae7f121af3c538a991e725c744ac893cc2cfd70ce2853/regex-2023.12.25.tar.gz"
+    sha256 "29171aa128da69afdf4bde412d5bedc335f2ca8fcfe4489038577d05f16181e5"
   end
 
   resource "requests" do
@@ -102,8 +97,8 @@ class Rclip < Formula
   end
 
   resource "safetensors" do
-    url "https://files.pythonhosted.org/packages/64/ae/978970755bfe0ce612fc32527d3ab2bf195f926f9d02eb63ba20823c16be/safetensors-0.4.0.tar.gz"
-    sha256 "b985953c3cf11e942eac4317ef3db3da713e274109cf7cfb6076d877054f013e"
+    url "https://files.pythonhosted.org/packages/37/7b/72f3998263fbdc4b2fe105fbc4d08abf9ee54ef7049ade7a6e79f9af0042/safetensors-0.4.1.tar.gz"
+    sha256 "2304658e6ada81a5223225b4efe84748e760c46079bffedf7e321763cafb36c9"
   end
 
   resource "sentencepiece" do
@@ -117,8 +112,8 @@ class Rclip < Formula
   end
 
   resource "timm" do
-    url "https://files.pythonhosted.org/packages/c8/fd/742a9b4f4a896cef7f066dd8b146bf5682317261f0b71bab2b35928a98bd/timm-0.9.10.tar.gz"
-    sha256 "581dacc867398327ab2f77470fae6eee09a0c5d1d838bd9bced21ce0057edfd9"
+    url "https://files.pythonhosted.org/packages/8a/3c/1f84a65cd049a360723d92cf7a3911126deb9409129f14e9648b78d1115c/timm-0.9.12.tar.gz"
+    sha256 "9121d1cf320f7f32490d893340fd33117bda0a0270eb8282dfd52ae5fd3e1af6"
   end
 
   resource "tqdm" do
@@ -127,8 +122,8 @@ class Rclip < Formula
   end
 
   resource "typing-extensions" do
-    url "https://files.pythonhosted.org/packages/1f/7a/8b94bb016069caa12fc9f587b28080ac33b4fbb8ca369b98bc0a4828543e/typing_extensions-4.8.0.tar.gz"
-    sha256 "df8e4339e9cb77357558cbdbceca33c303714cf861d1eef15e1070055ae8b7ef"
+    url "https://files.pythonhosted.org/packages/0c/1d/eb26f5e75100d531d7399ae800814b069bc2ed2a7410834d57374d010d96/typing_extensions-4.9.0.tar.gz"
+    sha256 "23478f88c37f27d76ac8aee6c905017a143b0b1b886c3c9f66bc2fd94f9f5783"
   end
 
   resource "urllib3" do
@@ -137,8 +132,8 @@ class Rclip < Formula
   end
 
   resource "wcwidth" do
-    url "https://files.pythonhosted.org/packages/2e/1c/21f2379555bba50b54e5a965d9274602fe2bada4778343d5385840f7ac34/wcwidth-0.2.10.tar.gz"
-    sha256 "390c7454101092a6a5e43baad8f83de615463af459201709556b6e4b1c861f97"
+    url "https://files.pythonhosted.org/packages/6c/63/53559446a878410fc5a5974feb13d31d78d752eb18aeba59c7fef1af7598/wcwidth-0.2.13.tar.gz"
+    sha256 "72ea0c06399eb286d978fdedb6923a9eb47e1c486ce63e9b4e64fc18303972b5"
   end
 
   def install
