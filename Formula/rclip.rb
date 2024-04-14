@@ -3,15 +3,9 @@ class Rclip < Formula
 
   desc "AI-Powered Command-Line Photo Search Tool"
   homepage "https://github.com/yurijmikhalevich/rclip"
-  url "https://files.pythonhosted.org/packages/67/78/2ed414c519869262422066b334c80f59d534ec7802dc1006c18704aef551/rclip-1.8.7.tar.gz"
-  sha256 "fe7d75b2ac0335a773aad11911cc43c966de34e020128f38dd5c144c2a87a43d"
+  url "https://files.pythonhosted.org/packages/80/a3/c2741a607955c25212be0a5784d978dac7d8690e3de9d7f3949cbf106c70/rclip-1.8.8.tar.gz"
+  sha256 "4a3114f2773b7a52da0776cf842b0c7f65918f0c98fffc2e412949e1424dd70a"
   license "MIT"
-
-  bottle do
-    root_url "https://ghcr.io/v2/yurijmikhalevich/tap"
-    sha256 cellar: :any,                 ventura:      "de9c2f823d9a66e369117ae9349bb318b8ab1436a09fd3a75beea1e136e52968"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "6e91005716e4ae5aa6c4fe015f265694c3e82ead8ab0b875cc4c6737a400e38d"
-  end
 
   depends_on "rust" => :build # for safetensors
   depends_on "certifi"
@@ -29,8 +23,8 @@ class Rclip < Formula
   end
 
   resource "filelock" do
-    url "https://files.pythonhosted.org/packages/db/97/3f028f216da17ab0500550a6bb0f26bf39b07848348f63cce44b89829af9/filelock-3.13.3.tar.gz"
-    sha256 "a79895a25bbefdf55d1a2a0a80968f7dbb28edcd6d4234a0afb3f37ecde4b546"
+    url "https://files.pythonhosted.org/packages/38/ff/877f1dbe369a2b9920e2ada3c9ab81cf6fe8fa2dce45f40cad510ef2df62/filelock-3.13.4.tar.gz"
+    sha256 "d13f466618bfde72bd2c18255e269f72542c6e70e7bac83a0232d6b1cc5c8cf4"
   end
 
   resource "fsspec" do
@@ -49,8 +43,8 @@ class Rclip < Formula
   end
 
   resource "idna" do
-    url "https://files.pythonhosted.org/packages/bf/3f/ea4b9117521a1e9c50344b909be7886dd00a519552724809bb1f486986c2/idna-3.6.tar.gz"
-    sha256 "9ecdbbd083b06798ae1e86adcbfe8ab1479cf864e4ee30fe4e46a003d12491ca"
+    url "https://files.pythonhosted.org/packages/21/ed/f86a79a07470cb07819390452f178b3bef1d375f2ec021ecfc709fc7cf07/idna-3.7.tar.gz"
+    sha256 "028ff3aadf0609c1fd278d8ea3089299412a7a8b9bd005dd08b9f8285bcb5cfc"
   end
 
   resource "jinja2" do
