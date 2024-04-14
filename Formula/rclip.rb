@@ -7,6 +7,13 @@ class Rclip < Formula
   sha256 "4a3114f2773b7a52da0776cf842b0c7f65918f0c98fffc2e412949e1424dd70a"
   license "MIT"
 
+  bottle do
+    root_url "https://ghcr.io/v2/yurijmikhalevich/tap"
+    sha256 cellar: :any,                 arm64_sonoma: "f1d05d4169ce0dec4076878196859b9284c9020e9dd9bce7772bf9a02a69b394"
+    sha256 cellar: :any,                 ventura:      "ce9fb21289865053284de8bc485f2e290f0b84c33ce52b6df3b68c6a579530bb"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "aeb3d67e94015399abb4449e4cd3e8231bd7c04ad2be66e3e5fd9a3e74887992"
+  end
+
   depends_on "rust" => :build # for safetensors
   depends_on "certifi"
   depends_on "libyaml"
