@@ -3,16 +3,9 @@ class Rclip < Formula
 
   desc "AI-Powered Command-Line Photo Search Tool"
   homepage "https://github.com/yurijmikhalevich/rclip"
-  url "https://files.pythonhosted.org/packages/80/a3/c2741a607955c25212be0a5784d978dac7d8690e3de9d7f3949cbf106c70/rclip-1.8.8.tar.gz"
-  sha256 "4a3114f2773b7a52da0776cf842b0c7f65918f0c98fffc2e412949e1424dd70a"
+  url "https://files.pythonhosted.org/packages/76/ad/fb0c4a5984bf5f17800a93ea37b1c340d580e769de376e53c72ed2cedfc5/rclip-1.8.9.tar.gz"
+  sha256 "71b6392b610aad2092c53e92c0da459f349b81aed86ab5a9b754c6c1f75af409"
   license "MIT"
-
-  bottle do
-    root_url "https://ghcr.io/v2/yurijmikhalevich/tap"
-    sha256 cellar: :any,                 arm64_sonoma: "f1d05d4169ce0dec4076878196859b9284c9020e9dd9bce7772bf9a02a69b394"
-    sha256 cellar: :any,                 ventura:      "ce9fb21289865053284de8bc485f2e290f0b84c33ce52b6df3b68c6a579530bb"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "aeb3d67e94015399abb4449e4cd3e8231bd7c04ad2be66e3e5fd9a3e74887992"
-  end
 
   depends_on "rust" => :build # for safetensors
   depends_on "certifi"
@@ -125,8 +118,8 @@ class Rclip < Formula
   end
 
   resource "tqdm" do
-    url "https://files.pythonhosted.org/packages/ea/85/3ce0f9f7d3f596e7ea57f4e5ce8c18cb44e4a9daa58ddb46ee0d13d6bff8/tqdm-4.66.2.tar.gz"
-    sha256 "6cd52cdf0fef0e0f543299cfc96fec90d7b8a7e88745f411ec33eb44d5ed3531"
+    url "https://files.pythonhosted.org/packages/5a/c0/b7599d6e13fe0844b0cda01b9aaef9a0e87dbb10b06e4ee255d3fa1c79a2/tqdm-4.66.4.tar.gz"
+    sha256 "e4d936c9de8727928f3be6079590e97d9abfe8d39a590be678eb5919ffc186bb"
   end
 
   resource "typing-extensions" do
