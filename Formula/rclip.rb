@@ -3,16 +3,9 @@ class Rclip < Formula
 
   desc "AI-Powered Command-Line Photo Search Tool"
   homepage "https://github.com/yurijmikhalevich/rclip"
-  url "https://files.pythonhosted.org/packages/76/ad/fb0c4a5984bf5f17800a93ea37b1c340d580e769de376e53c72ed2cedfc5/rclip-1.8.9.tar.gz"
-  sha256 "71b6392b610aad2092c53e92c0da459f349b81aed86ab5a9b754c6c1f75af409"
+  url "https://files.pythonhosted.org/packages/15/1e/21ddd5222bb08464133b66e179c00c67d4ec256b64ae8f8daae706a3234b/rclip-1.8.10.tar.gz"
+  sha256 "d8cca19487369adc5c75e0e0f891a968040cd61fb78ff1ba9bb25cd3bd10cba1"
   license "MIT"
-
-  bottle do
-    root_url "https://ghcr.io/v2/yurijmikhalevich/tap"
-    sha256 cellar: :any,                 arm64_sonoma: "55d76cda0a976366982fcc8507693dc5c85c522d6fa70214d85b72690c51f5df"
-    sha256 cellar: :any,                 ventura:      "b9ff4fa1019c17483a52ff77f5a36ee62d5914d437dbea92d7b447683300d0e3"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "a1c359a36b527d67d653f55bbde304069c2227929f7898c07dc958d3d8e98650"
-  end
 
   depends_on "rust" => :build # for safetensors
   depends_on "certifi"
@@ -30,8 +23,8 @@ class Rclip < Formula
   end
 
   resource "filelock" do
-    url "https://files.pythonhosted.org/packages/38/ff/877f1dbe369a2b9920e2ada3c9ab81cf6fe8fa2dce45f40cad510ef2df62/filelock-3.13.4.tar.gz"
-    sha256 "d13f466618bfde72bd2c18255e269f72542c6e70e7bac83a0232d6b1cc5c8cf4"
+    url "https://files.pythonhosted.org/packages/06/ae/f8e03746f0b62018dcf1120f5ad0a1db99e55991f2cda0cf46edc8b897ea/filelock-3.14.0.tar.gz"
+    sha256 "6ea72da3be9b8c82afd3edcf99f2fffbb5076335a5ae4d03248bb5b6c3eae78a"
   end
 
   resource "fsspec" do
@@ -45,8 +38,8 @@ class Rclip < Formula
   end
 
   resource "huggingface-hub" do
-    url "https://files.pythonhosted.org/packages/42/4c/1ee8ca0aebca6ac985b65c65a443015dec969c2ed40e3599f3a801312d48/huggingface_hub-0.22.2.tar.gz"
-    sha256 "32e9a9a6843c92f253ff9ca16b9985def4d80a93fb357af5353f770ef74a81be"
+    url "https://files.pythonhosted.org/packages/63/9b/7ba10dafb38e4e4ea19f616087722db564f1fe8551b3825cb507351ba085/huggingface_hub-0.23.0.tar.gz"
+    sha256 "7126dedd10a4c6fac796ced4d87a8cf004efc722a5125c2c09299017fa366fa9"
   end
 
   resource "idna" do
@@ -55,8 +48,8 @@ class Rclip < Formula
   end
 
   resource "jinja2" do
-    url "https://files.pythonhosted.org/packages/b2/5e/3a21abf3cd467d7876045335e681d276ac32492febe6d98ad89562d1a7e1/Jinja2-3.1.3.tar.gz"
-    sha256 "ac8bd6544d4bb2c9792bf3a159e80bba8fda7f07e81bc3aed565432d5925ba90"
+    url "https://files.pythonhosted.org/packages/ed/55/39036716d19cab0747a5020fc7e907f362fbf48c984b14e62127f7e68e5d/jinja2-3.1.4.tar.gz"
+    sha256 "4a3aee7acbbe7303aede8e9648d13b8bf88a429282aa6122a993f0ac800cb369"
   end
 
   resource "markupsafe" do
@@ -95,8 +88,8 @@ class Rclip < Formula
   end
 
   resource "regex" do
-    url "https://files.pythonhosted.org/packages/b5/39/31626e7e75b187fae7f121af3c538a991e725c744ac893cc2cfd70ce2853/regex-2023.12.25.tar.gz"
-    sha256 "29171aa128da69afdf4bde412d5bedc335f2ca8fcfe4489038577d05f16181e5"
+    url "https://files.pythonhosted.org/packages/c0/d6/87709afa2a195ea902810dfaa796d21dd45d91b496dc98828073acbfe5af/regex-2024.4.28.tar.gz"
+    sha256 "83ab366777ea45d58f72593adf35d36ca911ea8bd838483c1823b883a121b0e4"
   end
 
   resource "requests" do
@@ -105,8 +98,8 @@ class Rclip < Formula
   end
 
   resource "safetensors" do
-    url "https://files.pythonhosted.org/packages/32/b4/24d2855f668c2fbee5855cc6551684bdd3f7b935af324c9c8b20290d8443/safetensors-0.4.2.tar.gz"
-    sha256 "acc85dcb09ec5e8aa787f588d7ad4d55c103f31e4ff060e17d92cc0e8b8cac73"
+    url "https://files.pythonhosted.org/packages/9c/21/acd1b6dd9dad9708fd388fdbe6618e461108cdbd56ff4eab6094c6e61035/safetensors-0.4.3.tar.gz"
+    sha256 "2f85fc50c4e07a21e95c24e07460fe6f7e2859d0ce88092838352b798ce711c2"
   end
 
   resource "sentencepiece" do
