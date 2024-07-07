@@ -3,16 +3,9 @@ class Rclip < Formula
 
   desc "AI-Powered Command-Line Photo Search Tool"
   homepage "https://github.com/yurijmikhalevich/rclip"
-  url "https://files.pythonhosted.org/packages/0e/4f/d7a582cee4c71edd5caacac56bcc88fb4ab4171ceac920e59d74b4410af6/rclip-1.10.1.tar.gz"
-  sha256 "1273010d245acdb9d5a265616d86acf4c79f521bd04a8bd3796f718c0c98a41a"
+  url "https://files.pythonhosted.org/packages/7a/93/e9a8887ed39438e507ff08fc0b10406a28f08496c77fed07d66d9d98e4f1/rclip-1.10.2.tar.gz"
+  sha256 "f656659cee500c2f3a9275674026cedf4ba9ec59b4a8a045a8def4612e2c9b15"
   license "MIT"
-
-  bottle do
-    root_url "https://ghcr.io/v2/yurijmikhalevich/tap"
-    sha256 cellar: :any,                 arm64_sonoma: "7b288d58e3e7a98192f3a9e83f5dee81afde0f82fba1c5f5f26247f8e9905c6d"
-    sha256 cellar: :any,                 ventura:      "f5119d0104e37b4ea151d86b7c600f91033b8f9773de7c5f48285040691f26ba"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "dc78ae9e5d1fecf394bb04e21037aa444d7c6fee2c39606d21f78fbe6065cc80"
-  end
 
   depends_on "rust" => :build # for safetensors
   depends_on "certifi"
@@ -35,8 +28,8 @@ class Rclip < Formula
   end
 
   resource "fsspec" do
-    url "https://files.pythonhosted.org/packages/79/a5/3be4f3b4e941ee4526dd52f9c0a4ae6660ccb92e59b553e794015b249e97/fsspec-2024.6.0.tar.gz"
-    sha256 "f579960a56e6d8038a9efc8f9c77279ec12e6299aa86b0769a7e9c46b94527c2"
+    url "https://files.pythonhosted.org/packages/90/b6/eba5024a9889fcfff396db543a34bef0ab9d002278f163129f9f01005960/fsspec-2024.6.1.tar.gz"
+    sha256 "fad7d7e209dd4c1208e3bbfda706620e0da5142bebbd9c384afb95b07e798e49"
   end
 
   resource "ftfy" do
@@ -75,18 +68,13 @@ class Rclip < Formula
   end
 
   resource "open-clip-torch" do
-    url "https://github.com/mlfoundations/open_clip/archive/refs/tags/v2.24.0.tar.gz"
-    sha256 "83d78a78f756685e80fdb8baa2f2fb308c791fabdbfe1c0ddcd6fed7d22de7b6"
+    url "https://github.com/mlfoundations/open_clip/archive/refs/tags/v2.26.1.tar.gz"
+    sha256 "cd6aa97aebde10987c20ac5fe2e11d7a3e4f30ac985848d9dc2778a596c7115e"
   end
 
   resource "packaging" do
     url "https://files.pythonhosted.org/packages/51/65/50db4dda066951078f0a96cf12f4b9ada6e4b811516bf0262c0f4f7064d4/packaging-24.1.tar.gz"
     sha256 "026ed72c8ed3fcce5bf8950572258698927fd1dbda10a5e981cdf0ac37f4f002"
-  end
-
-  resource "protobuf" do
-    url "https://files.pythonhosted.org/packages/20/5f/00d891817d4031bbf4e846a99834bf949a76714c10a726833aa184176772/protobuf-5.27.1.tar.gz"
-    sha256 "df5e5b8e39b7d1c25b186ffdf9f44f40f810bbcc9d2b71d9d3156fee5a9adf15"
   end
 
   resource "pyyaml" do
@@ -107,11 +95,6 @@ class Rclip < Formula
   resource "safetensors" do
     url "https://files.pythonhosted.org/packages/9c/21/acd1b6dd9dad9708fd388fdbe6618e461108cdbd56ff4eab6094c6e61035/safetensors-0.4.3.tar.gz"
     sha256 "2f85fc50c4e07a21e95c24e07460fe6f7e2859d0ce88092838352b798ce711c2"
-  end
-
-  resource "sentencepiece" do
-    url "https://files.pythonhosted.org/packages/c9/d2/b9c7ca067c26d8ff085d252c89b5f69609ca93fb85a00ede95f4857865d4/sentencepiece-0.2.0.tar.gz"
-    sha256 "a52c19171daaf2e697dc6cbe67684e0fa341b1248966f6aebb541de654d15843"
   end
 
   resource "sympy" do
