@@ -82,9 +82,32 @@ class Rclip < Formula
     sha256 "d584d9ec91ad65861cc08d42e834324ef890a082e591037abe114850ff7bbc3e"
   end
 
-  resource "rawpy" do
-    url ""
-    sha256 ""
+  on_linux do
+    on_arm do
+      resource "rawpy" do
+        url "https://files.pythonhosted.org/packages/d3/11/8103367c28dd1b15d3720324303d15f3d6960e9888b752c830a182f71496/rawpy-0.23.2-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+        sha256 "d138c6ebc2796b44d57bbae306ec75076acd0b59091de8b886d1e9e6c30b966b"
+      end
+    else
+      resource "rawpy" do
+        url "https://files.pythonhosted.org/packages/f4/86/78891cd2344e679cf4c7813ec20503a811e77ab230838d1f464d9f2a6a96/rawpy-0.23.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+        sha256 "b0ce160d06b353769abc5ac6298fbf812d218c49943f1fe9fa97229e8846ca6d"
+      end
+    end
+  end
+
+  on_macos do
+    on_arm do
+      resource "rawpy" do
+        url "https://files.pythonhosted.org/packages/a3/62/7aa7e3768b5220c427489194f472e39021a2ac6b24fe0db0a90949eed1d5/rawpy-0.23.2-cp312-cp312-macosx_11_0_arm64.whl"
+        sha256 "5998a4f7cd13236bbde72811dff3a9be7b723ef25078263ecef8ec826328483e"
+      end
+    else
+      resource "rawpy" do
+        url "https://files.pythonhosted.org/packages/25/e3/3f8d914b274cd2e98ad2a10e9f6f5a992450e641273c2d0483ca66832310/rawpy-0.23.2-cp312-cp312-macosx_10_9_x86_64.whl"
+        sha256 "b4fbda4ba01ee3bde82d3940e025f226c715fc963bb876532d640490de133c0e"
+      end
+    end
   end
 
   resource "regex" do
