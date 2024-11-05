@@ -39,7 +39,7 @@ jobs:
       - run: cat /Users/runner/work/homebrew-tap/homebrew-tap/logs/rclip/01.python3.12
         if: always() && github.event_name == 'pull_request'
 
-      - run: cat /Users/runner/work/homebrew-tap/homebrew-tap/logs/rclip/02.python3.13
+      - run: cat /Users/runner/work/homebrew-tap/homebrew-tap/logs/rclip/02.python3.12
         if: always() && github.event_name == 'pull_request'
 
       - name: Upload bottles as artifact
