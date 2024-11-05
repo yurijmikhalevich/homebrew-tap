@@ -167,19 +167,22 @@ class Rclip < Formula
   end
 
   def install
-    # rawpy needs cython, so installing and linking cython first
+    # rawpy needs cython, so installing Cython first
     venv = virtualenv_install_with_resources without: "rawpy"
+
+    # now, that cython is installed, install rawpy
+    resource("rawpy").stage do
+      ENV.prepend_path "PYTHONPATH", Formula["cython"].opt_libexec/Language::Python.site_packages("python3.12")
+      venv.pip_install Pathname.pwd
+    end
 
     # link dependent virtualenvs to this one
     site_packages = Language::Python.site_packages("python3.12")
-    paths = %w[cython pytorch torchvision].map do |package_name|
+    paths = %w[pytorch torchvision].map do |package_name|
       package = Formula[package_name].opt_libexec
       package/site_packages
     end
     (libexec/site_packages/"homebrew-deps.pth").write paths.join("\n")
-
-    # now that cython is linked, install rawpy
-    venv.pip_install resource("rawpy")
   end
 
   test do
