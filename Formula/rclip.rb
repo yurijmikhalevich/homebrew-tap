@@ -176,7 +176,7 @@ class Rclip < Formula
 
     # now, that cython is installed, install rawpy
     resource("rawpy").stage do
-      # ENV.prepend_path "PYTHONPATH", Formula["cython"].opt_libexec/Language::Python.site_packages("python3.12")
+      ENV.prepend_path "PYTHONPATH", Formula["cython"].opt_libexec/Language::Python.site_packages("python3.12")
       venv.pip_install Pathname.pwd
     end
 
