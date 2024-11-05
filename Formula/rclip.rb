@@ -8,7 +8,9 @@ class Rclip < Formula
   license "MIT"
 
   depends_on "rust" => :build # for safetensors
+  depends_on "cython" => :build # for rawpy
   depends_on "certifi"
+  depends_on "libraw" # for rawpy
   depends_on "libyaml"
   depends_on "numpy"
   depends_on "pillow"
@@ -18,36 +20,41 @@ class Rclip < Formula
   depends_on "torchvision"
 
   resource "rawpy" do
-    checksums = {
-      "darwin-arm64" => "5998a4f7cd13236bbde72811dff3a9be7b723ef25078263ecef8ec826328483e",
-      "darwin-amd64" => "b4fbda4ba01ee3bde82d3940e025f226c715fc963bb876532d640490de133c0e",
-      "linux-arm64"  => "d138c6ebc2796b44d57bbae306ec75076acd0b59091de8b886d1e9e6c30b966b",
-      "linux-amd64"  => "b0ce160d06b353769abc5ac6298fbf812d218c49943f1fe9fa97229e8846ca6d",
-    }
-
-    version "0.23.2-cp312-cp312"
-
-    on_arm do
-      on_macos do
-        url "https://files.pythonhosted.org/packages/a3/62/7aa7e3768b5220c427489194f472e39021a2ac6b24fe0db0a90949eed1d5/rawpy-#{version}-macosx_11_0_arm64.whl"
-        sha256 checksums["darwin-arm64"]
-      end
-      on_linux do
-        url "https://files.pythonhosted.org/packages/d3/11/8103367c28dd1b15d3720324303d15f3d6960e9888b752c830a182f71496/rawpy-#{version}-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
-        sha256 checksums["linux-arm64"]
-      end
-    end
-    on_intel do
-      on_macos do
-        url "https://files.pythonhosted.org/packages/25/e3/3f8d914b274cd2e98ad2a10e9f6f5a992450e641273c2d0483ca66832310/rawpy-#{version}-macosx_10_9_x86_64.whl"
-        sha256 checksums["darwin-amd64"]
-      end
-      on_linux do
-        url "https://files.pythonhosted.org/packages/f4/86/78891cd2344e679cf4c7813ec20503a811e77ab230838d1f464d9f2a6a96/rawpy-#{version}-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
-        sha256 checksums["linux-amd64"]
-      end
-    end
+    url "https://github.com/letmaik/rawpy/archive/refs/tags/v0.23.2.tar.gz"
+    sha256 "0463b623364187d9dcbd4b3dd1c0b157672afb2ecd48f1b00f0571d6d677a69d"
   end
+
+  # resource "rawpy" do
+  #   checksums = {
+  #     "darwin-arm64" => "5998a4f7cd13236bbde72811dff3a9be7b723ef25078263ecef8ec826328483e",
+  #     "darwin-amd64" => "b4fbda4ba01ee3bde82d3940e025f226c715fc963bb876532d640490de133c0e",
+  #     "linux-arm64"  => "d138c6ebc2796b44d57bbae306ec75076acd0b59091de8b886d1e9e6c30b966b",
+  #     "linux-amd64"  => "b0ce160d06b353769abc5ac6298fbf812d218c49943f1fe9fa97229e8846ca6d",
+  #   }
+
+  #   version "0.23.2-cp312-cp312"
+
+  #   on_arm do
+  #     on_macos do
+  #       url "https://files.pythonhosted.org/packages/a3/62/7aa7e3768b5220c427489194f472e39021a2ac6b24fe0db0a90949eed1d5/rawpy-#{version}-macosx_11_0_arm64.whl"
+  #       sha256 checksums["darwin-arm64"]
+  #     end
+  #     on_linux do
+  #       url "https://files.pythonhosted.org/packages/d3/11/8103367c28dd1b15d3720324303d15f3d6960e9888b752c830a182f71496/rawpy-#{version}-manylinux_2_17_aarch64.manylinux2014_aarch64.whl"
+  #       sha256 checksums["linux-arm64"]
+  #     end
+  #   end
+  #   on_intel do
+  #     on_macos do
+  #       url "https://files.pythonhosted.org/packages/25/e3/3f8d914b274cd2e98ad2a10e9f6f5a992450e641273c2d0483ca66832310/rawpy-#{version}-macosx_10_9_x86_64.whl"
+  #       sha256 checksums["darwin-amd64"]
+  #     end
+  #     on_linux do
+  #       url "https://files.pythonhosted.org/packages/f4/86/78891cd2344e679cf4c7813ec20503a811e77ab230838d1f464d9f2a6a96/rawpy-#{version}-manylinux_2_17_x86_64.manylinux2014_x86_64.whl"
+  #       sha256 checksums["linux-amd64"]
+  #     end
+  #   end
+  # end
 
   resource "charset-normalizer" do
     url "https://files.pythonhosted.org/packages/f2/4f/e1808dc01273379acc506d18f1504eb2d299bd4131743b9fc54d7be4df1e/charset_normalizer-3.4.0.tar.gz"
@@ -160,15 +167,19 @@ class Rclip < Formula
   end
 
   def install
-    virtualenv_install_with_resources
+    # rawpy needs cython, so installing and linking cython first
+    venv = virtualenv_install_with_resources without: "rawpy"
 
     # link dependent virtualenvs to this one
     site_packages = Language::Python.site_packages("python3.12")
-    paths = %w[pytorch torchvision].map do |package_name|
+    paths = %w[cython pytorch torchvision].map do |package_name|
       package = Formula[package_name].opt_libexec
       package/site_packages
     end
     (libexec/site_packages/"homebrew-deps.pth").write paths.join("\n")
+
+    # now that cython is linked, install rawpy
+    venv.pip_install resource("rawpy")
   end
 
   test do
