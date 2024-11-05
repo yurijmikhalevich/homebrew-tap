@@ -7,7 +7,6 @@ class Rclip < Formula
   sha256 "2ae5e74de11177fd438b66e7c967f767f5d42a7f15bfc97e7ccf432882b42a4a"
   license "MIT"
 
-  depends_on "cython" => :build # for rawpy
   depends_on "rust" => :build # for safetensors
   depends_on "certifi"
   depends_on "libraw" # for rawpy
@@ -18,6 +17,11 @@ class Rclip < Formula
   depends_on "pytorch"
   depends_on "sentencepiece"
   depends_on "torchvision"
+
+  resource "cython" do # for rawpy
+    url "https://files.pythonhosted.org/packages/84/4d/b720d6000f4ca77f030bd70f12550820f0766b568e43f11af7f7ad9061aa/cython-3.0.11.tar.gz"
+    sha256 "7146dd2af8682b4ca61331851e6aebce9fe5158e75300343f80c07ca80b1faff"
+  end
 
   resource "rawpy" do
     url "https://github.com/letmaik/rawpy/archive/refs/tags/v0.23.2.tar.gz"
@@ -172,7 +176,7 @@ class Rclip < Formula
 
     # now, that cython is installed, install rawpy
     resource("rawpy").stage do
-      ENV.prepend_path "PYTHONPATH", Formula["cython"].opt_libexec/Language::Python.site_packages("python3.12")
+      # ENV.prepend_path "PYTHONPATH", Formula["cython"].opt_libexec/Language::Python.site_packages("python3.12")
       venv.pip_install Pathname.pwd
     end
 
