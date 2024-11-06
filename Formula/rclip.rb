@@ -171,14 +171,28 @@ class Rclip < Formula
   end
 
   def install
-    # rawpy needs cython, so installing Cython first
-    venv = virtualenv_install_with_resources without: "rawpy"
+    venv = virtualenv_create(libexec, "python3.12")
 
-    # now, that cython is installed, install rawpy
-    resource("rawpy").stage do
-      ENV.prepend_path "PYTHONPATH", Formula["cython"].opt_libexec/Language::Python.site_packages("python3.12")
+    # Install Cython first
+    resource("cython").stage do
       venv.pip_install Pathname.pwd
     end
+
+    # Install rawpy next
+    resource("rawpy").stage do
+      venv.pip_install Pathname.pwd
+    end
+
+    # Install all other resources
+    resources.each do |r|
+      next if r.name == "cython" || r.name == "rawpy"
+      r.stage do
+        venv.pip_install Pathname.pwd
+      end
+    end
+
+    # Install the main package
+    venv.pip_install_and_link buildpath
 
     # link dependent virtualenvs to this one
     site_packages = Language::Python.site_packages("python3.12")
