@@ -170,14 +170,13 @@ class Rclip < Formula
   end
 
   def install
-    virtualenv_install_with_resources
-    # venv = virtualenv_install_with_resources without: "rawpy"
+    venv = virtualenv_install_with_resources without: "rawpy"
 
-    # # Install rawpy from the wheel
-    # resource("rawpy").stage do
-    #   wheel = Dir["*.whl"].first
-    #   venv.pip_install wheel
-    # end
+    # Install rawpy from the wheel
+    resource("rawpy").stage do
+      wheel = Dir["*.whl"].first
+      venv.pip_install wheel
+    end
 
     # link dependent virtualenvs to this one
     site_packages = Language::Python.site_packages("python3.12")
