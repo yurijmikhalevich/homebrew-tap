@@ -18,9 +18,9 @@ class Rclip < Formula
   depends_on "torchvision"
 
   on_linux do # for rawpy
-    depends_on "libomp"
     depends_on "jasper"
     depends_on "jpeg"
+    depends_on "libomp"
     depends_on "little-cms2"
   end
 
