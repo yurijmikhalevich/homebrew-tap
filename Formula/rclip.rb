@@ -17,15 +17,12 @@ class Rclip < Formula
   depends_on "sentencepiece"
   depends_on "torchvision"
 
-  # resource "cython" do # for rawpy
-  #   url "https://files.pythonhosted.org/packages/84/4d/b720d6000f4ca77f030bd70f12550820f0766b568e43f11af7f7ad9061aa/cython-3.0.11.tar.gz"
-  #   sha256 "7146dd2af8682b4ca61331851e6aebce9fe5158e75300343f80c07ca80b1faff"
-  # end
-
-  # resource "rawpy" do
-  #   url "https://github.com/letmaik/rawpy/archive/refs/tags/v0.23.2.tar.gz"
-  #   sha256 "0463b623364187d9dcbd4b3dd1c0b157672afb2ecd48f1b00f0571d6d677a69d"
-  # end
+  on_linux do # for rawpy
+    depends_on "libomp"
+    depends_on "jasper"
+    depends_on "jpeg"
+    depends_on "little-cms2"
+  end
 
   resource "rawpy" do
     checksums = {
