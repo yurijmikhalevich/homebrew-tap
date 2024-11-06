@@ -186,6 +186,7 @@ class Rclip < Formula
     # Install all other resources
     resources.each do |r|
       next if r.name == "cython" || r.name == "rawpy"
+
       r.stage do
         venv.pip_install Pathname.pwd
       end
