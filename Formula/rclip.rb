@@ -175,8 +175,8 @@ class Rclip < Formula
     site_packages = Language::Python.site_packages("python3.12")
 
     if OS.linux?
-      rawpy_ext = libexec/site_packages/"/rawpy/_rawpy*.so"
-      rawpy_libs = libexec/site_packages/"/rawpy.libs"
+      rawpy_ext = libexec/site_packages/"rawpy/_rawpy*.so"
+      rawpy_libs = libexec/site_packages/"rawpy.libs"
       system "patchelf", "--set-rpath", rawpy_libs, rawpy_ext
     end
 
