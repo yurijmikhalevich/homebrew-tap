@@ -172,14 +172,15 @@ class Rclip < Formula
       venv.pip_install wheel
     end
 
+    site_packages = Language::Python.site_packages("python3.12")
+
     if OS.linux?
-      rawpy_ext = libexec/"lib/python3.12/site-packages/rawpy/_rawpy*.so"
-      rawpy_libs = libexec/"lib/python3.12/site-packages/rawpy.libs"
+      rawpy_ext = libexec/site_packages/"/rawpy/_rawpy*.so"
+      rawpy_libs = libexec/site_packages/"/rawpy.libs"
       system "patchelf", "--set-rpath", rawpy_libs, rawpy_ext
     end
 
     # link dependent virtualenvs to this one
-    site_packages = Language::Python.site_packages("python3.12")
     paths = %w[pytorch torchvision].map do |package_name|
       package = Formula[package_name].opt_libexec
       package/site_packages
