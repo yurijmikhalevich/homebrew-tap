@@ -17,11 +17,8 @@ class Rclip < Formula
   depends_on "sentencepiece"
   depends_on "torchvision"
 
-  on_linux do # for rawpy
-    depends_on "gcc"
-    depends_on "jasper"
-    depends_on "jpeg"
-    depends_on "little-cms2"
+  on_linux do
+    depends_on "patchelf" => :build # to link rawpy libraries
   end
 
   resource "rawpy" do
@@ -173,6 +170,12 @@ class Rclip < Formula
     resource("rawpy").stage do
       wheel = Dir["*.whl"].first
       venv.pip_install wheel
+    end
+
+    if OS.linux?
+      rawpy_ext = libexec/"lib/python3.12/site-packages/rawpy/_rawpy*.so"
+      rawpy_libs = libexec/"lib/python3.12/site-packages/rawpy.libs"
+      system "patchelf", "--set-rpath", rawpy_libs, rawpy_ext
     end
 
     # link dependent virtualenvs to this one
