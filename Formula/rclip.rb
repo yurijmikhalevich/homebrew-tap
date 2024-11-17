@@ -176,10 +176,10 @@ class Rclip < Formula
 
     if OS.linux?
       rawpy_exts = Dir[libexec/site_packages/"rawpy/_rawpy*.so"]
-      rawpy_libs = libexec/site_packages/"rawpy.libs"
+      # rawpy_libs = libexec/site_packages/"rawpy.libs"
 
       rawpy_exts.each do |rawpy_ext|
-        system "patchelf", "--set-rpath", rawpy_libs, rawpy_ext
+        system "patchelf", "--set-rpath", "$ORIGIN/../rawpy.libs", rawpy_ext
       end
     end
 
