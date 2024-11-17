@@ -177,6 +177,19 @@ class Rclip < Formula
     if OS.linux?
       rawpy_ext = libexec/site_packages/"rawpy/_rawpy*.so"
       rawpy_libs = libexec/site_packages/"rawpy.libs"
+
+      # list files in libexec/site_packages
+      files = Dir[libexec/site_packages/"*"]
+      puts "libexec/site_packages"
+      # print them
+      puts files
+
+      # list files in rawpy
+      files = Dir[libexec/site_packages/"rawpy/*"]
+      puts "libexec/site_packages/rawpy"
+      # print them
+      puts files
+
       system "patchelf", "--set-rpath", rawpy_libs, rawpy_ext
     end
 
