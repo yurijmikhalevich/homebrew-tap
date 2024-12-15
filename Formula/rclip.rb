@@ -3,8 +3,8 @@ class Rclip < Formula
 
   desc "AI-Powered Command-Line Photo Search Tool"
   homepage "https://github.com/yurijmikhalevich/rclip"
-  url "https://files.pythonhosted.org/packages/2e/54/5c82c7757cfe84e21e5f761671a454037eb45d8f2f4e230093638c3d8836/rclip-1.11.0.tar.gz"
-  sha256 "2ae5e74de11177fd438b66e7c967f767f5d42a7f15bfc97e7ccf432882b42a4a"
+  url "https://files.pythonhosted.org/packages/12/30/dd155e01cb15f70057c115e15cfa2bce0ee68b4868548bb9aefb9829156e/rclip-1.11.1a25.tar.gz"
+  sha256 "2c399f1aa7b8265ecf6dcc842aeb3092966f1327e66367237bd072c1bca1942f"
   license "MIT"
 
   depends_on "rust" => :build # for safetensors
@@ -12,46 +12,10 @@ class Rclip < Formula
   depends_on "libyaml"
   depends_on "numpy"
   depends_on "pillow"
-  depends_on "python@3.12"
+  depends_on "python@3.13"
   depends_on "pytorch"
   depends_on "sentencepiece"
   depends_on "torchvision"
-
-  on_linux do
-    depends_on "patchelf" => :build # to link rawpy libraries
-  end
-
-  resource "rawpy" do
-    checksums = {
-      "darwin-arm64" => "5998a4f7cd13236bbde72811dff3a9be7b723ef25078263ecef8ec826328483e",
-      "darwin-amd64" => "b4fbda4ba01ee3bde82d3940e025f226c715fc963bb876532d640490de133c0e",
-      "linux-arm64"  => "d138c6ebc2796b44d57bbae306ec75076acd0b59091de8b886d1e9e6c30b966b",
-      "linux-amd64"  => "b0ce160d06b353769abc5ac6298fbf812d218c49943f1fe9fa97229e8846ca6d",
-    }
-
-    version "0.23.2-cp312-cp312"
-
-    on_arm do
-      on_macos do
-        url "https://files.pythonhosted.org/packages/a3/62/7aa7e3768b5220c427489194f472e39021a2ac6b24fe0db0a90949eed1d5/rawpy-#{version}-macosx_11_0_arm64.whl", using: :nounzip
-        sha256 checksums["darwin-arm64"]
-      end
-      on_linux do
-        url "https://files.pythonhosted.org/packages/d3/11/8103367c28dd1b15d3720324303d15f3d6960e9888b752c830a182f71496/rawpy-#{version}-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", using: :nounzip
-        sha256 checksums["linux-arm64"]
-      end
-    end
-    on_intel do
-      on_macos do
-        url "https://files.pythonhosted.org/packages/25/e3/3f8d914b274cd2e98ad2a10e9f6f5a992450e641273c2d0483ca66832310/rawpy-#{version}-macosx_10_9_x86_64.whl", using: :nounzip
-        sha256 checksums["darwin-amd64"]
-      end
-      on_linux do
-        url "https://files.pythonhosted.org/packages/f4/86/78891cd2344e679cf4c7813ec20503a811e77ab230838d1f464d9f2a6a96/rawpy-#{version}-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", using: :nounzip
-        sha256 checksums["linux-amd64"]
-      end
-    end
-  end
 
   resource "charset-normalizer" do
     url "https://files.pythonhosted.org/packages/f2/4f/e1808dc01273379acc506d18f1504eb2d299bd4131743b9fc54d7be4df1e/charset_normalizer-3.4.0.tar.gz"
@@ -74,8 +38,8 @@ class Rclip < Formula
   end
 
   resource "huggingface-hub" do
-    url "https://files.pythonhosted.org/packages/d5/a8/882ae5d1cfa7c9c5be32feee4cee56d9873078913953423e47a756da110d/huggingface_hub-0.26.2.tar.gz"
-    sha256 "b100d853465d965733964d123939ba287da60a547087783ddff8a323f340332b"
+    url "https://files.pythonhosted.org/packages/4c/66/fa78b1cbcae512a30c2d4c702eba0e3a771ad7b304f85d5df0b339ad82f7/huggingface_hub-0.26.3.tar.gz"
+    sha256 "90e1fe62ffc26757a073aaad618422b899ccf9447c2bba8c902a90bef5b42e1d"
   end
 
   resource "idna" do
@@ -99,8 +63,8 @@ class Rclip < Formula
   end
 
   resource "networkx" do
-    url "https://files.pythonhosted.org/packages/c4/80/a84676339aaae2f1cfdf9f418701dd634aef9cc76f708ef55c36ff39c3ca/networkx-3.2.1.tar.gz"
-    sha256 "9f1bb5cf3409bf324e0a722c20bdb4c20ee39bf1c30ce8ae499c8502b0b5e0c6"
+    url "https://files.pythonhosted.org/packages/fd/1d/06475e1cd5264c0b870ea2cc6fdb3e37177c1e565c43f56ff17a10e3937f/networkx-3.4.2.tar.gz"
+    sha256 "307c3669428c5362aab27c8a1260aa8f47c4e91d3891f48be0141738d8d053e1"
   end
 
   resource "open-clip-torch" do
@@ -109,8 +73,8 @@ class Rclip < Formula
   end
 
   resource "packaging" do
-    url "https://files.pythonhosted.org/packages/51/65/50db4dda066951078f0a96cf12f4b9ada6e4b811516bf0262c0f4f7064d4/packaging-24.1.tar.gz"
-    sha256 "026ed72c8ed3fcce5bf8950572258698927fd1dbda10a5e981cdf0ac37f4f002"
+    url "https://files.pythonhosted.org/packages/d0/63/68dbb6eb2de9cb10ee4c9c14a0148804425e13c4fb20d61cce69f53106da/packaging-24.2.tar.gz"
+    sha256 "c228a6dc5e932d346bc5739379109d49e8853dd8223571c7c5b55260edc0b97f"
   end
 
   resource "pyyaml" do
@@ -118,9 +82,14 @@ class Rclip < Formula
     sha256 "d584d9ec91ad65861cc08d42e834324ef890a082e591037abe114850ff7bbc3e"
   end
 
+  resource "rawpy" do
+    url "https://github.com/letmaik/rawpy/archive/refs/tags/v0.23.2.tar.gz"
+    sha256 "0463b623364187d9dcbd4b3dd1c0b157672afb2ecd48f1b00f0571d6d677a69d"
+  end
+
   resource "regex" do
-    url "https://files.pythonhosted.org/packages/f9/38/148df33b4dbca3bd069b963acab5e0fa1a9dbd6820f8c322d0dd6faeff96/regex-2024.9.11.tar.gz"
-    sha256 "6c188c307e8433bcb63dc1915022deb553b4203a70722fc542c363bf120a01fd"
+    url "https://files.pythonhosted.org/packages/8e/5f/bd69653fbfb76cf8604468d3b4ec4c403197144c7bfe0e6a5fc9e02a07cb/regex-2024.11.6.tar.gz"
+    sha256 "7ab159b063c52a0333c884e4679f8d7a85112ee3078fe3d9004b2dd875585519"
   end
 
   resource "requests" do
@@ -134,8 +103,8 @@ class Rclip < Formula
   end
 
   resource "sympy" do
-    url "https://files.pythonhosted.org/packages/11/8a/5a7fd6284fa8caac23a26c9ddf9c30485a48169344b4bd3b0f02fef1890f/sympy-1.13.3.tar.gz"
-    sha256 "b27fd2c6530e0ab39e275fc9b683895367e51d5da91baa8d3d64db2565fec4d9"
+    url "https://files.pythonhosted.org/packages/ca/99/5a5b6f19ff9f083671ddf7b9632028436167cd3d33e11015754e41b249a4/sympy-1.13.1.tar.gz"
+    sha256 "9cebf7e04ff162015ce31c9c6c9144daa34a93bd082f54fd8f12deca4f47515f"
   end
 
   resource "timm" do
@@ -144,8 +113,8 @@ class Rclip < Formula
   end
 
   resource "tqdm" do
-    url "https://files.pythonhosted.org/packages/e9/34/bef135b27fe1864993a5284ad001157ee9b5538e859ac90f5b0e8cc8c9ec/tqdm-4.66.6.tar.gz"
-    sha256 "4bdd694238bef1485ce839d67967ab50af8f9272aab687c0d7702a01da0be090"
+    url "https://files.pythonhosted.org/packages/a8/4b/29b4ef32e036bb34e4ab51796dd745cdba7ed47ad142a9f4a1eb8e0c744d/tqdm-4.67.1.tar.gz"
+    sha256 "f8aef9c52c08c13a65f30ea34f4e5aac3fd1a34959879d7e59e63027286627f2"
   end
 
   resource "typing-extensions" do
@@ -164,26 +133,10 @@ class Rclip < Formula
   end
 
   def install
-    venv = virtualenv_install_with_resources without: "rawpy"
-
-    # Install rawpy from the wheel
-    resource("rawpy").stage do
-      wheel = Dir["*.whl"].first
-      venv.pip_install wheel
-    end
-
-    site_packages = Language::Python.site_packages("python3.12")
-
-    if OS.linux?
-      rawpy_exts = Dir[libexec/site_packages/"rawpy/_rawpy*.so"]
-      # rawpy_libs = libexec/site_packages/"rawpy.libs"
-
-      rawpy_exts.each do |rawpy_ext|
-        system "patchelf", "--set-rpath", "$ORIGIN/../rawpy.libs", rawpy_ext
-      end
-    end
+    virtualenv_install_with_resources
 
     # link dependent virtualenvs to this one
+    site_packages = Language::Python.site_packages("python3.13")
     paths = %w[pytorch torchvision].map do |package_name|
       package = Formula[package_name].opt_libexec
       package/site_packages
