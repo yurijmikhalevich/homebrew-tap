@@ -141,9 +141,8 @@ class Rclip < Formula
 
     # On Linux, add paths to the pytorch-python and torchvision-python lib/ dirs to LD_LIBRARY_PATH
     if OS.linux?
-      lib_paths = %w[pytorch-python312@2.5.1 torchvision-python312@0.20.1].map do |package_name|
-        ENV.prepend_path "LD_LIBRARY_PATH", Formula[package_name].opt_lib
-      end
+      ENV.prepend_path "LD_LIBRARY_PATH", Formula["pytorch-python312@2.5.1"].opt_lib
+      ENV.prepend_path "LD_LIBRARY_PATH", Formula["torchvision-python312@0.20.1"].opt_lib
     end
   end
 
