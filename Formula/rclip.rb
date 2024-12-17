@@ -138,12 +138,6 @@ class Rclip < Formula
       package/site_packages
     end
     (libexec/site_packages/"homebrew-deps.pth").write paths.join("\n")
-
-    # On Linux, add paths to the pytorch-python and torchvision-python lib/ dirs to LD_LIBRARY_PATH
-    if OS.linux?
-      ENV.prepend_path "LD_LIBRARY_PATH", Formula["pytorch-python312@2.5.1"].opt_lib
-      ENV.prepend_path "LD_LIBRARY_PATH", Formula["torchvision-python312@0.20.1"].opt_lib
-    end
   end
 
   test do

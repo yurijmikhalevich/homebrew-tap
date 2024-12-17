@@ -85,7 +85,7 @@ class TorchvisionPython312AT0201 < Formula
                     "-L#{pytorch.opt_lib}", "-ltorch", "-ltorch_cpu", "-lc10",
                     "-L#{lib}", *("-Wl,--no-as-needed" if OS.linux?), "-ltorchvision"
 
-    system "./test"
+    system "LD_LIBRARY_PATH=#{pytorch.opt_lib}:#{lib}:$LD_LIBRARY_PATH" "./test"
 
     # test that the `torchvision` Python module is available
     cp test_fixtures("test.png"), "test.png"
