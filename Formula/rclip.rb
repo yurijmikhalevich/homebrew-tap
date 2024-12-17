@@ -7,22 +7,15 @@ class Rclip < Formula
   sha256 "dca80443246714b305f9b98858b34a0b699526cb6805713b3f5ac2d11c10475e"
   license "MIT"
 
-  bottle do
-    root_url "https://ghcr.io/v2/yurijmikhalevich/tap"
-    sha256 cellar: :any,                 arm64_sonoma: "24de7cd6841ca4a5447ea0372bcc183a82a0b7f3cc8d180886a026fadab01978"
-    sha256 cellar: :any,                 ventura:      "7269c193ccf5057fc56dfab638df8aa61a11e8bab6df0f7ea8699d38d9fa3997"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "621090c8d5d19c39d367153ba6c1a414f0c0dc867ba264e3e3d6545bf65708ec"
-  end
-
   depends_on "rust" => :build # for safetensors
   depends_on "certifi"
   depends_on "libyaml"
   depends_on "numpy"
   depends_on "pillow"
   depends_on "python@3.12"
-  depends_on "pytorch"
+  depends_on "pytorch-python312@2.5.1"
   depends_on "sentencepiece"
-  depends_on "torchvision"
+  depends_on "torchvision-python312@0.20.1"
 
   resource "charset-normalizer" do
     url "https://files.pythonhosted.org/packages/63/09/c1bc53dab74b1816a00d8d030de5bf98f724c52c1635e07681d312f20be8/charset-normalizer-3.3.2.tar.gz"
@@ -139,7 +132,7 @@ class Rclip < Formula
 
     # link dependent virtualenvs to this one
     site_packages = Language::Python.site_packages("python3.12")
-    paths = %w[pytorch torchvision].map do |package_name|
+    paths = %w[pytorch-python312@2.5.1 torchvision-python312@0.20.1].map do |package_name|
       package = Formula[package_name].opt_libexec
       package/site_packages
     end
