@@ -6,7 +6,7 @@ class PytorchPython312AT251 < Formula
   url "https://github.com/pytorch/pytorch/releases/download/v2.5.1/pytorch-v2.5.1.tar.gz"
   sha256 "740eb5fff95e33cfe699bad43be83523f569c7cc7f9c285c2a255416443dd266"
   license "BSD-3-Clause"
-  revision 2
+  revision 3
 
   keg_only "it conflicts with the pytorch formula"
 
@@ -135,6 +135,7 @@ class PytorchPython312AT251 < Formula
       }
     CPP
     system ENV.cxx, "-std=c++17", "test.cpp", "-o", "test",
+                    "-I#{include}",
                     "-I#{include}/torch/csrc/api/include",
                     "-L#{lib}", "-ltorch", "-ltorch_cpu", "-lc10"
     system "./test"
