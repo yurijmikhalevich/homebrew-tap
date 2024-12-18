@@ -85,9 +85,7 @@ class TorchvisionPython312AT0201 < Formula
                     "-L#{pytorch.opt_lib}", "-ltorch", "-ltorch_cpu", "-lc10",
                     "-L#{lib}", *("-Wl,--no-as-needed" if OS.linux?), "-ltorchvision"
 
-    if OS.linux?
-      ENV.prepend_path "LD_LIBRARY_PATH", pytorch.opt_lib
-    end
+    ENV.prepend_path "LD_LIBRARY_PATH", pytorch.opt_lib if OS.linux?
     system "./test"
 
     # test that the `torchvision` Python module is available
