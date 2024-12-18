@@ -8,6 +8,13 @@ class Rclip < Formula
   license "MIT"
   revision 1
 
+  bottle do
+    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-1.10.3_1"
+    sha256 cellar: :any,                 arm64_sequoia: "42d12ef373203df257439d6e721e29dbe758dc66064e842d2d8fbaf456b76218"
+    sha256 cellar: :any,                 ventura:       "aef377ff6df9771faf6da36574d085d896f400dbc28374fb5c350416d18b4be9"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "fd665dd1474f3cd17f514545b4952fcef2fe1a31aa7e6e0bd5848ba76ebc2f2b"
+  end
+
   depends_on "rust" => :build # for safetensors
   depends_on "certifi"
   depends_on "libyaml"
