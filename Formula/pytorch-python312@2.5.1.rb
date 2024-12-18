@@ -8,6 +8,13 @@ class PytorchPython312AT251 < Formula
   license "BSD-3-Clause"
   revision 3
 
+  bottle do
+    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/pytorch-python312@2.5.1-2.5.1_3"
+    sha256 cellar: :any,                 arm64_sequoia: "6b80adb61ca04bfba963e6fe4413b489fa271de71f543a0cfec4ccac9c07bc8e"
+    sha256 cellar: :any,                 ventura:       "9235f6fb5eeac180c9375f29646a5c55c3274b2d4e3ce0bd435440c092f490e8"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "8ae5d942eb95a2f3d9296a9119f44f54e54f48d6a02ef9b8c21d275b604979eb"
+  end
+
   keg_only "it conflicts with the pytorch formula"
 
   depends_on "cmake" => :build
