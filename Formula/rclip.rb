@@ -9,10 +9,10 @@ class Rclip < Formula
   revision 3
 
   bottle do
-    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-1.10.3_2"
-    sha256 cellar: :any,                 arm64_sequoia: "072d97501083d3f111f4d3c4dffd7ff1e8e08c5af85940ade904d6f488b8b579"
-    sha256 cellar: :any,                 ventura:       "42e57351d5aae193d2cf7623117f29ded61ba32bbfe5c7a596d73c551880027f"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "47236bbef6cb1312d35d33ee94fdc55b39406b98797c8d82417e2709a4cad2e7"
+    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-1.10.3_3"
+    sha256 cellar: :any,                 arm64_sequoia: "92d85e87a5932a1752de1aed5e0f255a562ac5de157f8e8961641c846f80c4ee"
+    sha256 cellar: :any,                 ventura:       "4351173e28083e36c1a90d4bc852b56e40024525ae0707419e9986c3a30b522c"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5a64dcbad6ab7d22270002ff26a0554866c7beb34e4b8286a1d30ff513c97db4"
   end
 
   depends_on "rust" => :build # for safetensors
