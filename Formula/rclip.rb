@@ -41,8 +41,8 @@ class Rclip < Formula
   end
 
   resource "ftfy" do
-    url "https://files.pythonhosted.org/packages/a8/cf/b53c42f47090525740b30007a1f53e61088109a5d7eae8e41c8398a7ba7a/ftfy-6.2.0.tar.gz"
-    sha256 "5e42143c7025ef97944ca2619d6b61b0619fc6654f98771d39e862c1424c75c0"
+    url "https://files.pythonhosted.org/packages/a5/d3/8650919bc3c7c6e90ee3fa7fd618bf373cbbe55dff043bd67353dbb20cd8/ftfy-6.3.1.tar.gz"
+    sha256 "9b3c3d90f84fb267fe64d375a07b7f8912d817cf86009ae134aa03e1819506ec"
   end
 
   resource "huggingface-hub" do
