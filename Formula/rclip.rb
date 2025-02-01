@@ -135,12 +135,13 @@ class Rclip < Formula
   end
 
   def install
-    ENV.append_path "PYTHONPATH", Formula["cython-python312@3.0.11"].opt_libexec/Language::Python.site_packages("python3.12")
+    site_packages = Language::Python.site_packages("python3.12")
+
+    ENV.append_path "PYTHONPATH", Formula["cython-python312@3.0.11"].opt_libexec/site_packages
 
     virtualenv_install_with_resources
 
     # link dependent virtualenvs to this one
-    site_packages = Language::Python.site_packages("python3.12")
     paths = %w[pytorch-python312@2.5.1 torchvision-python312@0.20.1].map do |package_name|
       package = Formula[package_name].opt_libexec
       package/site_packages
