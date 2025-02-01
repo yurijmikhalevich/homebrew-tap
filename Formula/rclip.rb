@@ -7,7 +7,6 @@ class Rclip < Formula
   sha256 "7d4a58c637e0368de0767cb0539b6abbd3466da5c69e851e3a03cb473ed5c78e"
   license "MIT"
 
-  depends_on "cython-python312@3.0.11" => :build # for rawpy
   depends_on "libraw" => :build # for rawpy
   depends_on "rust" => :build # for safetensors
   depends_on "certifi"
@@ -22,6 +21,11 @@ class Rclip < Formula
   resource "charset-normalizer" do
     url "https://files.pythonhosted.org/packages/f2/4f/e1808dc01273379acc506d18f1504eb2d299bd4131743b9fc54d7be4df1e/charset_normalizer-3.4.0.tar.gz"
     sha256 "223217c3d4f82c3ac5e29032b3f1c2eb0fb591b72161f86d93f5719079dae93e"
+  end
+
+  resource "cython" do
+    url "https://files.pythonhosted.org/packages/84/4d/b720d6000f4ca77f030bd70f12550820f0766b568e43f11af7f7ad9061aa/cython-3.0.11.tar.gz"
+    sha256 "7146dd2af8682b4ca61331851e6aebce9fe5158e75300343f80c07ca80b1faff"
   end
 
   resource "filelock" do
@@ -137,9 +141,7 @@ class Rclip < Formula
   def install
     site_packages = Language::Python.site_packages("python3.12")
 
-    ENV.append_path "PYTHONPATH", Formula["cython-python312@3.0.11"].opt_libexec/site_packages
-
-    virtualenv_install_with_resources
+    virtualenv_install_with_resources start_with: "cython"
 
     # link dependent virtualenvs to this one
     paths = %w[pytorch-python312@2.5.1 torchvision-python312@0.20.1].map do |package_name|
