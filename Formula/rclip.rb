@@ -7,9 +7,9 @@ class Rclip < Formula
   sha256 "7d4a58c637e0368de0767cb0539b6abbd3466da5c69e851e3a03cb473ed5c78e"
   license "MIT"
 
-  depends_on "rust" => :build # for safetensors
-  depends_on "libraw" => :build # for rawpy
   depends_on "cython" => :build # for rawpy
+  depends_on "libraw" => :build # for rawpy
+  depends_on "rust" => :build # for safetensors
   depends_on "certifi"
   depends_on "libyaml"
   depends_on "numpy"
