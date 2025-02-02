@@ -8,6 +8,10 @@ class Rclip < Formula
   license "MIT"
   revision 1
 
+  if OS.linux?
+    depends_on "patchelf" => :build # for rawpy
+  end
+
   depends_on "rust" => :build # for safetensors
   depends_on "certifi"
   depends_on "libyaml"
@@ -17,10 +21,6 @@ class Rclip < Formula
   depends_on "pytorch-python312@2.5.1"
   depends_on "sentencepiece"
   depends_on "torchvision-python312@0.20.1"
-
-  if OS.linux?
-    depends_on "patchelf" => :build # for rawpy
-  end
 
   resource "charset-normalizer" do
     url "https://files.pythonhosted.org/packages/f2/4f/e1808dc01273379acc506d18f1504eb2d299bd4131743b9fc54d7be4df1e/charset_normalizer-3.4.0.tar.gz"
@@ -175,10 +175,12 @@ class Rclip < Formula
     if OS.linux?
       rawpy_so = Dir[libexec/"lib/python3.12/site-packages/rawpy/_rawpy*.so"].first
       raise "rawpy shared object not found" unless rawpy_so
+
       system "patchelf", "--set-rpath", "$ORIGIN/../rawpy.libs", rawpy_so
 
       libraw_so = Dir[libexec/"lib/python3.12/site-packages/rawpy.libs/libraw*.so.*"].first
       raise "libraw shared object not found" unless libraw_so
+
       system "patchelf", "--set-rpath", "$ORIGIN", libraw_so
     end
 
