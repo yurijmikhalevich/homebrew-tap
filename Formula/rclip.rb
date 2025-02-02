@@ -6,8 +6,8 @@ class Rclip < Formula
   url "https://files.pythonhosted.org/packages/08/4c/95397bf346b6440dd5122e80ca9e9686e75ac95056306ad9009bd33a79cc/rclip-1.11.1a26.tar.gz"
   sha256 "7d4a58c637e0368de0767cb0539b6abbd3466da5c69e851e3a03cb473ed5c78e"
   license "MIT"
+  revision 1
 
-  depends_on "libraw" => :build # for rawpy
   depends_on "rust" => :build # for safetensors
   depends_on "certifi"
   depends_on "libyaml"
@@ -21,11 +21,6 @@ class Rclip < Formula
   resource "charset-normalizer" do
     url "https://files.pythonhosted.org/packages/f2/4f/e1808dc01273379acc506d18f1504eb2d299bd4131743b9fc54d7be4df1e/charset_normalizer-3.4.0.tar.gz"
     sha256 "223217c3d4f82c3ac5e29032b3f1c2eb0fb591b72161f86d93f5719079dae93e"
-  end
-
-  resource "cython" do
-    url "https://files.pythonhosted.org/packages/84/4d/b720d6000f4ca77f030bd70f12550820f0766b568e43f11af7f7ad9061aa/cython-3.0.11.tar.gz"
-    sha256 "7146dd2af8682b4ca61331851e6aebce9fe5158e75300343f80c07ca80b1faff"
   end
 
   resource "filelock" do
@@ -88,11 +83,6 @@ class Rclip < Formula
     sha256 "d584d9ec91ad65861cc08d42e834324ef890a082e591037abe114850ff7bbc3e"
   end
 
-  resource "rawpy" do
-    url "https://github.com/letmaik/rawpy/archive/refs/tags/v0.24.0.tar.gz"
-    sha256 "d41b41332b51096fc2ccc451eea8547e28fbfd992c277dfdbfb31eb8dab913fe"
-  end
-
   resource "regex" do
     url "https://files.pythonhosted.org/packages/8e/5f/bd69653fbfb76cf8604468d3b4ec4c403197144c7bfe0e6a5fc9e02a07cb/regex-2024.11.6.tar.gz"
     sha256 "7ab159b063c52a0333c884e4679f8d7a85112ee3078fe3d9004b2dd875585519"
@@ -138,12 +128,48 @@ class Rclip < Formula
     sha256 "72ea0c06399eb286d978fdedb6923a9eb47e1c486ce63e9b4e64fc18303972b5"
   end
 
-  def install
-    site_packages = Language::Python.site_packages("python3.12")
+  if OS.mac?
+    if Hardware::CPU.arm?
+      resource "rawpy" do
+        url "https://files.pythonhosted.org/packages/87/75/610a34caf048aa87248f8393e70073610146f379fdda8194a988ba286d5b/rawpy-0.24.0-cp312-cp312-macosx_11_0_arm64.whl", using: :nounzip
+        sha256 "1097b10eed4027e5b50006548190602e1adba9c824526b45f7a37781cfa01818"
+      end
+    elsif Hardware::CPU.intel?
+      resource "rawpy" do
+        url "https://files.pythonhosted.org/packages/27/1c/59024e87c20b325e10b43e3b709929681a0ed23bda3885c7825927244fcc/rawpy-0.24.0-cp312-cp312-macosx_10_9_x86_64.whl", using: :nounzip
+        sha256 "ed639b0dc91c3e85d6c39303a1523b7e1edc4f4b0381c376ed0ff99febb306e4"
+      end
+    else
+      raise "Unknown CPU architecture, only amd64 and arm64 are supported"
+    end
+  elsif OS.linux?
+    if Hardware::CPU.arm?
+      resource "rawpy" do
+        url "https://files.pythonhosted.org/packages/9c/c4/576853c0eea14d62a2776f683dae23c994572dfc2dcb47fd1a1473b7b18a/rawpy-0.24.0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", using: :nounzip
+        sha256 "17a970fd8cdece57929d6e99ce64503f21b51c00ab132bad53065bd523154892"
+      end
+    elsif Hardware::CPU.intel?
+      resource "rawpy" do
+        url "https://files.pythonhosted.org/packages/fe/35/5d6765359ce6e06fe0aee5a3e4e731cfe08c056df093d97c292bdc02132a/rawpy-0.24.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", using: :nounzip
+        sha256 "a12fc4e6c5879b88c6937abb9f3f6670dd34d126b4a770ad4566e9f747e306fb"
+      end
+    else
+      raise "Unknown CPU architecture, only amd64 and arm64 are supported"
+    end
+  end
 
-    virtualenv_install_with_resources start_with: "cython"
+  def install
+    virtualenv_install_with_resources without: "rawpy"
+
+    resource("rawpy").stage do
+      wheel = Dir["*.whl"].first
+      valid_wheel = wheel.sub(/^.*--/, "")
+      File.rename(wheel, valid_wheel)
+      system "python3.12", "-m", "pip", "--python=#{libexec}/bin/python", "install", "--no-deps", valid_wheel
+    end
 
     # link dependent virtualenvs to this one
+    site_packages = Language::Python.site_packages("python3.12")
     paths = %w[pytorch-python312@2.5.1 torchvision-python312@0.20.1].map do |package_name|
       package = Formula[package_name].opt_libexec
       package/site_packages
