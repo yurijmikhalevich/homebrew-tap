@@ -9,10 +9,10 @@ class Rclip < Formula
   revision 3
 
   bottle do
-    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-1.11.1a26_2"
-    sha256 cellar: :any,                 arm64_sequoia: "c633c9df44a862717aa12053388624f5895c6972507eb74c2f37b39d1790638a"
-    sha256 cellar: :any,                 ventura:       "b11db13d6cb00ecd18e51ddb9107e3b4a5ca722944057e9a212c89f3ba87835e"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f05faa32b982a06486d9e3745cfe69175ff14e838f68a292190af9248ac95f0b"
+    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-1.11.1a26_3"
+    sha256 cellar: :any,                 arm64_sequoia: "e7683522db0b9e07a1f7a40b2750ef1af78eca825d0016385b903f6292c04acf"
+    sha256 cellar: :any,                 ventura:       "8422b7a98a50a42ac2f7d980cd71fdb684f9322fd9d3421f37a974119a50ec20"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "87c8d49e4d5ac0a0b1ce83975b47d12c4d0bc89f686db1d606aae5ba9c924b15"
   end
 
   if OS.linux?
