@@ -18,6 +18,10 @@ class Rclip < Formula
   depends_on "sentencepiece"
   depends_on "torchvision-python312@0.20.1"
 
+  if OS.linux?
+    depends_on "patchelf" => :build # for rawpy
+  end
+
   resource "charset-normalizer" do
     url "https://files.pythonhosted.org/packages/f2/4f/e1808dc01273379acc506d18f1504eb2d299bd4131743b9fc54d7be4df1e/charset_normalizer-3.4.0.tar.gz"
     sha256 "223217c3d4f82c3ac5e29032b3f1c2eb0fb591b72161f86d93f5719079dae93e"
@@ -166,6 +170,16 @@ class Rclip < Formula
       valid_wheel = wheel.sub(/^.*--/, "")
       File.rename(wheel, valid_wheel)
       system "python3.12", "-m", "pip", "--python=#{libexec}/bin/python", "install", "--no-deps", valid_wheel
+    end
+
+    if OS.linux?
+      rawpy_so = Dir[libexec/"lib/python3.12/site-packages/rawpy/_rawpy*.so"].first
+      raise "rawpy shared object not found" unless rawpy_so
+      system "patchelf", "--set-rpath", "$ORIGIN/../rawpy.libs", rawpy_so
+
+      libraw_so = Dir[libexec/"lib/python3.12/site-packages/rawpy.libs/libraw*.so.*"].first
+      raise "libraw shared object not found" unless libraw_so
+      system "patchelf", "--set-rpath", "$ORIGIN", libraw_so
     end
 
     # link dependent virtualenvs to this one
