@@ -8,6 +8,13 @@ class Rclip < Formula
   license "MIT"
   revision 2
 
+  bottle do
+    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-1.11.1a26_2"
+    sha256 cellar: :any,                 arm64_sequoia: "c633c9df44a862717aa12053388624f5895c6972507eb74c2f37b39d1790638a"
+    sha256 cellar: :any,                 ventura:       "b11db13d6cb00ecd18e51ddb9107e3b4a5ca722944057e9a212c89f3ba87835e"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "f05faa32b982a06486d9e3745cfe69175ff14e838f68a292190af9248ac95f0b"
+  end
+
   if OS.linux?
     depends_on "patchelf" => :build # for rawpy
   end
