@@ -3,17 +3,9 @@ class Rclip < Formula
 
   desc "AI-Powered Command-Line Photo Search Tool"
   homepage "https://github.com/yurijmikhalevich/rclip"
-  url "https://files.pythonhosted.org/packages/08/4c/95397bf346b6440dd5122e80ca9e9686e75ac95056306ad9009bd33a79cc/rclip-1.11.1a26.tar.gz"
-  sha256 "7d4a58c637e0368de0767cb0539b6abbd3466da5c69e851e3a03cb473ed5c78e"
+  url "https://files.pythonhosted.org/packages/a2/05/f2bb67b6babd72362a7e195db00f11af0566cbdbc94d1c74fac28d341f1c/rclip-2.0.0.tar.gz"
+  sha256 "3058b9ca6dff38924dba4e6b14bd98423b7f505d48f8c2fd974268ff7858f309"
   license "MIT"
-  revision 3
-
-  bottle do
-    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-1.11.1a26_3"
-    sha256 cellar: :any,                 arm64_sequoia: "e7683522db0b9e07a1f7a40b2750ef1af78eca825d0016385b903f6292c04acf"
-    sha256 cellar: :any,                 ventura:       "8422b7a98a50a42ac2f7d980cd71fdb684f9322fd9d3421f37a974119a50ec20"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "87c8d49e4d5ac0a0b1ce83975b47d12c4d0bc89f686db1d606aae5ba9c924b15"
-  end
 
   if OS.linux?
     depends_on "patchelf" => :build # for rawpy
@@ -60,8 +52,8 @@ class Rclip < Formula
   end
 
   resource "jinja2" do
-    url "https://files.pythonhosted.org/packages/ed/55/39036716d19cab0747a5020fc7e907f362fbf48c984b14e62127f7e68e5d/jinja2-3.1.4.tar.gz"
-    sha256 "4a3aee7acbbe7303aede8e9648d13b8bf88a429282aa6122a993f0ac800cb369"
+    url "https://files.pythonhosted.org/packages/af/92/b3130cbbf5591acf9ade8708c365f3238046ac7cb8ccba6e81abccb0ccff/jinja2-3.1.5.tar.gz"
+    sha256 "8fefff8dc3034e27bb80d67c671eb8a9bc424c0ef4c0826edbff304cceff43bb"
   end
 
   resource "markupsafe" do
