@@ -162,6 +162,9 @@ class Rclip < Formula
   end
 
   def install
+    # Fix for ZIP timestamp issue with files having dates before 1980
+    ENV["SOURCE_DATE_EPOCH"] = "315532800" # 1980-01-01
+
     virtualenv_install_with_resources without: "rawpy"
 
     resource("rawpy").stage do
