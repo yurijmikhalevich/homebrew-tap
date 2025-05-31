@@ -9,10 +9,10 @@ class TorchvisionPython312AT0201 < Formula
   revision 10
 
   bottle do
-    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/torchvision-python312@0.20.1-0.20.1_9"
-    sha256 cellar: :any,                 arm64_sequoia: "091e893bca843587d9663c01a4560a6a5addaea1a2bbd1f67be9b8139669026d"
-    sha256 cellar: :any,                 ventura:       "9a3002d88b57f08947c5a4d11c82432f5e7513bc57306b54d6e6e841217cec88"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "395e28bfe5a564b6b5677a56c011a4e350c431ec6a932b02826260b10df8951c"
+    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/torchvision-python312@0.20.1-0.20.1_10"
+    sha256 cellar: :any,                 arm64_sequoia: "8f6763c790f71947ccd9f8c791858160ee88521c9b162bc15fb875d259e64198"
+    sha256 cellar: :any,                 ventura:       "6839d40df96869b98234be3d1b060c7e298b08dd15ca5ef99bc229b295f3651e"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "d5e6f13f51e30182c8f73f10ce4398cd7c9f2f8043d5726b62f95a33dcd38bb8"
   end
 
   keg_only "it conflicts with the torchvision formula"
