@@ -99,7 +99,7 @@ class PytorchPython312AT251 < Formula
 
     # Ensure all vendored deps request modern CMake policies
     vendor_cmakelists = Dir["third_party/**/CMakeLists.txt"]
-                         .select { |f| File.read(f).match?(/cmake_minimum_required\s*\(/i) }
+                        .select { |f| File.read(f).match?(/cmake_minimum_required\s*\(/i) }
     unless vendor_cmakelists.empty?
       inreplace vendor_cmakelists do |s|
         s.gsub!(/cmake_minimum_required\s*\([^)]*\)/i, "cmake_minimum_required(VERSION 3.5)")
