@@ -6,7 +6,7 @@ class TorchvisionPython312AT0201 < Formula
   url "https://github.com/pytorch/vision/archive/refs/tags/v0.20.1.tar.gz"
   sha256 "7e08c7f56e2c89859310e53d898f72bccc4987cd83e08cfd6303513da15a9e71"
   license "BSD-3-Clause"
-  revision 10
+  revision 11
 
   bottle do
     root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/torchvision-python312@0.20.1-0.20.1_10"
