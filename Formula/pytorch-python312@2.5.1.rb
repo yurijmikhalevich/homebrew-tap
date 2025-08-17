@@ -6,7 +6,7 @@ class PytorchPython312AT251 < Formula
   url "https://github.com/pytorch/pytorch/releases/download/v2.5.1/pytorch-v2.5.1.tar.gz"
   sha256 "740eb5fff95e33cfe699bad43be83523f569c7cc7f9c285c2a255416443dd266"
   license "BSD-3-Clause"
-  revision 7
+  revision 8
 
   bottle do
     root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/pytorch-python312@2.5.1-2.5.1_7"
@@ -96,6 +96,24 @@ class PytorchPython312AT251 < Formula
 
     # Avoid building AVX512 code
     inreplace "cmake/Modules/FindAVX.cmake", /^CHECK_SSE\(CXX "AVX512"/, "#\\0"
+
+    # Ensure all vendored deps request modern CMake policies
+    vendor_cmakelists = Dir["third_party/**/CMakeLists.txt"]
+                         .select { |f| File.read(f).match?(/cmake_minimum_required\s*\(/i) }
+    unless vendor_cmakelists.empty?
+      inreplace vendor_cmakelists do |s|
+        s.gsub!(/cmake_minimum_required\s*\([^)]*\)/i, "cmake_minimum_required(VERSION 3.5)")
+      end
+    end
+
+    # Fix invalid use of 'template' disambiguator in libnop with Clang
+    libnop_variant = "third_party/tensorpipe/third_party/libnop/include/nop/types/variant.h"
+    if File.exist?(libnop_variant)
+      inreplace libnop_variant do |s|
+        s.gsub!(/\.template\s+Construct\(/, ".Construct(")
+        s.gsub!(/\.template\s+Assign\(/, ".Assign(")
+      end
+    end
 
     ENV["ATEN_NO_TEST"] = "ON"
     ENV["BLAS"] = "OpenBLAS"
