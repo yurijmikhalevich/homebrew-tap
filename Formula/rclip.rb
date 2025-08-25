@@ -6,6 +6,7 @@ class Rclip < Formula
   url "https://files.pythonhosted.org/packages/94/af/66bd216692f7b70e64f85b07b0bcfd3cbdbb927e5eface6e0b08f6266273/rclip-2.0.6.tar.gz"
   sha256 "1b8df79e705d9cfd2658606555ddbd8b06789b517b2464afb9c3de1e9c0fa40c"
   license "MIT"
+  revision 1
 
   bottle do
     root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-2.0.6"
