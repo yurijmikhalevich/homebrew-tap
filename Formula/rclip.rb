@@ -3,16 +3,9 @@ class Rclip < Formula
 
   desc "AI-Powered Command-Line Photo Search Tool"
   homepage "https://github.com/yurijmikhalevich/rclip"
-  url "https://files.pythonhosted.org/packages/1b/03/fd2efeb57756284518989918f14cc36ca146236747aada172f46594d5fd9/rclip-2.0.7.tar.gz"
-  sha256 "cac120562d252fab5a159d291d8a3d3c9929d23dddd3d15cf6eee14b6fde8b3b"
+  url "https://files.pythonhosted.org/packages/0b/d2/2ce181547a2de1c28b5611713d6e4766a5a8dd51ae27e066edd28be719da/rclip-2.0.8.tar.gz"
+  sha256 "dda9c07edbfd1127fbcb4085feace9baa60f53b5c2c1936722e329370c7693c0"
   license "MIT"
-
-  bottle do
-    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-2.0.7"
-    sha256 cellar: :any,                 arm64_sequoia: "a7e657b37d98183600771bc2352386c2fe78195e473c6848ee7a975010b38073"
-    sha256 cellar: :any,                 ventura:       "7baa51e7866cbf5bf3fcd6206136bd2f75d270f3fcf344a7ff073b451a465196"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "66267d20140b66b2f9ad1ea3839088600a43261533c2203620f86913a5635f4f"
-  end
 
   if OS.linux?
     depends_on "patchelf" => :build # for rawpy
@@ -84,8 +77,8 @@ class Rclip < Formula
   end
 
   resource "open-clip-torch" do
-    url "https://github.com/mlfoundations/open_clip/archive/refs/tags/v2.32.0.tar.gz"
-    sha256 "6509bbafad7cd284639d922ee826a251c558b6307c506a012872e71423a7d53f"
+    url "https://github.com/mlfoundations/open_clip/archive/refs/tags/v3.1.0.tar.gz"
+    sha256 "c89e5c844dc3db8842933bf4b661de66c014c14fff8b9b4ee59bf191fba929f6"
   end
 
   resource "packaging" do
