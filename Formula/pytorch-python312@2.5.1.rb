@@ -6,7 +6,7 @@ class PytorchPython312AT251 < Formula
   url "https://github.com/pytorch/pytorch/releases/download/v2.5.1/pytorch-v2.5.1.tar.gz"
   sha256 "740eb5fff95e33cfe699bad43be83523f569c7cc7f9c285c2a255416443dd266"
   license "BSD-3-Clause"
-  revision 9
+  revision 10
 
   bottle do
     root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/pytorch-python312@2.5.1-2.5.1_9"
