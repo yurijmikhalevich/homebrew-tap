@@ -3,16 +3,9 @@ class Rclip < Formula
 
   desc "AI-Powered Command-Line Photo Search Tool"
   homepage "https://github.com/yurijmikhalevich/rclip"
-  url "https://files.pythonhosted.org/packages/0b/d2/2ce181547a2de1c28b5611713d6e4766a5a8dd51ae27e066edd28be719da/rclip-2.0.8.tar.gz"
-  sha256 "dda9c07edbfd1127fbcb4085feace9baa60f53b5c2c1936722e329370c7693c0"
+  url "https://files.pythonhosted.org/packages/10/38/5372bf4f1f90cd617a43a023280bc8956cb99dbac8ec0b89e9789e1203fa/rclip-2.0.10.tar.gz"
+  sha256 "90d3a5b28b2cd34f15ebc8af53bf281cc3fae4b8b8aa15762f4f661f03af6baa"
   license "MIT"
-  revision 2
-
-  bottle do
-    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-2.0.8_2"
-    sha256 cellar: :any,                 arm64_sequoia: "3bd1f9185da3a78f4548306cac5e1dd582708bf999080f532bf868a9f171f890"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "319dc66c2a38a9e028b4030b7a74b40bf971036dd022c30a5de74dab8382f9ad"
-  end
 
   if OS.linux?
     depends_on "patchelf" => :build # for rawpy
