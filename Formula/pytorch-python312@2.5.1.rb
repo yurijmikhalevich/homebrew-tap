@@ -9,9 +9,9 @@ class PytorchPython312AT251 < Formula
   revision 12
 
   bottle do
-    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/pytorch-python312@2.5.1-2.5.1_11"
-    sha256 cellar: :any, arm64_sequoia: "e738458bce799b1f6f5953b0a3412e01af434f47c7757d71c8f9084752908a5a"
-    sha256               x86_64_linux:  "b787ae16615c149a74c45b347004fc6396126dd450b5e091537c67835a83ff1f"
+    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/pytorch-python312@2.5.1-2.5.1_12"
+    sha256 cellar: :any, arm64_sequoia: "7969996f1ad979e16588d4239fea94e8ef80f50b9fd29cfa417e7d277ead71d4"
+    sha256               x86_64_linux:  "9b388fc613ca8ca73f0223012f7567240fd326da5afcbf6141c573f388611bd4"
   end
 
   keg_only "it conflicts with the pytorch formula"
