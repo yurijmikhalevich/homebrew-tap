@@ -3,15 +3,9 @@ class Rclip < Formula
 
   desc "AI-Powered Command-Line Photo Search Tool"
   homepage "https://github.com/yurijmikhalevich/rclip"
-  url "https://files.pythonhosted.org/packages/90/3a/34cc7d2f0ffdfd99ecf615d941cb24f99a242451d9f393bcac7eac854a66/rclip-2.0.11.tar.gz"
-  sha256 "9ed28150470f9e9258e8f530730930b3adb1da069195034e36d1b31dc8734a93"
+  url "https://files.pythonhosted.org/packages/a3/79/f9f3fb0c4e76cf16dc3c6e6f93f72442c401273d8099507239143679c2b9/rclip-2.1.0.tar.gz"
+  sha256 "50108ba27256fd44ed6e7f503d6fd370f29af415e96c7464b6fe55b4345d2cb6"
   license "MIT"
-
-  bottle do
-    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-2.0.11"
-    sha256 cellar: :any,                 arm64_sequoia: "0fd04505d33f98e9f54511f8a4ffb61d632c7ba80038a85d020af2219406bcdf"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "c46d7f4c2ffdd20642f8fd14239fa9054b5e8a4b8d4767b50f10c1012210f59b"
-  end
 
   if OS.linux?
     depends_on "patchelf" => :build # for rawpy
@@ -90,6 +84,11 @@ class Rclip < Formula
   resource "packaging" do
     url "https://files.pythonhosted.org/packages/a1/d4/1fc4078c65507b51b96ca8f8c3ba19e6a61c8253c72794544580a7b6c24d/packaging-25.0.tar.gz"
     sha256 "d443872c98d677bf60f6a1f2f8c1cb748e8fe762d2bf9d3148b5599295b0fc4f"
+  end
+
+  resource "pillow-heif" do
+    url "https://files.pythonhosted.org/packages/64/65/77284daf2a8a2849b9040889bd8e1b845e693ed97973a28ba2122b8922ad/pillow_heif-1.1.1.tar.gz"
+    sha256 "f60e8c8a8928556104cec4fff39d43caa1da105625bdb53b11ce3c89d09b6bde"
   end
 
   resource "pyyaml" do
