@@ -150,12 +150,12 @@ class Rclip < Formula
   if OS.mac?
     if Hardware::CPU.arm?
       resource "numpy" do
-        url "https://files.pythonhosted.org/packages/13/13/8eadd4f4da03074851a698ffa7e405f41a0845a6b1ad135b81596e4e9958/numpy-2.1.3-cp312-cp312-macosx_11_0_arm64.whl", using: :nounzip
+        url "https://files.pythonhosted.org/packages/54/4a/765b4607f0fecbb239638d610d04ec0a0ded9b4951c56dc68cef79026abf/numpy-2.1.3-cp312-cp312-macosx_11_0_arm64.whl", using: :nounzip
         sha256 "13138eadd4f4da03074851a698ffa7e405f41a0845a6b1ad135b81596e4e9958"
       end
     elsif Hardware::CPU.intel?
       resource "numpy" do
-        url "https://files.pythonhosted.org/packages/f5/5b/a01150f52b1027829b50d70ef1dafd9821ea82905b63936668403c3b471e/numpy-2.1.3-cp312-cp312-macosx_10_13_x86_64.whl", using: :nounzip
+        url "https://files.pythonhosted.org/packages/8a/f0/385eb9970309643cbca4fc6eebc8bb16e560de129c91258dfaa18498da8b/numpy-2.1.3-cp312-cp312-macosx_10_13_x86_64.whl", using: :nounzip
         sha256 "f55ba01150f52b1027829b50d70ef1dafd9821ea82905b63936668403c3b471e"
       end
     else
@@ -164,12 +164,12 @@ class Rclip < Formula
   elsif OS.linux?
     if Hardware::CPU.arm?
       resource "numpy" do
-        url "https://files.pythonhosted.org/packages/86/37/dcd2caa676e475503d1f8fdb327bc495554e10838019651b76d17b98e512/numpy-2.1.3-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", using: :nounzip
+        url "https://files.pythonhosted.org/packages/5e/da/1a429ae58b3b6c364eeec93bf044c532f2ff7b48a52e41050896cf15d5b1/numpy-2.1.3-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", using: :nounzip
         sha256 "8637dcd2caa676e475503d1f8fdb327bc495554e10838019651b76d17b98e512"
       end
     elsif Hardware::CPU.intel?
       resource "numpy" do
-        url "https://files.pythonhosted.org/packages/23/12/b2aa89e1f43ecea6da6ea9a810d06aae08321609d8dc0d0eda6d946a541b/numpy-2.1.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", using: :nounzip
+        url "https://files.pythonhosted.org/packages/9e/3e/3757f304c704f2f0294a6b8340fcf2be244038be07da4cccf390fa678a9f/numpy-2.1.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", using: :nounzip
         sha256 "2312b2aa89e1f43ecea6da6ea9a810d06aae08321609d8dc0d0eda6d946a541b"
       end
     else
