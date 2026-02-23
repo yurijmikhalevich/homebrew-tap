@@ -21,7 +21,6 @@ class Rclip < Formula
   depends_on "certifi"
   depends_on "libheif"
   depends_on "libyaml"
-  depends_on "numpy"
   depends_on "pillow"
   depends_on "python@3.12"
   depends_on "pytorch-python312@2.5.1"
@@ -150,6 +149,36 @@ class Rclip < Formula
 
   if OS.mac?
     if Hardware::CPU.arm?
+      resource "numpy" do
+        url "https://files.pythonhosted.org/packages/13/13/8eadd4f4da03074851a698ffa7e405f41a0845a6b1ad135b81596e4e9958/numpy-2.1.3-cp312-cp312-macosx_11_0_arm64.whl", using: :nounzip
+        sha256 "13138eadd4f4da03074851a698ffa7e405f41a0845a6b1ad135b81596e4e9958"
+      end
+    elsif Hardware::CPU.intel?
+      resource "numpy" do
+        url "https://files.pythonhosted.org/packages/f5/5b/a01150f52b1027829b50d70ef1dafd9821ea82905b63936668403c3b471e/numpy-2.1.3-cp312-cp312-macosx_10_13_x86_64.whl", using: :nounzip
+        sha256 "f55ba01150f52b1027829b50d70ef1dafd9821ea82905b63936668403c3b471e"
+      end
+    else
+      raise "Unknown CPU architecture, only amd64 and arm64 are supported"
+    end
+  elsif OS.linux?
+    if Hardware::CPU.arm?
+      resource "numpy" do
+        url "https://files.pythonhosted.org/packages/86/37/dcd2caa676e475503d1f8fdb327bc495554e10838019651b76d17b98e512/numpy-2.1.3-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", using: :nounzip
+        sha256 "8637dcd2caa676e475503d1f8fdb327bc495554e10838019651b76d17b98e512"
+      end
+    elsif Hardware::CPU.intel?
+      resource "numpy" do
+        url "https://files.pythonhosted.org/packages/23/12/b2aa89e1f43ecea6da6ea9a810d06aae08321609d8dc0d0eda6d946a541b/numpy-2.1.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", using: :nounzip
+        sha256 "2312b2aa89e1f43ecea6da6ea9a810d06aae08321609d8dc0d0eda6d946a541b"
+      end
+    else
+      raise "Unknown CPU architecture, only amd64 and arm64 are supported"
+    end
+  end
+
+  if OS.mac?
+    if Hardware::CPU.arm?
       resource "rawpy" do
         url "https://files.pythonhosted.org/packages/87/75/610a34caf048aa87248f8393e70073610146f379fdda8194a988ba286d5b/rawpy-0.24.0-cp312-cp312-macosx_11_0_arm64.whl", using: :nounzip
         sha256 "1097b10eed4027e5b50006548190602e1adba9c824526b45f7a37781cfa01818"
@@ -182,7 +211,14 @@ class Rclip < Formula
     # Fix for ZIP timestamp issue with files having dates before 1980
     ENV["SOURCE_DATE_EPOCH"] = "315532800" # 1980-01-01
 
-    virtualenv_install_with_resources without: "rawpy"
+    virtualenv_install_with_resources without: %w[numpy rawpy]
+
+    resource("numpy").stage do
+      wheel = Dir["*.whl"].first
+      valid_wheel = wheel.sub(/^.*--/, "")
+      File.rename(wheel, valid_wheel)
+      system "python3.12", "-m", "pip", "--python=#{libexec}/bin/python", "install", "--no-deps", valid_wheel
+    end
 
     resource("rawpy").stage do
       wheel = Dir["*.whl"].first
