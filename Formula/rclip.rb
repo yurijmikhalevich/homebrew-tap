@@ -8,6 +8,9 @@ class Rclip < Formula
   license "MIT"
 
   depends_on "rust" => :build # for safetensors
+  if OS.linux?
+    depends_on "patchelf" => :build # for rawpy
+  end
   depends_on "certifi"
   depends_on "libheif"
   depends_on "libraw"
@@ -254,6 +257,18 @@ class Rclip < Formula
       valid_wheel = wheel.sub(/^.*--/, "")
       File.rename(wheel, valid_wheel)
       system "python3.14", "-m", "pip", "--python=#{libexec}/bin/python", "install", "--no-deps", valid_wheel
+    end
+
+    if OS.linux?
+      rawpy_so = Dir[libexec/"lib/python3.14/site-packages/rawpy/_rawpy*.so"].first
+      raise "rawpy shared object not found" unless rawpy_so
+
+      system "patchelf", "--set-rpath", "$ORIGIN/../rawpy.libs", rawpy_so
+
+      libraw_so = Dir[libexec/"lib/python3.14/site-packages/rawpy.libs/libraw*.so.*"].first
+      raise "libraw shared object not found" unless libraw_so
+
+      system "patchelf", "--set-rpath", "$ORIGIN", libraw_so
     end
 
     resource("hf-xet").stage do
