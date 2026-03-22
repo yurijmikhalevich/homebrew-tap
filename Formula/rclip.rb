@@ -7,19 +7,17 @@ class Rclip < Formula
   sha256 "f876e910780a830c532759270d26753803a736d4a678e347852eab76c99a6ab3"
   license "MIT"
 
-  if OS.linux?
-    depends_on "patchelf" => :build # for rawpy
-  end
-
   depends_on "rust" => :build # for safetensors
   depends_on "certifi"
   depends_on "libheif"
+  depends_on "libraw"
   depends_on "libyaml"
+  depends_on "numpy"
   depends_on "pillow"
-  depends_on "python@3.12"
-  depends_on "pytorch-python312@2.5.1"
+  depends_on "python@3.14"
+  depends_on "pytorch-python314@2.10.0"
   depends_on "sentencepiece"
-  depends_on "torchvision-python312@0.20.1"
+  depends_on "torchvision-python314@0.25.0"
 
   resource "open-clip-torch" do
     url "https://github.com/mlfoundations/open_clip/archive/refs/tags/v3.3.0.tar.gz"
@@ -196,34 +194,9 @@ class Rclip < Formula
     sha256 "bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba"
   end
 
-  if OS.mac?
-    if Hardware::CPU.arm?
-      resource "numpy" do
-        url "https://files.pythonhosted.org/packages/74/1b/ee2abfc68e1ce728b2958b6ba831d65c62e1b13ce3017c13943f8f9b5b2e/numpy-2.4.3-cp312-cp312-macosx_11_0_arm64.whl", using: :nounzip
-        sha256 "7395e69ff32526710748f92cd8c9849b361830968ea3e24a676f272653e8983e"
-      end
-    elsif Hardware::CPU.intel?
-      resource "numpy" do
-        url "https://files.pythonhosted.org/packages/a9/ed/6388632536f9788cea23a3a1b629f25b43eaacd7d7377e5d6bc7b9deb69b/numpy-2.4.3-cp312-cp312-macosx_10_13_x86_64.whl", using: :nounzip
-        sha256 "61b0cbabbb6126c8df63b9a3a0c4b1f44ebca5e12ff6997b80fcf267fb3150ef"
-      end
-    else
-      raise "Unknown CPU architecture, only amd64 and arm64 are supported"
-    end
-  elsif OS.linux?
-    if Hardware::CPU.arm?
-      resource "numpy" do
-        url "https://files.pythonhosted.org/packages/7b/12/8c9f0c6c95f76aeb20fc4a699c33e9f827fa0d0f857747c73bb7b17af945/numpy-2.4.3-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", using: :nounzip
-        sha256 "32e3bef222ad6b052280311d1d60db8e259e4947052c3ae7dd6817451fc8a4c5"
-      end
-    elsif Hardware::CPU.intel?
-      resource "numpy" do
-        url "https://files.pythonhosted.org/packages/bd/79/cc665495e4d57d0aa6fbcc0aa57aa82671dfc78fbf95fe733ed86d98f52a/numpy-2.4.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", using: :nounzip
-        sha256 "e7dd01a46700b1967487141a66ac1a3cf0dd8ebf1f08db37d46389401512ca97"
-      end
-    else
-      raise "Unknown CPU architecture, only amd64 and arm64 are supported"
-    end
+  resource "rawpy" do
+    url "https://github.com/letmaik/rawpy/archive/refs/tags/v0.26.1.tar.gz"
+    sha256 "9ed0023e6d52a0160813c502f54130f78e0cc3e50ea7e43edb90fe7e10f4a747"
   end
 
   if OS.mac?
@@ -237,8 +210,6 @@ class Rclip < Formula
         url "https://files.pythonhosted.org/packages/b4/86/b40b83a2ff03ef05c4478d2672b1fc2b9683ff870e2b25f4f3af240f2e7b/hf_xet-1.4.2-cp37-abi3-macosx_10_12_x86_64.whl", using: :nounzip
         sha256 "71f02d6e4cdd07f344f6844845d78518cc7186bd2bc52d37c3b73dc26a3b0bc5"
       end
-    else
-      raise "Unknown CPU architecture, only amd64 and arm64 are supported"
     end
   elsif OS.linux?
     if Hardware::CPU.arm?
@@ -251,38 +222,6 @@ class Rclip < Formula
         url "https://files.pythonhosted.org/packages/3c/4c/781267da3188db679e601de18112021a5cb16506fe86b246e22c5401a9c4/hf_xet-1.4.2-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", using: :nounzip
         sha256 "77e8c180b7ef12d8a96739a4e1e558847002afe9ea63b6f6358b2271a8bdda1c"
       end
-    else
-      raise "Unknown CPU architecture, only amd64 and arm64 are supported"
-    end
-  end
-
-  if OS.mac?
-    if Hardware::CPU.arm?
-      resource "rawpy" do
-        url "https://files.pythonhosted.org/packages/87/75/610a34caf048aa87248f8393e70073610146f379fdda8194a988ba286d5b/rawpy-0.24.0-cp312-cp312-macosx_11_0_arm64.whl", using: :nounzip
-        sha256 "1097b10eed4027e5b50006548190602e1adba9c824526b45f7a37781cfa01818"
-      end
-    elsif Hardware::CPU.intel?
-      resource "rawpy" do
-        url "https://files.pythonhosted.org/packages/27/1c/59024e87c20b325e10b43e3b709929681a0ed23bda3885c7825927244fcc/rawpy-0.24.0-cp312-cp312-macosx_10_9_x86_64.whl", using: :nounzip
-        sha256 "ed639b0dc91c3e85d6c39303a1523b7e1edc4f4b0381c376ed0ff99febb306e4"
-      end
-    else
-      raise "Unknown CPU architecture, only amd64 and arm64 are supported"
-    end
-  elsif OS.linux?
-    if Hardware::CPU.arm?
-      resource "rawpy" do
-        url "https://files.pythonhosted.org/packages/9c/c4/576853c0eea14d62a2776f683dae23c994572dfc2dcb47fd1a1473b7b18a/rawpy-0.24.0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", using: :nounzip
-        sha256 "17a970fd8cdece57929d6e99ce64503f21b51c00ab132bad53065bd523154892"
-      end
-    elsif Hardware::CPU.intel?
-      resource "rawpy" do
-        url "https://files.pythonhosted.org/packages/fe/35/5d6765359ce6e06fe0aee5a3e4e731cfe08c056df093d97c292bdc02132a/rawpy-0.24.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", using: :nounzip
-        sha256 "a12fc4e6c5879b88c6937abb9f3f6670dd34d126b4a770ad4566e9f747e306fb"
-      end
-    else
-      raise "Unknown CPU architecture, only amd64 and arm64 are supported"
     end
   end
 
@@ -290,44 +229,18 @@ class Rclip < Formula
     # Fix for ZIP timestamp issue with files having dates before 1980
     ENV["SOURCE_DATE_EPOCH"] = "315532800" # 1980-01-01
 
-    virtualenv_install_with_resources without: %w[numpy rawpy hf-xet]
-
-    resource("numpy").stage do
-      wheel = Dir["*.whl"].first
-      valid_wheel = wheel.sub(/^.*--/, "")
-      File.rename(wheel, valid_wheel)
-      system "python3.12", "-m", "pip", "--python=#{libexec}/bin/python", "install", "--no-deps", valid_wheel
-    end
-
-    resource("rawpy").stage do
-      wheel = Dir["*.whl"].first
-      valid_wheel = wheel.sub(/^.*--/, "")
-      File.rename(wheel, valid_wheel)
-      system "python3.12", "-m", "pip", "--python=#{libexec}/bin/python", "install", "--no-deps", valid_wheel
-    end
+    virtualenv_install_with_resources without: %w[hf-xet]
 
     resource("hf-xet").stage do
       wheel = Dir["*.whl"].first
       valid_wheel = wheel.sub(/^.*--/, "")
       File.rename(wheel, valid_wheel)
-      system "python3.12", "-m", "pip", "--python=#{libexec}/bin/python", "install", "--no-deps", valid_wheel
-    end
-
-    if OS.linux?
-      rawpy_so = Dir[libexec/"lib/python3.12/site-packages/rawpy/_rawpy*.so"].first
-      raise "rawpy shared object not found" unless rawpy_so
-
-      system "patchelf", "--set-rpath", "$ORIGIN/../rawpy.libs", rawpy_so
-
-      libraw_so = Dir[libexec/"lib/python3.12/site-packages/rawpy.libs/libraw*.so.*"].first
-      raise "libraw shared object not found" unless libraw_so
-
-      system "patchelf", "--set-rpath", "$ORIGIN", libraw_so
+      system "python3.14", "-m", "pip", "--python=#{libexec}/bin/python", "install", "--no-deps", valid_wheel
     end
 
     # link dependent virtualenvs to this one
-    site_packages = Language::Python.site_packages("python3.12")
-    paths = %w[pytorch-python312@2.5.1 torchvision-python312@0.20.1].map do |package_name|
+    site_packages = Language::Python.site_packages("python3.14")
+    paths = %w[pytorch-python314@2.10.0 torchvision-python314@0.25.0].map do |package_name|
       package = Formula[package_name].opt_libexec
       package/site_packages
     end
