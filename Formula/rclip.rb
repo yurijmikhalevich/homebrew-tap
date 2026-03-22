@@ -198,8 +198,10 @@ class Rclip < Formula
     if Hardware::CPU.arm?
       resource "rawpy" do
         url "https://files.pythonhosted.org/packages/95/57/921db08ad430ec9881b4539d574d29cdcd2ca3a78915148f122adc4dd036/rawpy-0.26.1-cp314-cp314-macosx_11_0_arm64.whl", using: :nounzip
-        sha256 "a730ed88843141224518724e0926f6b71d5c1883c3ca839865bac6b450337332"
+        sha256 "b28e1185244c26a17b699282a50e99259ace6db75efc8b1b96c5bdd68eedc372"
       end
+    elsif Hardware::CPU.intel?
+      raise "rclip is not supported on macOS Intel (no rawpy wheel available)"
     end
   elsif OS.linux?
     if Hardware::CPU.arm?
@@ -244,8 +246,6 @@ class Rclip < Formula
   def install
     # Fix for ZIP timestamp issue with files having dates before 1980
     ENV["SOURCE_DATE_EPOCH"] = "315532800" # 1980-01-01
-
-    raise "rclip is not supported on macOS Intel (no rawpy wheel available)" if OS.mac? && Hardware::CPU.intel?
 
     virtualenv_install_with_resources without: %w[hf-xet rawpy]
 
