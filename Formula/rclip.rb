@@ -15,7 +15,6 @@ class Rclip < Formula
   depends_on "certifi"
   depends_on "libheif"
   depends_on "libyaml"
-  depends_on "numpy"
   depends_on "pillow"
   depends_on "python@3.12"
   depends_on "pytorch-python312@2.5.1"
@@ -199,6 +198,36 @@ class Rclip < Formula
 
   if OS.mac?
     if Hardware::CPU.arm?
+      resource "numpy" do
+        url "https://files.pythonhosted.org/packages/74/1b/ee2abfc68e1ce728b2958b6ba831d65c62e1b13ce3017c13943f8f9b5b2e/numpy-2.4.3-cp312-cp312-macosx_11_0_arm64.whl", using: :nounzip
+        sha256 "7395e69ff32526710748f92cd8c9849b361830968ea3e24a676f272653e8983e"
+      end
+    elsif Hardware::CPU.intel?
+      resource "numpy" do
+        url "https://files.pythonhosted.org/packages/a9/ed/6388632536f9788cea23a3a1b629f25b43eaacd7d7377e5d6bc7b9deb69b/numpy-2.4.3-cp312-cp312-macosx_10_13_x86_64.whl", using: :nounzip
+        sha256 "61b0cbabbb6126c8df63b9a3a0c4b1f44ebca5e12ff6997b80fcf267fb3150ef"
+      end
+    else
+      raise "Unknown CPU architecture, only amd64 and arm64 are supported"
+    end
+  elsif OS.linux?
+    if Hardware::CPU.arm?
+      resource "numpy" do
+        url "https://files.pythonhosted.org/packages/7b/12/8c9f0c6c95f76aeb20fc4a699c33e9f827fa0d0f857747c73bb7b17af945/numpy-2.4.3-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", using: :nounzip
+        sha256 "32e3bef222ad6b052280311d1d60db8e259e4947052c3ae7dd6817451fc8a4c5"
+      end
+    elsif Hardware::CPU.intel?
+      resource "numpy" do
+        url "https://files.pythonhosted.org/packages/bd/79/cc665495e4d57d0aa6fbcc0aa57aa82671dfc78fbf95fe733ed86d98f52a/numpy-2.4.3-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", using: :nounzip
+        sha256 "e7dd01a46700b1967487141a66ac1a3cf0dd8ebf1f08db37d46389401512ca97"
+      end
+    else
+      raise "Unknown CPU architecture, only amd64 and arm64 are supported"
+    end
+  end
+
+  if OS.mac?
+    if Hardware::CPU.arm?
       resource "hf-xet" do
         url "https://files.pythonhosted.org/packages/64/2e/af4475c32b4378b0e92a587adb1aa3ec53e3450fd3e5fe0372a874531c00/hf_xet-1.4.2-cp37-abi3-macosx_11_0_arm64.whl", using: :nounzip
         sha256 "e9b38d876e94d4bdcf650778d6ebbaa791dd28de08db9736c43faff06ede1b5a"
@@ -208,6 +237,8 @@ class Rclip < Formula
         url "https://files.pythonhosted.org/packages/b4/86/b40b83a2ff03ef05c4478d2672b1fc2b9683ff870e2b25f4f3af240f2e7b/hf_xet-1.4.2-cp37-abi3-macosx_10_12_x86_64.whl", using: :nounzip
         sha256 "71f02d6e4cdd07f344f6844845d78518cc7186bd2bc52d37c3b73dc26a3b0bc5"
       end
+    else
+      raise "Unknown CPU architecture, only amd64 and arm64 are supported"
     end
   elsif OS.linux?
     if Hardware::CPU.arm?
@@ -220,6 +251,8 @@ class Rclip < Formula
         url "https://files.pythonhosted.org/packages/3c/4c/781267da3188db679e601de18112021a5cb16506fe86b246e22c5401a9c4/hf_xet-1.4.2-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", using: :nounzip
         sha256 "77e8c180b7ef12d8a96739a4e1e558847002afe9ea63b6f6358b2271a8bdda1c"
       end
+    else
+      raise "Unknown CPU architecture, only amd64 and arm64 are supported"
     end
   end
 
@@ -257,7 +290,14 @@ class Rclip < Formula
     # Fix for ZIP timestamp issue with files having dates before 1980
     ENV["SOURCE_DATE_EPOCH"] = "315532800" # 1980-01-01
 
-    virtualenv_install_with_resources without: %w[rawpy hf-xet]
+    virtualenv_install_with_resources without: %w[numpy rawpy hf-xet]
+
+    resource("numpy").stage do
+      wheel = Dir["*.whl"].first
+      valid_wheel = wheel.sub(/^.*--/, "")
+      File.rename(wheel, valid_wheel)
+      system "python3.12", "-m", "pip", "--python=#{libexec}/bin/python", "install", "--no-deps", valid_wheel
+    end
 
     resource("rawpy").stage do
       wheel = Dir["*.whl"].first
