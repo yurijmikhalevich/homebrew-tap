@@ -22,12 +22,12 @@ class Rclip < Formula
   depends_on "sentencepiece"
   depends_on "torchvision-python312@0.20.1"
 
-  resource "open_clip_torch" do
+  resource "open-clip-torch" do
     url "https://github.com/mlfoundations/open_clip/archive/refs/tags/v3.2.0.tar.gz"
     sha256 "05806392c136c531a3f574d115120dbcdb509bd099b2b901696eb391fd001155"
   end
 
-  resource "pillow_heif" do
+  resource "pillow-heif" do
     url "https://files.pythonhosted.org/packages/22/f4/68bd0465dc0494c22e23334dde0a9c52dec5afe98cf5a40abb47f75e1b08/pillow_heif-1.2.1.tar.gz"
     sha256 "29be44d636269e2d779b4aec629bc056ec7260b734a16b4d3bb284c49c200274"
   end
@@ -52,7 +52,7 @@ class Rclip < Formula
     sha256 "9b3c3d90f84fb267fe64d375a07b7f8912d817cf86009ae134aa03e1819506ec"
   end
 
-  resource "huggingface_hub" do
+  resource "huggingface-hub" do
     url "https://files.pythonhosted.org/packages/c4/fc/eb9bc06130e8bbda6a616e1b80a7aa127681c448d6b49806f61db2670b61/huggingface_hub-1.4.1.tar.gz"
     sha256 "b41131ec35e631e7383ab26d6146b8d8972abc8b6309b963b306fbcca87f5ed5"
   end
@@ -87,7 +87,7 @@ class Rclip < Formula
     sha256 "011a5644dc937c22699943ebbfc46e969cdde3e171470a6e40b9533e5a72affa"
   end
 
-  resource "typing_extensions" do
+  resource "typing-extensions" do
     url "https://files.pythonhosted.org/packages/72/94/1a15dd82efb362ac84269196e94cf00f187f7ed21c242792a923cdb1c61f/typing_extensions-4.15.0.tar.gz"
     sha256 "0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466"
   end
