@@ -194,9 +194,25 @@ class Rclip < Formula
     sha256 "bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba"
   end
 
-  resource "rawpy" do
-    url "https://github.com/letmaik/rawpy/archive/refs/tags/v0.26.1.tar.gz"
-    sha256 "9ed0023e6d52a0160813c502f54130f78e0cc3e50ea7e43edb90fe7e10f4a747"
+  if OS.mac?
+    if Hardware::CPU.arm?
+      resource "rawpy" do
+        url "https://files.pythonhosted.org/packages/95/57/921db08ad430ec9881b4539d574d29cdcd2ca3a78915148f122adc4dd036/rawpy-0.26.1-cp314-cp314-macosx_11_0_arm64.whl", using: :nounzip
+        sha256 "a730ed88843141224518724e0926f6b71d5c1883c3ca839865bac6b450337332"
+      end
+    end
+  elsif OS.linux?
+    if Hardware::CPU.arm?
+      resource "rawpy" do
+        url "https://files.pythonhosted.org/packages/9c/d2/2968cc71aaa369ff720d2c175fe1deed261e6be0e95c75c13a805f18eda4/rawpy-0.26.1-cp314-cp314-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", using: :nounzip
+        sha256 "ab56fb9e8c202e442ede63ccd3c49f9d8069a2c7a17768d2478698eb12c44548"
+      end
+    elsif Hardware::CPU.intel?
+      resource "rawpy" do
+        url "https://files.pythonhosted.org/packages/8e/c7/32209a59deda0e0449cbbc69fa395dad8f984a61c83ea39a27b12a669fc2/rawpy-0.26.1-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", using: :nounzip
+        sha256 "c5400d5fdcbca0c72012093c907885475b77a20656d26a2729f140c43ccfcd70"
+      end
+    end
   end
 
   if OS.mac?
@@ -229,7 +245,16 @@ class Rclip < Formula
     # Fix for ZIP timestamp issue with files having dates before 1980
     ENV["SOURCE_DATE_EPOCH"] = "315532800" # 1980-01-01
 
-    virtualenv_install_with_resources without: %w[hf-xet]
+    raise "rclip is not supported on macOS Intel (no rawpy wheel available)" if OS.mac? && Hardware::CPU.intel?
+
+    virtualenv_install_with_resources without: %w[hf-xet rawpy]
+
+    resource("rawpy").stage do
+      wheel = Dir["*.whl"].first
+      valid_wheel = wheel.sub(/^.*--/, "")
+      File.rename(wheel, valid_wheel)
+      system "python3.14", "-m", "pip", "--python=#{libexec}/bin/python", "install", "--no-deps", valid_wheel
+    end
 
     resource("hf-xet").stage do
       wheel = Dir["*.whl"].first
