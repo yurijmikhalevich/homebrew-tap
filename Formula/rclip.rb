@@ -8,6 +8,12 @@ class Rclip < Formula
   license "MIT"
   revision 1
 
+  bottle do
+    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-2.1.3_1"
+    sha256 cellar: :any,                 arm64_sequoia: "5a3a2f6f30e157192bb90d083aaa9a7d4be2cde8b7b33fcb19b3f1a766d2fba3"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6ff1baa30ea6d5b318edce4195ce94c4b1c8ac55d5924d210a136417d1bccd49"
+  end
+
   if OS.linux?
     depends_on "patchelf" => :build # for rawpy
     depends_on "zlib-ng-compat" # rawpy bundled libs link against libz
