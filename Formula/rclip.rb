@@ -9,6 +9,7 @@ class Rclip < Formula
 
   if OS.linux?
     depends_on "patchelf" => :build # for rawpy
+    depends_on "zlib-ng-compat" # rawpy bundled libs link against libz
   end
   depends_on "rust" => :build # for safetensors
   depends_on "certifi"
