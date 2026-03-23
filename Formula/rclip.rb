@@ -265,10 +265,11 @@ class Rclip < Formula
 
       system "patchelf", "--set-rpath", "$ORIGIN/../rawpy.libs", rawpy_so
 
-      libraw_so = Dir[libexec/"lib/python3.14/site-packages/rawpy.libs/libraw*.so.*"].first
-      raise "libraw shared object not found" unless libraw_so
+      Dir[libexec/"lib/python3.14/site-packages/rawpy.libs/*.so*"].each do |lib|
+        next if File.symlink?(lib)
 
-      system "patchelf", "--set-rpath", "$ORIGIN", libraw_so
+        system "patchelf", "--set-rpath", "$ORIGIN", lib
+      end
     end
 
     resource("hf-xet").stage do
