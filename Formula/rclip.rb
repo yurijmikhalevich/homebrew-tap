@@ -6,6 +6,7 @@ class Rclip < Formula
   url "https://files.pythonhosted.org/packages/c5/85/55d6eaee09082f48b96b649837648e6f24f0538869d95be59e76f8a34ec7/rclip-2.1.3.tar.gz"
   sha256 "f876e910780a830c532759270d26753803a736d4a678e347852eab76c99a6ab3"
   license "MIT"
+  revision 1
 
   if OS.linux?
     depends_on "patchelf" => :build # for rawpy
