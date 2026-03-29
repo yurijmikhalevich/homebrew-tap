@@ -3,16 +3,9 @@ class Rclip < Formula
 
   desc "AI-Powered Command-Line Photo Search Tool"
   homepage "https://github.com/yurijmikhalevich/rclip"
-  url "https://files.pythonhosted.org/packages/c5/85/55d6eaee09082f48b96b649837648e6f24f0538869d95be59e76f8a34ec7/rclip-2.1.3.tar.gz"
-  sha256 "f876e910780a830c532759270d26753803a736d4a678e347852eab76c99a6ab3"
+  url "https://files.pythonhosted.org/packages/6f/67/614fb87d450907946257e5e3daef469a3eb18a8776d058dea8c745d93647/rclip-2.1.4a1.tar.gz"
+  sha256 "d1c6e70219ad6181b35474ddf02cba34073725a6ce27ec3aecdd07db5d9c4e83"
   license "MIT"
-  revision 1
-
-  bottle do
-    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-2.1.3_1"
-    sha256 cellar: :any,                 arm64_sequoia: "5a3a2f6f30e157192bb90d083aaa9a7d4be2cde8b7b33fcb19b3f1a766d2fba3"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "6ff1baa30ea6d5b318edce4195ce94c4b1c8ac55d5924d210a136417d1bccd49"
-  end
 
   if OS.linux?
     depends_on "patchelf" => :build # for rawpy
@@ -211,8 +204,8 @@ class Rclip < Formula
         url "https://files.pythonhosted.org/packages/95/57/921db08ad430ec9881b4539d574d29cdcd2ca3a78915148f122adc4dd036/rawpy-0.26.1-cp314-cp314-macosx_11_0_arm64.whl", using: :nounzip
         sha256 "b28e1185244c26a17b699282a50e99259ace6db75efc8b1b96c5bdd68eedc372"
       end
-    elsif Hardware::CPU.intel?
-      raise "rclip is not supported on macOS Intel (no rawpy wheel available)"
+    else
+      raise "Unknown CPU architecture, only arm64 is supported on macOS"
     end
   elsif OS.linux?
     if Hardware::CPU.arm?
@@ -225,6 +218,8 @@ class Rclip < Formula
         url "https://files.pythonhosted.org/packages/8e/c7/32209a59deda0e0449cbbc69fa395dad8f984a61c83ea39a27b12a669fc2/rawpy-0.26.1-cp314-cp314-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", using: :nounzip
         sha256 "c5400d5fdcbca0c72012093c907885475b77a20656d26a2729f140c43ccfcd70"
       end
+    else
+      raise "Unknown CPU architecture, only amd64 and arm64 are supported"
     end
   end
 
@@ -234,11 +229,8 @@ class Rclip < Formula
         url "https://files.pythonhosted.org/packages/64/2e/af4475c32b4378b0e92a587adb1aa3ec53e3450fd3e5fe0372a874531c00/hf_xet-1.4.2-cp37-abi3-macosx_11_0_arm64.whl", using: :nounzip
         sha256 "e9b38d876e94d4bdcf650778d6ebbaa791dd28de08db9736c43faff06ede1b5a"
       end
-    elsif Hardware::CPU.intel?
-      resource "hf-xet" do
-        url "https://files.pythonhosted.org/packages/b4/86/b40b83a2ff03ef05c4478d2672b1fc2b9683ff870e2b25f4f3af240f2e7b/hf_xet-1.4.2-cp37-abi3-macosx_10_12_x86_64.whl", using: :nounzip
-        sha256 "71f02d6e4cdd07f344f6844845d78518cc7186bd2bc52d37c3b73dc26a3b0bc5"
-      end
+    else
+      raise "Unknown CPU architecture, only arm64 is supported on macOS"
     end
   elsif OS.linux?
     if Hardware::CPU.arm?
@@ -251,6 +243,8 @@ class Rclip < Formula
         url "https://files.pythonhosted.org/packages/3c/4c/781267da3188db679e601de18112021a5cb16506fe86b246e22c5401a9c4/hf_xet-1.4.2-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", using: :nounzip
         sha256 "77e8c180b7ef12d8a96739a4e1e558847002afe9ea63b6f6358b2271a8bdda1c"
       end
+    else
+      raise "Unknown CPU architecture, only amd64 and arm64 are supported"
     end
   end
 
@@ -258,7 +252,7 @@ class Rclip < Formula
     # Fix for ZIP timestamp issue with files having dates before 1980
     ENV["SOURCE_DATE_EPOCH"] = "315532800" # 1980-01-01
 
-    virtualenv_install_with_resources without: %w[hf-xet rawpy]
+    virtualenv_install_with_resources without: %w[rawpy hf-xet]
 
     resource("rawpy").stage do
       wheel = Dir["*.whl"].first
@@ -268,15 +262,17 @@ class Rclip < Formula
     end
 
     if OS.linux?
-      rawpy_so = Dir[libexec/"lib/python3.14/site-packages/rawpy/_rawpy*.so"].first
-      raise "rawpy shared object not found" unless rawpy_so
-
-      system "patchelf", "--set-rpath", "$ORIGIN/../rawpy.libs", rawpy_so
-
-      Dir[libexec/"lib/python3.14/site-packages/rawpy.libs/*.so*"].each do |lib|
-        next if File.symlink?(lib)
-
-        system "patchelf", "--set-rpath", "$ORIGIN", lib
+      targets = Dir[libexec/"lib/python3.14/site-packages/rawpy/_rawpy*.so"]
+      odie "Failed to find any files to patch with patchelf for pattern: #{libexec}/lib/python3.14/site-packages/rawpy/_rawpy*.so" if targets.empty?
+      targets.each do |so|
+        next if File.symlink?(so)
+        system "patchelf", "--set-rpath", "$ORIGIN/../rawpy.libs", so
+      end
+      targets = Dir[libexec/"lib/python3.14/site-packages/rawpy.libs/*.so*"]
+      odie "Failed to find any files to patch with patchelf for pattern: #{libexec}/lib/python3.14/site-packages/rawpy.libs/*.so*" if targets.empty?
+      targets.each do |so|
+        next if File.symlink?(so)
+        system "patchelf", "--set-rpath", "$ORIGIN", so
       end
     end
 
