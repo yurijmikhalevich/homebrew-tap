@@ -14,6 +14,8 @@ class TorchvisionPython312AT0201 < Formula
     sha256 cellar: :any_skip_relocation, x86_64_linux:  "e4307a0ac74b958df6c24e0faec95bda530165fe0a131f5d7450dbcd96064292"
   end
 
+  deprecate! date: "2026-03-30", because: "is not used by rclip anymore"
+
   keg_only "it conflicts with the torchvision formula"
 
   depends_on "cmake" => :build
