@@ -16,6 +16,8 @@ class PytorchPython312AT251 < Formula
 
   keg_only "it conflicts with the pytorch formula"
 
+  deprecate! date: "2026-03-30", because: "is not used by rclip anymore"
+
   depends_on "cmake" => :build
   depends_on "ninja" => :build
   depends_on "python@3.12" => [:build, :test]
