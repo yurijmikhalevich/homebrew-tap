@@ -14,9 +14,9 @@ class PytorchPython312AT251 < Formula
     sha256               x86_64_linux:  "9b388fc613ca8ca73f0223012f7567240fd326da5afcbf6141c573f388611bd4"
   end
 
-  deprecate! date: "2026-03-30", because: "is not used by rclip anymore"
-
   keg_only "it conflicts with the pytorch formula"
+
+  deprecate! date: "2026-03-30", because: "is not used by rclip anymore"
 
   depends_on "cmake" => :build
   depends_on "ninja" => :build
