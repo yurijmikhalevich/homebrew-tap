@@ -3,15 +3,9 @@ class Rclip < Formula
 
   desc "AI-Powered Command-Line Photo Search Tool"
   homepage "https://github.com/yurijmikhalevich/rclip"
-  url "https://files.pythonhosted.org/packages/6f/67/614fb87d450907946257e5e3daef469a3eb18a8776d058dea8c745d93647/rclip-2.1.4a1.tar.gz"
-  sha256 "d1c6e70219ad6181b35474ddf02cba34073725a6ce27ec3aecdd07db5d9c4e83"
+  url "https://files.pythonhosted.org/packages/d0/57/eaa63939b68e320409b27f97978e235cdef1a07a2812776a22806ce519de/rclip-2.1.5.tar.gz"
+  sha256 "3e6551168a887ccdc876b28cecaccdd1d847d6a40c3a4b4d92242bc218a29da2"
   license "MIT"
-
-  bottle do
-    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-2.1.4a1"
-    sha256 cellar: :any,                 arm64_sequoia: "802e759e0221506c1cec08ed29611201ea8fce1a416af319c3f38f2f7ea2a8e7"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "2f41852e89df6bb2e134e035c153149876cc556db77c5a968368651127ea3d40"
-  end
 
   if OS.linux?
     depends_on "patchelf" => :build # for rawpy
@@ -182,6 +176,11 @@ class Rclip < Formula
   resource "annotated-doc" do
     url "https://files.pythonhosted.org/packages/57/ba/046ceea27344560984e26a590f90bc7f4a75b06701f653222458922b558c/annotated_doc-0.0.4.tar.gz"
     sha256 "fbcda96e87e9c92ad167c2e53839e57503ecfda18804ea28102353485033faa4"
+  end
+
+  resource "exceptiongroup" do
+    url "https://files.pythonhosted.org/packages/50/79/66800aadf48771f6b62f7eb014e352e5d06856655206165d775e675a02c9/exceptiongroup-1.3.1.tar.gz"
+    sha256 "8b412432c6055b0b7d14c310000ae93352ed6754f70fa8f7c34141f91c4e3219"
   end
 
   resource "h11" do
