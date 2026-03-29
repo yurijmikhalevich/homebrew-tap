@@ -263,15 +263,23 @@ class Rclip < Formula
 
     if OS.linux?
       targets = Dir[libexec/"lib/python3.14/site-packages/rawpy/_rawpy*.so"]
-      odie "Failed to find any files to patch with patchelf for pattern: #{libexec}/lib/python3.14/site-packages/rawpy/_rawpy*.so" if targets.empty?
+      if targets.empty?
+        odie "Failed to find any files to patch with patchelf for pattern: " \
+             "#{libexec}/lib/python3.14/site-packages/rawpy/_rawpy*.so"
+      end
       targets.each do |so|
         next if File.symlink?(so)
+
         system "patchelf", "--set-rpath", "$ORIGIN/../rawpy.libs", so
       end
       targets = Dir[libexec/"lib/python3.14/site-packages/rawpy.libs/*.so*"]
-      odie "Failed to find any files to patch with patchelf for pattern: #{libexec}/lib/python3.14/site-packages/rawpy.libs/*.so*" if targets.empty?
+      if targets.empty?
+        odie "Failed to find any files to patch with patchelf for pattern: " \
+             "#{libexec}/lib/python3.14/site-packages/rawpy.libs/*.so*"
+      end
       targets.each do |so|
         next if File.symlink?(so)
+
         system "patchelf", "--set-rpath", "$ORIGIN", so
       end
     end
