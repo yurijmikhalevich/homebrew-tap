@@ -179,8 +179,8 @@ class Rclip < Formula
     end
 
     resource "coremltools" do
-      url "https://files.pythonhosted.org/packages/79/e6/8cb11a246f61736e75b20488b9c3cf9c208f500c9a3f92d717dbf592348c/coremltools-9.0.tar.gz"
-      sha256 "4ff346b29c31c4b45acd19a20e0f0a1ac65180a96776e62f15bd5c46f4926687"
+      url "https://files.pythonhosted.org/packages/62/50/76d5a828d875ed8ad7392bf9294233261747de02f7415f51d4add8dc0acf/coremltools-9.0-cp313-none-macosx_11_0_arm64.whl", using: :nounzip
+      sha256 "9f2f858beec7f5d486cd1a59aefb452d59347e236670b67db325795bf692f480"
     end
 
     resource "mpmath" do
@@ -278,7 +278,7 @@ class Rclip < Formula
     # Fix for ZIP timestamp issue with files having dates before 1980
     ENV["SOURCE_DATE_EPOCH"] = "315532800" # 1980-01-01
 
-    virtualenv_install_with_resources without: %w[rawpy hf-xet onnxruntime]
+    virtualenv_install_with_resources without: %w[rawpy hf-xet onnxruntime coremltools]
 
     resource("rawpy").stage do
       wheel = Dir["*.whl"].first
@@ -322,6 +322,15 @@ class Rclip < Formula
       valid_wheel = wheel.sub(/^.*--/, "")
       File.rename(wheel, valid_wheel)
       system "python3.13", "-m", "pip", "--python=#{libexec}/bin/python", "install", "--no-deps", valid_wheel
+    end
+
+    if OS.mac?
+      resource("coremltools").stage do
+        wheel = Dir["*.whl"].first
+        valid_wheel = wheel.sub(/^.*--/, "")
+        File.rename(wheel, valid_wheel)
+        system "python3.13", "-m", "pip", "--python=#{libexec}/bin/python", "install", "--no-deps", valid_wheel
+      end
     end
   end
 
