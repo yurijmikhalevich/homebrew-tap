@@ -278,7 +278,9 @@ class Rclip < Formula
     # Fix for ZIP timestamp issue with files having dates before 1980
     ENV["SOURCE_DATE_EPOCH"] = "315532800" # 1980-01-01
 
-    virtualenv_install_with_resources without: %w[rawpy hf-xet onnxruntime coremltools]
+    excluded_resources = %w[rawpy hf-xet onnxruntime]
+    excluded_resources << "coremltools" if OS.mac?
+    virtualenv_install_with_resources without: excluded_resources
 
     resource("rawpy").stage do
       wheel = Dir["*.whl"].first
