@@ -11,6 +11,7 @@ class Rclip < Formula
     depends_on "patchelf" => :build # for rawpy
     depends_on "zlib-ng-compat" # rawpy bundled libs link against libz
   end
+  depends_on "pkgconf" => :build
   depends_on "certifi"
   depends_on "libheif"
   depends_on "libraw"
