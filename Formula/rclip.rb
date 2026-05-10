@@ -12,6 +12,8 @@ class Rclip < Formula
     depends_on "zlib-ng-compat" # rawpy bundled libs link against libz
   end
   depends_on "pkgconf" => :build
+  # Homebrew CI builds uv_build's maturin dependency from source.
+  depends_on "rust" => :build
   depends_on "certifi"
   depends_on "libheif"
   depends_on "libraw"
