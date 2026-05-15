@@ -3,16 +3,9 @@ class Rclip < Formula
 
   desc "AI-Powered Command-Line Photo Search Tool"
   homepage "https://github.com/yurijmikhalevich/rclip"
-  url "https://files.pythonhosted.org/packages/3d/bc/0b465df9cd6d7e2e65552a4662b36794c0e34c52853c07f06ca617f0af44/rclip-3.0.7.tar.gz"
-  sha256 "a742411d2a4b458d48a877fc5ccdd92798eb30dbbd10267997dc4e01e0279ac2"
+  url "https://files.pythonhosted.org/packages/b7/30/44ac0c773ee301ffc205627a3796df2819f09abb31bad7f4c358ef67e849/rclip-3.0.8.tar.gz"
+  sha256 "2063ad4393553c725428dae9c8fd93b44a7a23216b289c86e64cd0ea300056f1"
   license "MIT"
-
-  bottle do
-    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-3.0.7"
-    sha256 cellar: :any,                 arm64_sequoia: "52b717d26a059d5577f6ea9c63f116283646fcf24020f121c8752974aeb964ea"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "a0fa89abf099ed5648cebc9bbbb10ed23219bb88167d689adf6156e13a3dd17f"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "fa05443a03e52635c95da659b568b25deb23222ef695872a87d68bfcb28a337b"
-  end
 
   if OS.linux?
     depends_on "patchelf" => :build # for rawpy
@@ -120,8 +113,8 @@ class Rclip < Formula
   end
 
   resource "urllib3" do
-    url "https://files.pythonhosted.org/packages/c7/24/5f1b3bdffd70275f6661c76461e25f024d5a38a46f04aaca912426a2b1d3/urllib3-2.6.3.tar.gz"
-    sha256 "1b62b6884944a57dbe321509ab94fd4d3b307075e0c2eae991ac71ee15ad38ed"
+    url "https://files.pythonhosted.org/packages/53/0c/06f8b233b8fd13b9e5ee11424ef85419ba0d8ba0b3138bf360be2ff56953/urllib3-2.7.0.tar.gz"
+    sha256 "231e0ec3b63ceb14667c67be60f2f2c40a518cb38b03af60abc813da26505f4c"
   end
 
   resource "anyio" do
