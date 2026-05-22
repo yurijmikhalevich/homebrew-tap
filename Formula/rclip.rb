@@ -3,16 +3,9 @@ class Rclip < Formula
 
   desc "AI-Powered Command-Line Photo Search Tool"
   homepage "https://github.com/yurijmikhalevich/rclip"
-  url "https://files.pythonhosted.org/packages/b7/30/44ac0c773ee301ffc205627a3796df2819f09abb31bad7f4c358ef67e849/rclip-3.0.8.tar.gz"
-  sha256 "2063ad4393553c725428dae9c8fd93b44a7a23216b289c86e64cd0ea300056f1"
+  url "https://files.pythonhosted.org/packages/33/05/b601a1614353ba911eb5be8fced9f7316a1ddcb3f1f23e894fa6abe76fb1/rclip-3.0.9.tar.gz"
+  sha256 "4e6d56c6adb1368fb97ac0f545d597edb3b2c2d286e279f2ebfecd119e7cbaff"
   license "MIT"
-
-  bottle do
-    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-3.0.8"
-    sha256 cellar: :any,                 arm64_sequoia: "2a333ee52d5e13d4c5defbef12523bd1f4b6fafd0caec67afb424670edb5e96e"
-    sha256 cellar: :any_skip_relocation, arm64_linux:   "17760bd2b123dbc824f4bf8c6068afac6164524d08c4eecba5dfa559d4e438f4"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5a3a1f416b87765f653c8a4436ca2b2c6904ddc9736e97ac6e28d643374c6e65"
-  end
 
   if OS.linux?
     depends_on "patchelf" => :build # for rawpy
@@ -115,8 +108,8 @@ class Rclip < Formula
   end
 
   resource "idna" do
-    url "https://files.pythonhosted.org/packages/ce/cc/762dfb036166873f0059f3b7de4565e1b5bc3d6f28a414c13da27e442f99/idna-3.13.tar.gz"
-    sha256 "585ea8fe5d69b9181ec1afba340451fba6ba764af97026f92a91d4eef164a242"
+    url "https://files.pythonhosted.org/packages/82/77/7b3966d0b9d1d31a36ddf1746926a11dface89a83409bf1483f0237aa758/idna-3.15.tar.gz"
+    sha256 "ca962446ea538f7092a95e057da437618e886f4d349216d2b1e294abfdb65fdc"
   end
 
   resource "urllib3" do
