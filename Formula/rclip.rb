@@ -15,7 +15,6 @@ class Rclip < Formula
   # Homebrew CI builds uv_build's maturin dependency from source.
   depends_on "rust" => :build
   depends_on "certifi"
-  depends_on "libheif"
   depends_on "libraw"
   depends_on "libyaml"
   depends_on "numpy"
@@ -30,11 +29,6 @@ class Rclip < Formula
   resource "huggingface-hub" do
     url "https://files.pythonhosted.org/packages/89/ff/ec7ed2eb43bd7ce8bb2233d109cc235c3e807ffe5e469dc09db261fac05e/huggingface_hub-1.13.0.tar.gz"
     sha256 "f6df2dac5abe82ce2fe05873d10d5ff47bc677d616a2f521f4ee26db9415d9d0"
-  end
-
-  resource "pillow-heif" do
-    url "https://files.pythonhosted.org/packages/cd/58/2df4fc42840633e01c97b75965cb1bc6e14425973b92382391650e97e4b7/pillow_heif-1.3.0.tar.gz"
-    sha256 "af8d2bda85e395677d5bb50d7bda3b5655c946cc95b913b5e7222fabacbb467f"
   end
 
   resource "regex" do
@@ -274,11 +268,36 @@ class Rclip < Formula
     end
   end
 
+  if OS.mac?
+    if Hardware::CPU.arm?
+      resource "pillow-heif" do
+        url "https://files.pythonhosted.org/packages/23/eb/b6b52e3655f366b95301f18aecd2d35487cace18d17134b80ad0f70cc1eb/pillow_heif-1.3.0-cp313-cp313-macosx_11_0_arm64.whl", using: :nounzip
+        sha256 "9390dd7987887aa09779fbd88bbab715c732c9ad3a71d6707284035e3ca93379"
+      end
+    else
+      raise "Unknown CPU architecture, only arm64 is supported on macOS"
+    end
+  elsif OS.linux?
+    if Hardware::CPU.arm?
+      resource "pillow-heif" do
+        url "https://files.pythonhosted.org/packages/c1/b3/b69610e9565fc8bcaf2303f412e857c0439d23cc18cf866c72a96ec6b2e6/pillow_heif-1.3.0-cp313-cp313-manylinux_2_26_aarch64.manylinux_2_28_aarch64.whl", using: :nounzip
+        sha256 "6e8444ccb330015e1db930207d269886e4b6c666121cd9e5fdad88735950b09f"
+      end
+    elsif Hardware::CPU.intel?
+      resource "pillow-heif" do
+        url "https://files.pythonhosted.org/packages/47/8c/be44f6dea425a9756ff418cb03f5ee75ed1c7dd1ff9bee1f3893b2b82da4/pillow_heif-1.3.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", using: :nounzip
+        sha256 "7d30054ccc97ecbe5ee3fa486a505ccc33bfbb27f005ad624ddb4c17b80ddd57"
+      end
+    else
+      raise "Unknown CPU architecture, only amd64 and arm64 are supported"
+    end
+  end
+
   def install
     # Fix for ZIP timestamp issue with files having dates before 1980
     ENV["SOURCE_DATE_EPOCH"] = "315532800" # 1980-01-01
 
-    excluded_resources = %w[rawpy hf-xet onnxruntime]
+    excluded_resources = %w[rawpy hf-xet onnxruntime pillow-heif]
     excluded_resources << "coremltools" if OS.mac?
     virtualenv_install_with_resources without: excluded_resources
 
@@ -320,6 +339,13 @@ class Rclip < Formula
     end
 
     resource("onnxruntime").stage do
+      wheel = Dir["*.whl"].first
+      valid_wheel = wheel.sub(/^.*--/, "")
+      File.rename(wheel, valid_wheel)
+      system "python3.13", "-m", "pip", "--python=#{libexec}/bin/python", "install", "--no-deps", valid_wheel
+    end
+
+    resource("pillow-heif").stage do
       wheel = Dir["*.whl"].first
       valid_wheel = wheel.sub(/^.*--/, "")
       File.rename(wheel, valid_wheel)
