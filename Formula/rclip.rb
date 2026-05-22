@@ -352,6 +352,19 @@ class Rclip < Formula
       system "python3.13", "-m", "pip", "--python=#{libexec}/bin/python", "install", "--no-deps", valid_wheel
     end
 
+    if OS.linux?
+      targets = Dir[libexec/"lib/python3.13/site-packages/pillow_heif.libs/*.so*"]
+      if targets.empty?
+        odie "Failed to find any files to patch with patchelf for pattern: " \
+             "#{libexec}/lib/python3.13/site-packages/pillow_heif.libs/*.so*"
+      end
+      targets.each do |so|
+        next if File.symlink?(so)
+
+        system "patchelf", "--set-rpath", "$ORIGIN", so
+      end
+    end
+
     if OS.mac?
       resource("coremltools").stage do
         wheel = Dir["*.whl"].first
