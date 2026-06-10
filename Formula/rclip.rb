@@ -1,18 +1,11 @@
 class Rclip < Formula
   include Language::Python::Virtualenv
 
-  desc "AI-Powered Command-Line Photo Search Tool"
+  desc "Semantic photo search for the command-line"
   homepage "https://github.com/yurijmikhalevich/rclip"
-  url "https://files.pythonhosted.org/packages/07/6f/cb4c4ba54270aae08d297efef241785e25e898789fe16cfc49c72587b8de/rclip-3.1.0.tar.gz"
-  sha256 "a5c23beffe65a61ac2b5fd25d47096763853c3a10efe74cbd6d26b0033333a3c"
+  url "https://files.pythonhosted.org/packages/4c/54/fdf9eb236591c99f94892469d1e4ba76ffc5c5de6e202fa6e07993ea7ce7/rclip-3.2.1.tar.gz"
+  sha256 "312b99090101974d3262c95f1ea310c088d3134eda265ec1742303e8d126f18b"
   license "MIT"
-
-  bottle do
-    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-3.1.0"
-    sha256 cellar: :any, arm64_sequoia: "9b75caab89bfc92d354f5c752eaa9f637ac1da13c3d751e10fc0e7e99f754029"
-    sha256 cellar: :any, arm64_linux:   "2cd3d336e74459d5d7479160d6568b5ef9878d15d67f2b928b51170d48261ff9"
-    sha256 cellar: :any, x86_64_linux:  "2bec5515017eb248153ffd516fa31a188270081de75ad3ec819e11f710c4b6cb"
-  end
 
   if OS.linux?
     depends_on "patchelf" => :build # for rawpy
