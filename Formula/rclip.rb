@@ -3,16 +3,9 @@ class Rclip < Formula
 
   desc "Semantic photo search for the command-line"
   homepage "https://github.com/yurijmikhalevich/rclip"
-  url "https://files.pythonhosted.org/packages/5a/fa/cd930e248c05133140cdf3c5f27f7f3f72b5a95dcdbfb01427630439d86a/rclip-3.2.5.tar.gz"
-  sha256 "f86151dcddc27b41565c6cee2412933d3c60cdba532886721f3cc52fa1e6bc19"
+  url "https://files.pythonhosted.org/packages/43/d5/1212e4c3fffc6a5fa6b22bcb2a7b8026e4f357f95c446765662abab2c56d/rclip-3.3.0.tar.gz"
+  sha256 "4dab9fffdd1145393c0f228c93738f0a7319f52a12fc75c1b4d400c48cfc9225"
   license "MIT"
-
-  bottle do
-    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-3.2.5"
-    sha256 cellar: :any, arm64_sequoia: "d73b6169ea5b20346ddb9b0bc8dbb6dbae5919653847657a32f0d290fc8ada08"
-    sha256 cellar: :any, arm64_linux:   "bc38af32bb1b8923cd2438e12d4fc6a7d3c3f4ef790f4346ee59bbb23dfdb357"
-    sha256 cellar: :any, x86_64_linux:  "9f52d8537415d18bd64a4b67910bb80a9eb2c8cc4bc555a0fcacf7ddf53fe117"
-  end
 
   if OS.linux?
     depends_on "patchelf" => :build # for rawpy
@@ -34,8 +27,8 @@ class Rclip < Formula
   end
 
   resource "huggingface-hub" do
-    url "https://files.pythonhosted.org/packages/e6/7e/fad82ad491b226e832d2da90a1a59f36acd4526cda8c726f639834754aa4/huggingface_hub-1.20.1.tar.gz"
-    sha256 "9f6d63bfbeab2d2a8357200a9bc4f18cd2c8bfac9579f792f5922e77bf6471d0"
+    url "https://files.pythonhosted.org/packages/82/db/3582597f8be0d34bd6881365a26d390854f12893eabdd62dd36de9df5a47/huggingface_hub-1.26.0.tar.gz"
+    sha256 "c8cd4e2df1ba9402f77fce9b509ec1d52debb502551789473f34016acc14e361"
   end
 
   resource "regex" do
@@ -49,28 +42,28 @@ class Rclip < Formula
   end
 
   resource "tqdm" do
-    url "https://files.pythonhosted.org/packages/87/d7/0535a28b1f5f24f6612fb3ff1e89fb1a8d160fee0f976e0aa6803862134b/tqdm-4.68.3.tar.gz"
-    sha256 "00dfa48452b6b6cfae3dd9885636c23d3422d1ec97c66d96818cbd5e0821d482"
+    url "https://files.pythonhosted.org/packages/21/3b/6c24bec5be5e743ffd99576daa5cc077722fc7d5bbc00bd133fa0c698dc6/tqdm-4.70.0.tar.gz"
+    sha256 "55b0b0dbd97462d06ebee91e4dac24ed4d4702be82b24f07e6c1d27e08cea220"
   end
 
   resource "wcwidth" do
-    url "https://files.pythonhosted.org/packages/49/b4/51fe890511f0f242d07cb1ebe6a5b6db417262b9d2568b460347c57d95cc/wcwidth-0.8.1.tar.gz"
-    sha256 "faf5b4a5366a72dc49cad48cdf21f52bdf63bdda995178e483ba247ff79089b9"
+    url "https://files.pythonhosted.org/packages/34/74/c6428f875774288bec1396f5bfcbc2d925700a4dad61727fd5f2b12f249d/wcwidth-0.8.2.tar.gz"
+    sha256 "91fbef97204b96a3d4d421609b80340b760cf33e26da123ff243d76b1fda8dda"
   end
 
   resource "click" do
-    url "https://files.pythonhosted.org/packages/9b/98/518d8e5081007684232226f475082b30087d0f585e8457db087298259f49/click-8.4.1.tar.gz"
-    sha256 "918b5633eddf6b41c32d4f454bf0de810065c74e3f7dbf8ee5452f8be88d3e96"
+    url "https://files.pythonhosted.org/packages/76/d4/81420972a676e8ffea40450d8c8c92943e7218a78fe9b64359836cc9876b/click-8.4.2.tar.gz"
+    sha256 "9a6cea6e60b17ebe0a44c5cc636d94f09bd66142c1cd7d8b4cd731c4917a15f6"
   end
 
   resource "filelock" do
-    url "https://files.pythonhosted.org/packages/e6/dc/be6cbe99670cd6e4ad387123647cb08e0c32975e223f82551e914c5568a6/filelock-3.29.4.tar.gz"
-    sha256 "10cdb3656fc44541cdf30652a93fb10ec6b05325620eb316bd26893e4201538a"
+    url "https://files.pythonhosted.org/packages/f6/57/3ba6e6cb097f85b855b00163d169f35365f44277df044dcf96d55b8f62a3/filelock-3.32.2.tar.gz"
+    sha256 "c33351e1f49cae33414acbc6d56784e6ecee82514ec90795da1161fc4836b5b8"
   end
 
   resource "fsspec" do
-    url "https://files.pythonhosted.org/packages/10/a1/ae4e3e5003468d6391d2c77b6fa1cd73bd5d13511d81c642d7b28ac90ed4/fsspec-2026.6.0.tar.gz"
-    sha256 "f5bac145310fe30e16e1471bd6840b2d990d609e872251d7e674241822abf01a"
+    url "https://files.pythonhosted.org/packages/00/78/f34251dadb8f3921264a1d9b8946f5e542014ee2614b285261b4e40e6775/fsspec-2026.7.0.tar.gz"
+    sha256 "c803c40f4cf860b49dea58ee3e1c33cb9c790520e233537e1340049f89b82a88"
   end
 
   resource "httpx" do
@@ -88,14 +81,9 @@ class Rclip < Formula
     sha256 "d76623373421df22fb4cf8817020cbb7ef15c725b9d5e45f17e189bfc384190f"
   end
 
-  resource "typer" do
-    url "https://files.pythonhosted.org/packages/e4/51/9aed62104cea109b820bbd6c14245af756112017d309da813ef107d42e7e/typer-0.25.1.tar.gz"
-    sha256 "9616eb8853a09ffeabab1698952f33c6f29ffdbceb4eaeecf571880e8d7664cc"
-  end
-
   resource "typing-extensions" do
-    url "https://files.pythonhosted.org/packages/72/94/1a15dd82efb362ac84269196e94cf00f187f7ed21c242792a923cdb1c61f/typing_extensions-4.15.0.tar.gz"
-    sha256 "0cea48d173cc12fa28ecabc3b837ea3cf6f38c6d1136f85cbaaf598984861466"
+    url "https://files.pythonhosted.org/packages/f6/cc/6253133b5bb138fc3306cebfbda2c520f545d36b5be2c7255cc528bb45d6/typing_extensions-4.16.0.tar.gz"
+    sha256 "dc983d19a509c94dba722ee6abd33940f7c05a89e243c47e907eb4db6f1a43e5"
   end
 
   resource "flatbuffers" do
@@ -109,8 +97,8 @@ class Rclip < Formula
   end
 
   resource "charset-normalizer" do
-    url "https://files.pythonhosted.org/packages/e7/a1/67fe25fac3c7642725500a3f6cfe5821ad557c3abb11c9d20d12c7008d3e/charset_normalizer-3.4.7.tar.gz"
-    sha256 "ae89db9e5f98a11a4bf50407d4363e7b09b31e55bc117b4f7d80aab97ba009e5"
+    url "https://files.pythonhosted.org/packages/bd/2a/23f34ec9d04624958e137efdc394888716353190e75f25dd22c7a2c7a8aa/charset_normalizer-3.4.9.tar.gz"
+    sha256 "673611bbd43f0810bec0b0f028ddeaaa501190339cac411f347ac76917c3ae7b"
   end
 
   resource "idna" do
@@ -124,8 +112,8 @@ class Rclip < Formula
   end
 
   resource "anyio" do
-    url "https://files.pythonhosted.org/packages/1c/b5/001890774a9552aff22502b8da382593109ce0c95314abaebbb116567545/anyio-4.14.0.tar.gz"
-    sha256 "b47c1f9ccf73e67021df785332508f99379c68fa7d0684e8e3492cb1d4b23f89"
+    url "https://files.pythonhosted.org/packages/61/cc/a381afa6efea9f496eff839d4a6a1aed3bfafc7b3ab4b0d1b243a12573dd/anyio-4.14.2.tar.gz"
+    sha256 "cfa139f3ed1a23ee8f88a145ddb5ac7605b8bbfd8592baacd7ce3d8bb4313c7f"
   end
 
   resource "httpcore" do
@@ -133,39 +121,9 @@ class Rclip < Formula
     sha256 "6e34463af53fd2ab5d807f399a9b45ea31c3dfa2276f15a2c3f00afff6e176e8"
   end
 
-  resource "shellingham" do
-    url "https://files.pythonhosted.org/packages/58/15/8b3609fd3830ef7b27b655beb4b4e9c62313a4e8da8c676e142cc210d58e/shellingham-1.5.4.tar.gz"
-    sha256 "8dbca0739d487e5bd35ab3ca4b36e11c4078f3a234bfce294b0a0291363404de"
-  end
-
-  resource "rich" do
-    url "https://files.pythonhosted.org/packages/c0/8f/0722ca900cc807c13a6a0c696dacf35430f72e0ec571c4275d2371fca3e9/rich-15.0.0.tar.gz"
-    sha256 "edd07a4824c6b40189fb7ac9bc4c52536e9780fbbfbddf6f1e2502c31b068c36"
-  end
-
-  resource "annotated-doc" do
-    url "https://files.pythonhosted.org/packages/57/ba/046ceea27344560984e26a590f90bc7f4a75b06701f653222458922b558c/annotated_doc-0.0.4.tar.gz"
-    sha256 "fbcda96e87e9c92ad167c2e53839e57503ecfda18804ea28102353485033faa4"
-  end
-
   resource "h11" do
     url "https://files.pythonhosted.org/packages/01/ee/02a2c011bdab74c6fb3c75474d40b3052059d95df7e73351460c8588d963/h11-0.16.0.tar.gz"
     sha256 "4e35b956cf45792e4caa5885e69fba00bdbc6ffafbfa020300e549b208ee5ff1"
-  end
-
-  resource "markdown-it-py" do
-    url "https://files.pythonhosted.org/packages/06/ff/7841249c247aa650a76b9ee4bbaeae59370dc8bfd2f6c01f3630c35eb134/markdown_it_py-4.2.0.tar.gz"
-    sha256 "04a21681d6fbb623de53f6f364d352309d4094dd4194040a10fd51833e418d49"
-  end
-
-  resource "pygments" do
-    url "https://files.pythonhosted.org/packages/c3/b2/bc9c9196916376152d655522fdcebac55e66de6603a76a02bca1b6414f6c/pygments-2.20.0.tar.gz"
-    sha256 "6757cd03768053ff99f3039c1a36d6c0aa0b263438fcab17520b30a303a82b5f"
-  end
-
-  resource "mdurl" do
-    url "https://files.pythonhosted.org/packages/d6/54/cfe61301667036ec958cb99bd3efefba235e65cdeb9c84d24a8293ba1d90/mdurl-0.1.2.tar.gz"
-    sha256 "bb413d29f5eea38f31dd4754dd7377d4465116fb207585f97bf925588687c1ba"
   end
 
   if OS.mac?
@@ -190,8 +148,8 @@ class Rclip < Formula
     end
 
     resource "pyaml" do
-      url "https://files.pythonhosted.org/packages/38/fb/2b9590512a9d7763620d87171c7531d5295678ce96e57393614b91da8998/pyaml-26.2.1.tar.gz"
-      sha256 "489dd82997235d4cfcf76a6287fce2f075487d77a6567c271e8d790583690c68"
+      url "https://files.pythonhosted.org/packages/15/6a/acfdf17de0d6947b419da8696e02b781b18de2cf49e0472298b50e1f0711/pyaml-26.7.0.tar.gz"
+      sha256 "11cda3a796efc6dbce0d56836be56cfd26289dad07bcd78e9904086729929c93"
     end
 
     resource "sympy" do
@@ -228,8 +186,8 @@ class Rclip < Formula
   if OS.mac?
     if Hardware::CPU.arm?
       resource "hf-xet" do
-        url "https://files.pythonhosted.org/packages/35/94/4b2ecfbad8f8b04701a23aefb62f540b9137d058b7e1dbef16a32676f0e9/hf_xet-1.5.1-cp37-abi3-macosx_11_0_arm64.whl", using: :nounzip
-        sha256 "94e761bbd266bf4c03cee73753916062665ce8365aa40ed321f45afcb934b41e"
+        url "https://files.pythonhosted.org/packages/60/ac/b097a86a1e4a6098f3a79382643ab09d5733d87ccc864877ad1e12b49b70/hf_xet-1.5.2-cp38-abi3-macosx_11_0_arm64.whl", using: :nounzip
+        sha256 "045f84440c55cdeb659cf1a1dd48c77bcd0d2e93632e2fea8f2c3bdee79f38ed"
       end
     else
       raise "Unknown CPU architecture, only arm64 is supported on macOS"
@@ -237,13 +195,13 @@ class Rclip < Formula
   elsif OS.linux?
     if Hardware::CPU.arm?
       resource "hf-xet" do
-        url "https://files.pythonhosted.org/packages/cd/6e/21f7e5a2381278bd3b7b7a5a4d90038518bb6308a0c1daf5d9f8268bb178/hf_xet-1.5.1-cp37-abi3-manylinux_2_28_aarch64.whl", using: :nounzip
-        sha256 "a93df2039190502835b1db8cd7e178b0b7b889fe9ab51299d5ced26e0dd879a4"
+        url "https://files.pythonhosted.org/packages/af/6b/832dd980af4b0c3ae0660e309285f2ffcdff2faa38129390dbb47aa4a3f9/hf_xet-1.5.2-cp38-abi3-manylinux_2_28_aarch64.whl", using: :nounzip
+        sha256 "7db73c810500c54c6760be8c39d4b2e476974de85424c50063efc22fdda13025"
       end
     elsif Hardware::CPU.intel?
       resource "hf-xet" do
-        url "https://files.pythonhosted.org/packages/de/cc/f99f4bc7295023d7bd9ebbfd51f75cc530ca262c1227666268b8208f4b77/hf_xet-1.5.1-cp37-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", using: :nounzip
-        sha256 "892e3a3a3aecc12aded8b93cf4f9cd059282c7de0732f7d55026f3abdf474350"
+        url "https://files.pythonhosted.org/packages/d3/35/db860aa3a0780660324a506ad4b3d322ddc6ecbba4b9340aed0942cbf21c/hf_xet-1.5.2-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", using: :nounzip
+        sha256 "db78c39c83d6279daddc98e2238f373ab8980685556d42472b4ec51abcf03e8c"
       end
     else
       raise "Unknown CPU architecture, only amd64 and arm64 are supported"
@@ -253,8 +211,8 @@ class Rclip < Formula
   if OS.mac?
     if Hardware::CPU.arm?
       resource "onnxruntime" do
-        url "https://files.pythonhosted.org/packages/fb/2b/54208fd03ad410480bc17edf4869376362da8bbf46fe186ddf4cb5cc20fe/onnxruntime-1.27.0-cp313-cp313-macosx_14_0_arm64.whl", using: :nounzip
-        sha256 "b3e5b58b8c89c2b20e086e890aa9527377e5c240dc3ecc1640d18e07705eeb1c"
+        url "https://files.pythonhosted.org/packages/9c/12/3807e2b17d9eb71d3cb78ed2ba76869b05c637c9b9d6112e636098b0c97a/onnxruntime-1.28.0-cp313-cp313-macosx_14_0_arm64.whl", using: :nounzip
+        sha256 "31410f544674f534c2f27348af52ef81682ca9c8719154bf4d48f0ef23823b1e"
       end
     else
       raise "Unknown CPU architecture, only arm64 is supported on macOS"
@@ -262,13 +220,13 @@ class Rclip < Formula
   elsif OS.linux?
     if Hardware::CPU.arm?
       resource "onnxruntime" do
-        url "https://files.pythonhosted.org/packages/ce/88/24fc51fcbb126da6d032372314e47b55c3faad58f2aa78c0e199ccd20b9c/onnxruntime-1.27.0-cp313-cp313-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", using: :nounzip
-        sha256 "48b3d87eb560ff6a772240506f3c78d6d27c63cafedd5c775672e1194f968cfd"
+        url "https://files.pythonhosted.org/packages/c0/23/b46045c3bf67a9cf54c12f5df0f018a422c65fbb9d6072b10071bebfaae2/onnxruntime-1.28.0-cp313-cp313-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", using: :nounzip
+        sha256 "f649dd6f6452d12a8059888aa489fe519e062e18793dac72b9efa0f9fdb64135"
       end
     elsif Hardware::CPU.intel?
       resource "onnxruntime" do
-        url "https://files.pythonhosted.org/packages/cb/19/14929c3c2fe0b79b41cce24463062bf3afa4cdd3c19dccf00319caa92bff/onnxruntime-1.27.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", using: :nounzip
-        sha256 "6872443f236a554921cda6f318c900e2d0c226792cf3534d00e5057c6926e5d2"
+        url "https://files.pythonhosted.org/packages/78/b6/8c5396e7894e77c5a7d1e026f3acb9dd39c4b5644e412e37a0055eaa3bc5/onnxruntime-1.28.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", using: :nounzip
+        sha256 "54fa221d669282bd8f582708ce4c96010a7e9fb0661f9006b37fe2fedafb73fe"
       end
     else
       raise "Unknown CPU architecture, only amd64 and arm64 are supported"
