@@ -7,13 +7,6 @@ class Rclip < Formula
   sha256 "05e6583b1d72e8eb76017568f3d4ca82bfb4ad39b85a58d551fb55c6b57bf3e5"
   license "MIT"
 
-  bottle do
-    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-4.0.1"
-    sha256 cellar: :any, arm64_sequoia: "737123e215df46fa3c1af15c197c2320701f12a7cace2621b0fb98656fe531b1"
-    sha256 cellar: :any, arm64_linux:   "05be496997dae6d046e9fbf6b18abbc7380f8c3f025cab2ee438e592d8da8613"
-    sha256 cellar: :any, x86_64_linux:  "2c2122a4e98bfd4069f9cd00d93650bea3f5b1aa9169cd1df266a06e448f8158"
-  end
-
   if OS.linux?
     depends_on "patchelf" => :build # for rawpy
     depends_on "zlib-ng-compat" # rawpy bundled libs link against libz
@@ -21,11 +14,8 @@ class Rclip < Formula
   depends_on "pkgconf" => :build
   # Homebrew CI builds uv_build's maturin dependency from source.
   depends_on "rust" => :build
-  depends_on "certifi"
   depends_on "libraw"
   depends_on "libyaml"
-  depends_on "numpy"
-  depends_on "pillow"
   depends_on "python@3.13"
 
   resource "ftfy" do
@@ -54,8 +44,8 @@ class Rclip < Formula
   end
 
   resource "textual-image" do
-    url "https://files.pythonhosted.org/packages/c2/e7/c82ea0604874b6d51d5717a0911061ae5810e36dad2e4d2b11fa7d54cdaa/textual_image-0.12.0.tar.gz"
-    sha256 "fdd0b5ff9c8a99740bc360a99ce014d563fa97d07a5b49b472470809f57c0a74"
+    url "https://files.pythonhosted.org/packages/09/19/fb4bca0ed5ff657f15b4d31cd3f415c62bc7c69cbd1ccb87457e025348bc/textual_image-0.14.1.tar.gz"
+    sha256 "502542955452ca6d67e4e0701021eed6bebbe2e1ccee8dfcb42e5083c9573eda"
   end
 
   resource "tqdm" do
@@ -126,6 +116,11 @@ class Rclip < Formula
   resource "urllib3" do
     url "https://files.pythonhosted.org/packages/e3/05/b17359e1cefb4f909b5e40b1b90a496d987258916dbbf88e842c729f510e/urllib3-2.8.0.tar.gz"
     sha256 "63bf2ead4c879426ebf22ef2a781eeb4aa3b4ae798a0435506f8687fd5bb9b63"
+  end
+
+  resource "certifi" do
+    url "https://files.pythonhosted.org/packages/a3/c2/24167ea9858356b47a87a50d39908bfdb72ceeefe0041586e704e5376b3a/certifi-2026.7.22.tar.gz"
+    sha256 "741e2c3b351ddf169a738da9f2c048608ff7f2c5cc02f1ebc6b118bb090d5d55"
   end
 
   resource "markdown-it-py" do
@@ -212,6 +207,56 @@ class Rclip < Formula
 
   if OS.mac?
     if Hardware::CPU.arm?
+      resource "numpy" do
+        url "https://files.pythonhosted.org/packages/ab/2a/98282aa5b8f58b1157d440bb6282eed47e3632a5de53a714fbab17e659fe/numpy-2.5.3-cp313-cp313-macosx_14_0_arm64.whl", using: :nounzip
+        sha256 "f9a2353b37a1a9e78fd82b27ad7e2a32a2d036604d18f02b05e3136c62ca3b09"
+      end
+    else
+      raise "Unknown CPU architecture, only arm64 is supported on macOS"
+    end
+  elsif OS.linux?
+    if Hardware::CPU.arm?
+      resource "numpy" do
+        url "https://files.pythonhosted.org/packages/73/85/735720d04ec197c5dcfacdfc9922667c7f1f5f496a279b7ba4d7c74c4cc7/numpy-2.5.3-cp313-cp313-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", using: :nounzip
+        sha256 "c76d5dde9f445058f83d0c02af00557a4db91de9a9a57c0df87d1535001d654b"
+      end
+    elsif Hardware::CPU.intel?
+      resource "numpy" do
+        url "https://files.pythonhosted.org/packages/3a/1b/3b16a9bc514a440a7a0883684111dcb1ef1aee960af2ca95da8fc775f124/numpy-2.5.3-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", using: :nounzip
+        sha256 "a5fa86b80fd24bcd1aff83ad23be44ea323de3f787be8f8b15d4a65621e25321"
+      end
+    else
+      raise "Unknown CPU architecture, only amd64 and arm64 are supported"
+    end
+  end
+
+  if OS.mac?
+    if Hardware::CPU.arm?
+      resource "pillow" do
+        url "https://files.pythonhosted.org/packages/10/76/8803c13605b763d33d156c4678fc77f8443389c0c51c8aef707bb02015f4/pillow-12.3.0-cp313-cp313-macosx_11_0_arm64.whl", using: :nounzip
+        sha256 "d69141514cc30b774ceea5e3ed3a6635c8d8a96edf664689b890f4089111fb35"
+      end
+    else
+      raise "Unknown CPU architecture, only arm64 is supported on macOS"
+    end
+  elsif OS.linux?
+    if Hardware::CPU.arm?
+      resource "pillow" do
+        url "https://files.pythonhosted.org/packages/1f/01/e18aff37cb0b4aac47ac90f016d347a49aca667ef97f190b06ac2aabc928/pillow-12.3.0-cp313-cp313-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", using: :nounzip
+        sha256 "f7401aebd7f581d7f83a439d87d474999317ee099218e5ad25d125290990ba65"
+      end
+    elsif Hardware::CPU.intel?
+      resource "pillow" do
+        url "https://files.pythonhosted.org/packages/f7/62/de5bdd77d935331f4f802edc11e4d82950f642caad6cb2f949837b8560e2/pillow-12.3.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", using: :nounzip
+        sha256 "0847a763afefb695bc912d7c131e7e0632d4edc1d8698f58ddabec8e46b8b6d3"
+      end
+    else
+      raise "Unknown CPU architecture, only amd64 and arm64 are supported"
+    end
+  end
+
+  if OS.mac?
+    if Hardware::CPU.arm?
       resource "rawpy" do
         url "https://files.pythonhosted.org/packages/8a/fd/5df77631386343102a0845e4e3d8e19bbbc65eff269975501a4d0c495339/rawpy-0.26.1-cp313-cp313-macosx_11_0_arm64.whl", using: :nounzip
         sha256 "6b9ce24a5446098b0cb93dea3cba102959bde20df39a10c3bcedf1226295e54b"
@@ -289,9 +334,23 @@ class Rclip < Formula
     # Fix for ZIP timestamp issue with files having dates before 1980
     ENV["SOURCE_DATE_EPOCH"] = "315532800" # 1980-01-01
 
-    excluded_resources = %w[rawpy hf-xet onnxruntime]
+    excluded_resources = %w[numpy pillow rawpy hf-xet onnxruntime]
     excluded_resources << "coremltools" if OS.mac?
     virtualenv_install_with_resources without: excluded_resources
+
+    resource("numpy").stage do
+      wheel = Dir["*.whl"].first
+      valid_wheel = wheel.sub(/^.*--/, "")
+      File.rename(wheel, valid_wheel)
+      system "python3.13", "-m", "pip", "--python=#{libexec}/bin/python", "install", "--no-deps", valid_wheel
+    end
+
+    resource("pillow").stage do
+      wheel = Dir["*.whl"].first
+      valid_wheel = wheel.sub(/^.*--/, "")
+      File.rename(wheel, valid_wheel)
+      system "python3.13", "-m", "pip", "--python=#{libexec}/bin/python", "install", "--no-deps", valid_wheel
+    end
 
     resource("rawpy").stage do
       wheel = Dir["*.whl"].first
