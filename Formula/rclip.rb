@@ -8,8 +8,8 @@ class Rclip < Formula
   license "MIT"
 
   if OS.linux?
-    depends_on "patchelf" => :build # for rawpy
-    depends_on "zlib-ng-compat" # rawpy bundled libs link against libz
+    depends_on "patchelf" => :build
+    depends_on "zlib-ng-compat" # bundled Linux wheels link against libz
   end
   depends_on "pkgconf" => :build
   # Homebrew CI builds uv_build's maturin dependency from source.
@@ -345,11 +345,47 @@ class Rclip < Formula
       system "python3.13", "-m", "pip", "--python=#{libexec}/bin/python", "install", "--no-deps", valid_wheel
     end
 
+    if OS.linux?
+      targets = Dir[libexec/"lib/python3.13/site-packages/numpy.libs/*.so*"]
+      if targets.empty?
+        odie "Failed to find any files to patch with patchelf for pattern: " \
+             "#{libexec}/lib/python3.13/site-packages/numpy.libs/*.so*"
+      end
+      targets.each do |so|
+        next if File.symlink?(so)
+
+        system "patchelf", "--set-rpath", "$ORIGIN:#{formula_opt_lib('zlib-ng-compat')}", so
+      end
+    end
+
     resource("pillow").stage do
       wheel = Dir["*.whl"].first
       valid_wheel = wheel.sub(/^.*--/, "")
       File.rename(wheel, valid_wheel)
       system "python3.13", "-m", "pip", "--python=#{libexec}/bin/python", "install", "--no-deps", valid_wheel
+    end
+
+    if OS.linux?
+      targets = Dir[libexec/"lib/python3.13/site-packages/PIL/*.so"]
+      if targets.empty?
+        odie "Failed to find any files to patch with patchelf for pattern: " \
+             "#{libexec}/lib/python3.13/site-packages/PIL/*.so"
+      end
+      targets.each do |so|
+        next if File.symlink?(so)
+
+        system "patchelf", "--set-rpath", "$ORIGIN/../pillow.libs:#{formula_opt_lib('zlib-ng-compat')}", so
+      end
+      targets = Dir[libexec/"lib/python3.13/site-packages/pillow.libs/*.so*"]
+      if targets.empty?
+        odie "Failed to find any files to patch with patchelf for pattern: " \
+             "#{libexec}/lib/python3.13/site-packages/pillow.libs/*.so*"
+      end
+      targets.each do |so|
+        next if File.symlink?(so)
+
+        system "patchelf", "--set-rpath", "$ORIGIN:#{formula_opt_lib('zlib-ng-compat')}", so
+      end
     end
 
     resource("rawpy").stage do
@@ -368,7 +404,7 @@ class Rclip < Formula
       targets.each do |so|
         next if File.symlink?(so)
 
-        system "patchelf", "--set-rpath", "$ORIGIN/../rawpy.libs", so
+        system "patchelf", "--set-rpath", "$ORIGIN/../rawpy.libs:#{formula_opt_lib('zlib-ng-compat')}", so
       end
       targets = Dir[libexec/"lib/python3.13/site-packages/rawpy.libs/*.so*"]
       if targets.empty?
@@ -378,7 +414,7 @@ class Rclip < Formula
       targets.each do |so|
         next if File.symlink?(so)
 
-        system "patchelf", "--set-rpath", "$ORIGIN", so
+        system "patchelf", "--set-rpath", "$ORIGIN:#{formula_opt_lib('zlib-ng-compat')}", so
       end
     end
 
