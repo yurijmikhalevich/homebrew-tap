@@ -44,8 +44,8 @@ class Rclip < Formula
   end
 
   resource "textual-image" do
-    url "https://files.pythonhosted.org/packages/09/19/fb4bca0ed5ff657f15b4d31cd3f415c62bc7c69cbd1ccb87457e025348bc/textual_image-0.14.1.tar.gz"
-    sha256 "502542955452ca6d67e4e0701021eed6bebbe2e1ccee8dfcb42e5083c9573eda"
+    url "https://files.pythonhosted.org/packages/c2/e7/c82ea0604874b6d51d5717a0911061ae5810e36dad2e4d2b11fa7d54cdaa/textual_image-0.12.0.tar.gz"
+    sha256 "fdd0b5ff9c8a99740bc360a99ce014d563fa97d07a5b49b472470809f57c0a74"
   end
 
   resource "tqdm" do
