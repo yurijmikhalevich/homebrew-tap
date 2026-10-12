@@ -354,7 +354,7 @@ class Rclip < Formula
       targets.each do |so|
         next if File.symlink?(so)
 
-        system "patchelf", "--set-rpath", "$ORIGIN:#{formula_opt_lib('zlib-ng-compat')}", so
+        system "patchelf", "--set-rpath", "$ORIGIN:#{formula_opt_lib("zlib-ng-compat")}", so
       end
     end
 
@@ -374,7 +374,7 @@ class Rclip < Formula
       targets.each do |so|
         next if File.symlink?(so)
 
-        system "patchelf", "--set-rpath", "$ORIGIN/../pillow.libs:#{formula_opt_lib('zlib-ng-compat')}", so
+        system "patchelf", "--set-rpath", "$ORIGIN/../pillow.libs:#{formula_opt_lib("zlib-ng-compat")}", so
       end
       targets = Dir[libexec/"lib/python3.13/site-packages/pillow.libs/*.so*"]
       if targets.empty?
@@ -384,7 +384,7 @@ class Rclip < Formula
       targets.each do |so|
         next if File.symlink?(so)
 
-        system "patchelf", "--set-rpath", "$ORIGIN:#{formula_opt_lib('zlib-ng-compat')}", so
+        system "patchelf", "--set-rpath", "$ORIGIN:#{formula_opt_lib("zlib-ng-compat")}", so
       end
     end
 
@@ -404,7 +404,7 @@ class Rclip < Formula
       targets.each do |so|
         next if File.symlink?(so)
 
-        system "patchelf", "--set-rpath", "$ORIGIN/../rawpy.libs:#{formula_opt_lib('zlib-ng-compat')}", so
+        system "patchelf", "--set-rpath", "$ORIGIN/../rawpy.libs:#{formula_opt_lib("zlib-ng-compat")}", so
       end
       targets = Dir[libexec/"lib/python3.13/site-packages/rawpy.libs/*.so*"]
       if targets.empty?
@@ -414,7 +414,7 @@ class Rclip < Formula
       targets.each do |so|
         next if File.symlink?(so)
 
-        system "patchelf", "--set-rpath", "$ORIGIN:#{formula_opt_lib('zlib-ng-compat')}", so
+        system "patchelf", "--set-rpath", "$ORIGIN:#{formula_opt_lib("zlib-ng-compat")}", so
       end
     end
 
