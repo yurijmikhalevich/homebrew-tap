@@ -3,16 +3,9 @@ class Rclip < Formula
 
   desc "Semantic photo search for the command-line"
   homepage "https://github.com/yurijmikhalevich/rclip"
-  url "https://files.pythonhosted.org/packages/f9/60/e1cccaea6ce1e9106d00dfd8c337c57c1123d70d52096e753952135fe719/rclip-4.0.4.tar.gz"
-  sha256 "dc06b494551c6762b4456c1b137cc52fc412377268df27725198bce8e609b6d2"
+  url "https://files.pythonhosted.org/packages/56/fb/17d97beb43e84524a257a4b93ab2c4743c794aebff23917764b6539b86f0/rclip-4.0.6.tar.gz"
+  sha256 "a6900d0ec56be1d01008867cd92aa92fefc7c08167e9dca770f045ac5e885704"
   license "MIT"
-
-  bottle do
-    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-4.0.4"
-    sha256 cellar: :any, arm64_sequoia: "127b202a88aa8d737d08789e0fabf436667a9f83f1f05a75d8897b4a29224127"
-    sha256 cellar: :any, arm64_linux:   "5980a846190ca04cc35b02bcc374119ffa6439178ba440f8dc7d2fbc086418a9"
-    sha256 cellar: :any, x86_64_linux:  "49290efe43e53c7be1f5254d49b925857b81a0f5771131d3d83354a61efd9537"
-  end
 
   if OS.linux?
     depends_on "patchelf" => :build
@@ -31,8 +24,8 @@ class Rclip < Formula
   end
 
   resource "huggingface-hub" do
-    url "https://files.pythonhosted.org/packages/fe/0f/e83fdd856da8fca26bf78d71709ebd120432a0ce535e72b9597cab1eb5bf/huggingface_hub-1.32.0.tar.gz"
-    sha256 "ed70a45498abe86039df7c2f4e5f7575de524be908d3840e8f828d5525eafd6a"
+    url "https://files.pythonhosted.org/packages/25/2a/484d112c0d8fc5f665d7b65137ac9cdb2953c982391598c3597968a12ee7/huggingface_hub-1.33.0.tar.gz"
+    sha256 "367be21a201db9523eddf8aeac7048f2602c1b308691c97640d5e72ed188007e"
   end
 
   resource "regex" do
@@ -61,8 +54,8 @@ class Rclip < Formula
   end
 
   resource "wcwidth" do
-    url "https://files.pythonhosted.org/packages/3d/7a/f98d4ada7c499565ab0c0fcef28a4e54fafa72b8228a6309803c80493c92/wcwidth-0.8.4.tar.gz"
-    sha256 "2dae09efa25253ae2874188e86d6861af3b1652aef4118cdf3f0bda288a957fb"
+    url "https://files.pythonhosted.org/packages/69/4a/82d61476a1ccc20d43d0805724c5de4baa4971131a8db1816705ef53fe16/wcwidth-0.9.3.tar.gz"
+    sha256 "dfe7cfbd4cb59db9fe0931bd6091ab4a95b3acc5d56bfb50fa9fef0ccba5dc5c"
   end
 
   resource "click" do
@@ -71,8 +64,8 @@ class Rclip < Formula
   end
 
   resource "filelock" do
-    url "https://files.pythonhosted.org/packages/5e/ac/8c98b17ee3900147b38ef7884a1e590b070b63f0d59fd8b46ef0205f4576/filelock-4.0.0.tar.gz"
-    sha256 "3611eca5d818ca9b00ec3cc7db1dcfe1e2aafc8d44fb4920d8cf60ad1f6bfda6"
+    url "https://files.pythonhosted.org/packages/d8/28/3893324bcadf8f89b1616637468d766af3f625008c0735bf704fdfa86617/filelock-4.2.4.tar.gz"
+    sha256 "c6d8663535e1650ee430507b4ffbac7b464dd64b7647ea0112a9f406499d163d"
   end
 
   resource "fsspec" do
@@ -111,8 +104,8 @@ class Rclip < Formula
   end
 
   resource "charset-normalizer" do
-    url "https://files.pythonhosted.org/packages/e5/3f/143b048436775b0f76ac3eec145c019e8173ccc2885c8f20319b996d5e83/charset_normalizer-3.5.1.tar.gz"
-    sha256 "6117b84ea48435e5356dc737f5121485c30920ba43375fa7b434fd753df0eac3"
+    url "https://files.pythonhosted.org/packages/33/1c/f41d4e74c28ab327ff3acd36053f7ea506c55872d7a90b0fa71aa3ab0c89/charset_normalizer-3.5.2.tar.gz"
+    sha256 "39de2a259fc954455c57274dc94c79d5842774e1247a016aff30bc0efed0f4ef"
   end
 
   resource "idna" do
@@ -126,8 +119,8 @@ class Rclip < Formula
   end
 
   resource "certifi" do
-    url "https://files.pythonhosted.org/packages/a3/c2/24167ea9858356b47a87a50d39908bfdb72ceeefe0041586e704e5376b3a/certifi-2026.7.22.tar.gz"
-    sha256 "741e2c3b351ddf169a738da9f2c048608ff7f2c5cc02f1ebc6b118bb090d5d55"
+    url "https://files.pythonhosted.org/packages/a6/bd/1436c50cc46699de0230fbaacc1d1de7bfec413176099949e9d5112e88f2/certifi-2026.10.19.tar.gz"
+    sha256 "035c1e85572b141bf1c3a3eff0e33a8eb74917522f2559075ff8d2fea780a1ae"
   end
 
   resource "markdown-it-py" do
@@ -141,8 +134,8 @@ class Rclip < Formula
   end
 
   resource "platformdirs" do
-    url "https://files.pythonhosted.org/packages/89/24/92d90bebedf197eb15b144367ce6fd4ad2de571927cd09dde190a36db8fc/platformdirs-4.11.10.tar.gz"
-    sha256 "9cd351c078ccf7dda1fdc5f8ccb9d8f5258984c63990e6df3627dde0b70b51d0"
+    url "https://files.pythonhosted.org/packages/58/e6/d0abbb256b44e6a05748c6942511ff67db8dbb068de0c35b24bf1b395b09/platformdirs-4.13.5.tar.gz"
+    sha256 "05831adf87d392760f4b5c3a0a95579ab5a10b18b9b9bd43680dcb47544788a0"
   end
 
   resource "pygments" do
@@ -187,8 +180,8 @@ class Rclip < Formula
     end
 
     resource "cattrs" do
-      url "https://files.pythonhosted.org/packages/d6/b2/42f4524e5479b090040b5fd8bb316dd8c65a079bb6492494ce2079dc91be/cattrs-26.2.0.tar.gz"
-      sha256 "3cf49f69df8326bcf17a3cb3d3d3ec4a856858fe3a7473746c9044c317d3ba55"
+      url "https://files.pythonhosted.org/packages/23/75/e72b839c3dc869c990b4842f3dba730bdcdf5215f68fc7955edf849a1792/cattrs-26.2.1.tar.gz"
+      sha256 "679132bfdc225c5ee40c024fc42519954767c387f950dc6751946c586bccdc6d"
     end
 
     resource "coremltools" do
@@ -215,8 +208,8 @@ class Rclip < Formula
   if OS.mac?
     if Hardware::CPU.arm?
       resource "numpy" do
-        url "https://files.pythonhosted.org/packages/ab/2a/98282aa5b8f58b1157d440bb6282eed47e3632a5de53a714fbab17e659fe/numpy-2.5.3-cp313-cp313-macosx_14_0_arm64.whl", using: :nounzip
-        sha256 "f9a2353b37a1a9e78fd82b27ad7e2a32a2d036604d18f02b05e3136c62ca3b09"
+        url "https://files.pythonhosted.org/packages/e2/84/6a3d75b3ba3dfe84ac0053450753d1e6d250a8bf80f66474cc46d1fb643f/numpy-2.5.4-cp313-cp313-macosx_14_0_arm64.whl", using: :nounzip
+        sha256 "6d6a71b9d9a97c03633aa12565ef2825ffa036cc1d99cfd50dacf0f128af4fe2"
       end
     else
       raise "Unknown CPU architecture, only arm64 is supported on macOS"
@@ -224,13 +217,13 @@ class Rclip < Formula
   elsif OS.linux?
     if Hardware::CPU.arm?
       resource "numpy" do
-        url "https://files.pythonhosted.org/packages/73/85/735720d04ec197c5dcfacdfc9922667c7f1f5f496a279b7ba4d7c74c4cc7/numpy-2.5.3-cp313-cp313-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", using: :nounzip
-        sha256 "c76d5dde9f445058f83d0c02af00557a4db91de9a9a57c0df87d1535001d654b"
+        url "https://files.pythonhosted.org/packages/db/b6/135bb0953b61dc21c6cafa14b424ae666944e4899cf140e00c2b322a1a45/numpy-2.5.4-cp313-cp313-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", using: :nounzip
+        sha256 "1c2e71b04c6cad90026e544501bbe0ab9290fa8a4d845e7e8c0d124fb429c988"
       end
     elsif Hardware::CPU.intel?
       resource "numpy" do
-        url "https://files.pythonhosted.org/packages/3a/1b/3b16a9bc514a440a7a0883684111dcb1ef1aee960af2ca95da8fc775f124/numpy-2.5.3-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", using: :nounzip
-        sha256 "a5fa86b80fd24bcd1aff83ad23be44ea323de3f787be8f8b15d4a65621e25321"
+        url "https://files.pythonhosted.org/packages/da/24/3bd070f3269dc609d8f26b2643f62ef91bb415841c0b294805aaf7fe06da/numpy-2.5.4-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", using: :nounzip
+        sha256 "6ffa07666f8da0eef81d149934a626d0d95fbd6838432a33e66245423a9062c0"
       end
     else
       raise "Unknown CPU architecture, only amd64 and arm64 are supported"
@@ -240,8 +233,8 @@ class Rclip < Formula
   if OS.mac?
     if Hardware::CPU.arm?
       resource "pillow" do
-        url "https://files.pythonhosted.org/packages/10/76/8803c13605b763d33d156c4678fc77f8443389c0c51c8aef707bb02015f4/pillow-12.3.0-cp313-cp313-macosx_11_0_arm64.whl", using: :nounzip
-        sha256 "d69141514cc30b774ceea5e3ed3a6635c8d8a96edf664689b890f4089111fb35"
+        url "https://files.pythonhosted.org/packages/98/c8/ccede3dcc4f274b80fb49199eed1ef34ba05566c8b71976b9d1f111da2e3/pillow-13.0.0-cp313-cp313-macosx_11_0_arm64.whl", using: :nounzip
+        sha256 "f11a3c1358bb3c68012a7b1f41b223c3db9f7bfde90b481df028cfe1c3363313"
       end
     else
       raise "Unknown CPU architecture, only arm64 is supported on macOS"
@@ -249,13 +242,13 @@ class Rclip < Formula
   elsif OS.linux?
     if Hardware::CPU.arm?
       resource "pillow" do
-        url "https://files.pythonhosted.org/packages/1f/01/e18aff37cb0b4aac47ac90f016d347a49aca667ef97f190b06ac2aabc928/pillow-12.3.0-cp313-cp313-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", using: :nounzip
-        sha256 "f7401aebd7f581d7f83a439d87d474999317ee099218e5ad25d125290990ba65"
+        url "https://files.pythonhosted.org/packages/fb/3c/cd0770e96d20bfd990db024bcbd43897ff3e88da1f4782cf90ea231b1d4f/pillow-13.0.0-cp313-cp313-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl", using: :nounzip
+        sha256 "19b66ca0a4d25cc0200b381ce824c7ea090db61427315e73cfb05dbf1b35c369"
       end
     elsif Hardware::CPU.intel?
       resource "pillow" do
-        url "https://files.pythonhosted.org/packages/f7/62/de5bdd77d935331f4f802edc11e4d82950f642caad6cb2f949837b8560e2/pillow-12.3.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", using: :nounzip
-        sha256 "0847a763afefb695bc912d7c131e7e0632d4edc1d8698f58ddabec8e46b8b6d3"
+        url "https://files.pythonhosted.org/packages/ef/fe/f5cdaa2d1c4086e757430f368c271a58ee29cfe7378e7ae7b9d964015c25/pillow-13.0.0-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl", using: :nounzip
+        sha256 "5f56499c1a74d2b862beb0c33b8016f99d095858455df9d21583bbbc1c15b582"
       end
     else
       raise "Unknown CPU architecture, only amd64 and arm64 are supported"
@@ -290,8 +283,8 @@ class Rclip < Formula
   if OS.mac?
     if Hardware::CPU.arm?
       resource "hf-xet" do
-        url "https://files.pythonhosted.org/packages/4b/69/55b8dcf636142ae660fec1869fcac14c4da2e8412e14d6eee1523be77e9f/hf_xet-1.6.0-cp38-abi3-macosx_11_0_arm64.whl", using: :nounzip
-        sha256 "f0906082d9932ae0c0057fa194041c22b4e2cdb46b2592ef3b91f020d62a081a"
+        url "https://files.pythonhosted.org/packages/c3/47/a26ebdce7056a61e931f228439bc0ab08cbec239d1690f965e5e637cba79/hf_xet-1.7.0-cp38-abi3-macosx_11_0_arm64.whl", using: :nounzip
+        sha256 "59fba37039233c7fcbe196817d6cdcf1b40dfb17b410f229d85b0cf0a1848da4"
       end
     else
       raise "Unknown CPU architecture, only arm64 is supported on macOS"
@@ -299,13 +292,13 @@ class Rclip < Formula
   elsif OS.linux?
     if Hardware::CPU.arm?
       resource "hf-xet" do
-        url "https://files.pythonhosted.org/packages/9a/69/1f0cbc2fb22ae6082d094f743d1b8945a3f36f6089cb95f42b7ee348cda7/hf_xet-1.6.0-cp38-abi3-manylinux_2_28_aarch64.whl", using: :nounzip
-        sha256 "0e6e21fa3cdfcdcd76748564bf593870a5e013f47d97cf10aed63aa222cff5b7"
+        url "https://files.pythonhosted.org/packages/49/0c/a2f703a5a78267556e89e03316fa0805c86b72b50829bc67665746e8ebf0/hf_xet-1.7.0-cp38-abi3-manylinux_2_28_aarch64.whl", using: :nounzip
+        sha256 "fcfd6c22418e57dd5b3aea649e813b2e2cfb2aebf317b210d90f1fe4b3018b52"
       end
     elsif Hardware::CPU.intel?
       resource "hf-xet" do
-        url "https://files.pythonhosted.org/packages/67/4e/a28359bf1c1ecf11eba22123168c138698f7cb576ac678f5a2e16cd5da08/hf_xet-1.6.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", using: :nounzip
-        sha256 "d62671bb130879cef0ee4c9ebe47a14af6c66ec53e6d84dc15936e5ffdfac82f"
+        url "https://files.pythonhosted.org/packages/a3/4c/2bf3b66c215d409655f28de1622393dde04c9461280d48c7924bb3b2decd/hf_xet-1.7.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", using: :nounzip
+        sha256 "2814a6e999d13464c4d679b788cc5d784eb5a4edfc638a31f10e9a11ab531ef8"
       end
     else
       raise "Unknown CPU architecture, only amd64 and arm64 are supported"
@@ -315,8 +308,8 @@ class Rclip < Formula
   if OS.mac?
     if Hardware::CPU.arm?
       resource "onnxruntime" do
-        url "https://files.pythonhosted.org/packages/f0/75/508454c5d01f31641dabc597fe559594c931a520a2673031179319d0afd8/onnxruntime-1.30.0-cp313-cp313-macosx_14_0_arm64.whl", using: :nounzip
-        sha256 "05e4fc41711d1f4abd19a9124b5be7a65a506cb2670a7f14b16162ef13c58134"
+        url "https://files.pythonhosted.org/packages/e0/2b/117f94d73a3bac4276c285c47e384e1b3ea67b191aa4c7592df9d3f4a136/onnxruntime-1.31.0-cp313-cp313-macosx_14_0_arm64.whl", using: :nounzip
+        sha256 "0ba02a44acb6203040354d9a1f160e3f37a43feac7bb05caa3e0ea545efed505"
       end
     else
       raise "Unknown CPU architecture, only arm64 is supported on macOS"
@@ -324,13 +317,13 @@ class Rclip < Formula
   elsif OS.linux?
     if Hardware::CPU.arm?
       resource "onnxruntime" do
-        url "https://files.pythonhosted.org/packages/89/06/e603c71f43f4fe3fd156a053af79cbed6e27a2c649f0988a67d97fedd39f/onnxruntime-1.30.0-cp313-cp313-manylinux_2_28_aarch64.whl", using: :nounzip
-        sha256 "5327cf6aa15a02bad805fac8bd6882a62571e8b72f6f2938a8f37e6bd1966ce9"
+        url "https://files.pythonhosted.org/packages/8a/d0/3677fe93ec0fa3c637744aa4c3ae6ef89a93ee229cd3c5157820f267c7bd/onnxruntime-1.31.0-cp313-cp313-manylinux_2_28_aarch64.whl", using: :nounzip
+        sha256 "ad663106f6eeff3d454f24a786450459d07f30e74863851104fc1b8b3f368127"
       end
     elsif Hardware::CPU.intel?
       resource "onnxruntime" do
-        url "https://files.pythonhosted.org/packages/f1/a1/ede48ab5dc54907a2999362777f541e132639fb06628ded1932058aa8a36/onnxruntime-1.30.0-cp313-cp313-manylinux_2_28_x86_64.whl", using: :nounzip
-        sha256 "86f940afc801ea9681a4da8af84fbe95e1d9ea7d80903952cc1bfad54faad38f"
+        url "https://files.pythonhosted.org/packages/0d/ac/67ebbaab4b3083f2a6b27ee6c4aa400c7f8d6c72b5499aac7e4cd6ba74f5/onnxruntime-1.31.0-cp313-cp313-manylinux_2_28_x86_64.whl", using: :nounzip
+        sha256 "37fd78cee5160c7a43a1730ccb3682ffd880af9c9e80385d625c0c2f8b125809"
       end
     else
       raise "Unknown CPU architecture, only amd64 and arm64 are supported"
