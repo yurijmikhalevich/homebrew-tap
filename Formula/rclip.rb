@@ -7,6 +7,13 @@ class Rclip < Formula
   sha256 "df8843cd650ff5a8cfc036255f361d9c4b6f0443f20148a1296e9eeea476ff2e"
   license "MIT"
 
+  bottle do
+    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-4.1.3"
+    sha256 cellar: :any, arm64_sequoia: "65418c99e08272c67046387edcf7749ad5daadc6aa51d35569310339d2fba815"
+    sha256 cellar: :any, arm64_linux:   "63a5bf6d27020070831b65a1d4dcbeb03657c4cda246cfcdf5138455b7a44c7e"
+    sha256 cellar: :any, x86_64_linux:  "2d31ca90a0a063e15aec7dc5c794bab93f6f53d9ce61e91d99c8be45f5526edb"
+  end
+
   if OS.linux?
     depends_on "patchelf" => :build
     depends_on "zlib-ng-compat" # bundled Linux wheels link against libz
