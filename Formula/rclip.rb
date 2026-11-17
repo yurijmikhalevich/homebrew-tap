@@ -3,16 +3,9 @@ class Rclip < Formula
 
   desc "Semantic photo search for the command-line"
   homepage "https://github.com/yurijmikhalevich/rclip"
-  url "https://files.pythonhosted.org/packages/78/0f/1c9b6c3177c981d1abd81768a753ef0ef89a1ca3a47999870afa4120e9f2/rclip-4.1.2.tar.gz"
-  sha256 "1b48792093a299b967381dc6e2c2942171c0d130e3087b58070065c18ec016d4"
+  url "https://files.pythonhosted.org/packages/3d/02/f298118c3c303d000d4d4ba3826938b48428558f259847bf9d6bb03f4af2/rclip-4.1.3.tar.gz"
+  sha256 "df8843cd650ff5a8cfc036255f361d9c4b6f0443f20148a1296e9eeea476ff2e"
   license "MIT"
-
-  bottle do
-    root_url "https://github.com/yurijmikhalevich/homebrew-tap/releases/download/rclip-4.1.2"
-    sha256 cellar: :any, arm64_sequoia: "a73852299b7810deeb7ea6e31b294f24a3b42a87c675e08fb5ec958c8fbf508d"
-    sha256 cellar: :any, arm64_linux:   "8fb7f88c0e9ca0be667a16000a8a51881052b3a66dc4132c83f751204915dd4a"
-    sha256 cellar: :any, x86_64_linux:  "fdcceb7bfa7d444842f83c657866e494f444af98d5e501587b9d9ebe61439003"
-  end
 
   if OS.linux?
     depends_on "patchelf" => :build
